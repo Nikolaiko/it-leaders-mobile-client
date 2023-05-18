@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun News() {
+
     Text(text = "News feed")
 }
 
@@ -12,3 +13,4 @@ fun News() {
 fun SearchNewsEditText() {
 
 }
+
