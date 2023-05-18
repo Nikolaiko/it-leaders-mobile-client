@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("plugin.serialization")
 //    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
@@ -66,6 +67,10 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktor_version")
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+    //VK
+    implementation ("com.vk:android-sdk-core:4.0.1")
+    implementation ("com.vk:android-sdk-api:4.0.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
 }
