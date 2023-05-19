@@ -18,7 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
 
 @Composable
-fun CategoryCardTitle() {
+fun CategoryCardTitle(
+    title: String
+) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp
     val width = screenWidth * 0.38
@@ -30,7 +32,7 @@ fun CategoryCardTitle() {
         contentAlignment = Alignment.CenterStart
     ){
         Text(
-            text = "Category title",
+            text = title,
             modifier = Modifier.wrapContentWidth()
         )
     }

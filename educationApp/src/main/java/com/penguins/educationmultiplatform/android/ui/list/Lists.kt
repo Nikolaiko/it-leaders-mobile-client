@@ -2,12 +2,12 @@ package com.penguins.educationmultiplatform.android.ui.list
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.penguins.educationmultiplatform.android.news.debug.News
 
 @Composable
 fun NewsList(
@@ -25,14 +25,14 @@ fun NewsList(
 
 @Composable
 fun NewsCategoryList(
-    items: List<String>,
+    items: News,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
         modifier = modifier
     ) {
-        items(items) { item ->
-            Text(text = item)
-        }
+//        items(items) { item ->
+//            Text(text = item)
+//        }
     }
 }
