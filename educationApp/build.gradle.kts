@@ -57,6 +57,7 @@ dependencies {
     // Coil
     implementation ("io.coil-kt:coil:2.2.2")
     implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
 
 
     //Ktor

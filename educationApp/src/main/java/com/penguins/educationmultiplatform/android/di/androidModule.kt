@@ -1,5 +1,7 @@
 package com.penguins.educationmultiplatform.android.di
 
+import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
+import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
 import com.penguins.educationmultiplatform.android.data.remote.api.EducationRepositoryImpl
 import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
 import io.ktor.client.*
@@ -22,4 +24,7 @@ val androidModule = module {
         }
     }
     single <EducationRepository> { EducationRepositoryImpl(get()) }
+    single { AuthViewModel() }
+    single { RegisterViewModel() }
+
 }
