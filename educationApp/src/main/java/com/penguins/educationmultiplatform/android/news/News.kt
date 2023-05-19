@@ -1,23 +1,18 @@
 package com.penguins.educationmultiplatform.android.news
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.penguins.educationmultiplatform.android.news.components.cards.CategoryCardTitle
+import com.penguins.educationmultiplatform.android.news.components.cards.DividerAndTextButton
 import com.penguins.educationmultiplatform.android.news.components.toolbar.NewsToolbar
-import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
 import com.penguins.educationmultiplatform.android.ui.list.NewsCategoryList
 
 @Composable
@@ -45,51 +40,29 @@ fun CategoryCard() {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        CategoryCardTitle()
+        CategoryCardTitleRow()
         CategoryCardNewsList()
     }
 }
 
 @Composable
-fun CategoryCardTitle() {
-    val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp
-    val width = screenWidth * 0.73
-
+fun CategoryCardTitleRow() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxHeight()
-                .wrapContentWidth(),
-            contentAlignment = Alignment.CenterStart
-        ){
-            Text(
-                text = "Category title",
-                modifier = Modifier.wrapContentWidth()
-            )
-        }
-//        Line()
-        Box (
-            modifier = Modifier
-                .wrapContentWidth(),
-            contentAlignment = Alignment.CenterEnd
-        ) {
-            TextButton(
-                onClick = { },
-                text = "Смотреть всё",
-                modifier = Modifier
-            )
-        }
+        CategoryCardTitle()
+        DividerAndTextButton()
     }
 }
 
 @Composable
 fun CategoryCardNewsList() {
-    NewsCategoryList(items = listOf(
+    NewsCategoryList(
+        modifier = Modifier
+            .padding(top = 32.dp),
+        items = listOf(
         "item1                  ",
         "item2                  ",
         "item1                  ",
@@ -104,5 +77,3 @@ fun CategoryCardNewsList() {
 fun NewsPreview() {
     News()
 }
-
-const val TITLE_SEARCH_TEXT_FIELD = "Поиск"

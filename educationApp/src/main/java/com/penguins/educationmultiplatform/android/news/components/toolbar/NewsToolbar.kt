@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.news.TITLE_SEARCH_TEXT_FIELD
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 
 @Composable
@@ -70,3 +69,5 @@ fun FilterButton() {
         )
     }
 }
+
+const val TITLE_SEARCH_TEXT_FIELD = "Поиск"
