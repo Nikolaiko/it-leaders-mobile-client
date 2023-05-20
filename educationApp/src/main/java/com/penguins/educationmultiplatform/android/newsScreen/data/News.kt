@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.news.debug
+package com.penguins.educationmultiplatform.android.newsScreen.data
 
 data class News(
     val title: String? = null,

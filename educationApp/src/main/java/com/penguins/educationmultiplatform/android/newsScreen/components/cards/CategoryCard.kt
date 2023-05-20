@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.news.components.cards
+package com.penguins.educationmultiplatform.android.newsScreen.components.cards
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,8 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.news.components.list.CategoryCardNewsList
-import com.penguins.educationmultiplatform.android.news.debug.News
+import com.penguins.educationmultiplatform.android.newsScreen.components.list.CategoryCardNewsList
+import com.penguins.educationmultiplatform.android.newsScreen.data.News
 import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
 
 @Composable

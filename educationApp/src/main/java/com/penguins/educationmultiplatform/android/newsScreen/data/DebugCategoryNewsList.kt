@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.news.debug
+package com.penguins.educationmultiplatform.android.newsScreen.data
 
 import com.penguins.educationmultiplatform.android.R
 

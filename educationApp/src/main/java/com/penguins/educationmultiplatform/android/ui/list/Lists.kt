@@ -6,9 +6,9 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.penguins.educationmultiplatform.android.news.components.cards.CategoryCard
-import com.penguins.educationmultiplatform.android.news.components.cards.NewsCard
-import com.penguins.educationmultiplatform.android.news.debug.News
+import com.penguins.educationmultiplatform.android.newsScreen.components.cards.CategoryCard
+import com.penguins.educationmultiplatform.android.newsScreen.components.cards.NewsCard
+import com.penguins.educationmultiplatform.android.newsScreen.data.News
 
 @Composable
 fun CategoryList(

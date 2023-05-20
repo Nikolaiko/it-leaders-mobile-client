@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.news.components.toolbar
+package com.penguins.educationmultiplatform.android.newsScreen.components.toolbar
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -22,7 +22,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
-import com.penguins.educationmultiplatform.android.ui.constants.EMPTY_STRING
+import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @Composable
 fun NewsToolbar() {
