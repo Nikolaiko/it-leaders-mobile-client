@@ -29,7 +29,8 @@ import com.penguins.educationmultiplatform.android.news.debug.News
 fun NewsCard(news: News) {
     Card(
         modifier = Modifier
-            .size(200.dp),
+            .size(200.dp)
+            .padding(end = 16.dp),
         shape = RoundedCornerShape(25.dp)
     ) {
         Box(

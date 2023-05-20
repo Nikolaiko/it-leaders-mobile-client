@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.penguins.educationmultiplatform.android.news.components.cards.NewsCard
 import com.penguins.educationmultiplatform.android.news.debug.News
 
 @Composable
@@ -25,14 +26,14 @@ fun NewsList(
 
 @Composable
 fun NewsCategoryList(
-    items: News,
+    list: List<News>,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
         modifier = modifier
     ) {
-//        items(items) { item ->
-//            Text(text = item)
-//        }
+        items(list) { news ->
+            NewsCard(news = news)
+        }
     }
 }

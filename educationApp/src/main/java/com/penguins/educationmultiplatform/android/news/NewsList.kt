@@ -12,10 +12,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.news.components.cards.CategoryCardTitle
 import com.penguins.educationmultiplatform.android.news.components.cards.DividerAndTextButton
-import com.penguins.educationmultiplatform.android.news.components.cards.NewsCard
 import com.penguins.educationmultiplatform.android.news.components.toolbar.NewsToolbar
 import com.penguins.educationmultiplatform.android.news.debug.News
 import com.penguins.educationmultiplatform.android.news.debug.listOfNews
+import com.penguins.educationmultiplatform.android.ui.list.NewsCategoryList
 
 @Composable
 fun NewsList() {
@@ -32,17 +32,16 @@ fun CategoriesList() {
             .padding(top = 24.dp)
             .padding(horizontal = 16.dp)
     ) {
-        CategoryCard(listOfNews().first())
-//        NewsList(items = listOf("item1", "item2"))
+        CategoryCard(listOfNews())
     }
 }
 
 @Composable
-fun CategoryCard(news: News) {
+fun CategoryCard(news: List<News>) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        CategoryCardTitleRow(news.category ?: EMPTY_STRING)
+        CategoryCardTitleRow(news.firstOrNull()?.category ?: EMPTY_STRING)
         CategoryCardNewsList(news)
     }
 }
@@ -62,13 +61,12 @@ fun CategoryCardTitleRow(
 }
 
 @Composable
-fun CategoryCardNewsList(news: News) {
-    NewsCard(news = news)
-//    NewsCategoryList(
-//        items = news,
-//        modifier = Modifier
-//            .padding(top = 32.dp)
-//    )
+fun CategoryCardNewsList(news: List<News>) {
+    NewsCategoryList(
+        list = news,
+        modifier = Modifier
+            .padding(top = 32.dp)
+    )
 }
 
 const val EMPTY_STRING = ""
