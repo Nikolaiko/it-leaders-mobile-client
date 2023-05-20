@@ -2,6 +2,13 @@ package com.penguins.educationmultiplatform.android.news.debug
 
 import com.penguins.educationmultiplatform.android.R
 
+fun listOfCategories() = listOf<Pair<String, List<News>>>(
+    "Музыка" to listOfNews(),
+    "Хореография" to listOfNews(),
+    "Изобразительное искусство" to listOfNews(),
+    "Театр" to listOfNews()
+)
+
 fun listOfNews() = listOf<News>(
     News(
         title = "Название новости номер один",

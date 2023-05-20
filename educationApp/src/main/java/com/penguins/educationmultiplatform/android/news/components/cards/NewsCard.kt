@@ -22,8 +22,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.news.EMPTY_STRING
 import com.penguins.educationmultiplatform.android.news.debug.News
+import com.penguins.educationmultiplatform.android.ui.constants.EMPTY_STRING
 
 @Composable
 fun NewsCard(news: News) {

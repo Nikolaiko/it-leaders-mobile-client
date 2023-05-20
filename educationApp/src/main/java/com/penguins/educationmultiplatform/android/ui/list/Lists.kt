@@ -4,28 +4,28 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.penguins.educationmultiplatform.android.news.components.cards.CategoryCard
 import com.penguins.educationmultiplatform.android.news.components.cards.NewsCard
 import com.penguins.educationmultiplatform.android.news.debug.News
 
 @Composable
-fun NewsList(
-    items: List<String>,
+fun CategoryList(
+    list: List<Pair<String, List<News>>>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ) {
-        items(items) { item ->
-            Text(text = item)
+        items(list) { item ->
+            CategoryCard(item.first, item.second)
         }
     }
 }
 
 @Composable
-fun NewsCategoryList(
+fun NewsListIntoCategory(
     list: List<News>,
     modifier: Modifier = Modifier
 ) {
