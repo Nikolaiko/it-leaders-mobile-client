@@ -24,18 +24,24 @@ import com.penguins.educationmultiplatform.android.newsScreen.data.News
 import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
 
 @Composable
-fun CategoryCard(category: String, news: List<News>) {
+fun CategoryCard(
+    category: String,
+    news: List<News>,
+    clickCategory: () -> Unit,
+    clickNews:() -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        CategoryCardTitleRow(category)
-        CategoryCardNewsList(news)
+        CategoryCardTitleRow(category, clickCategory)
+        CategoryCardNewsList(news, clickNews)
     }
 }
 
 @Composable
 fun CategoryCardTitleRow(
-    title: String
+    title: String,
+    clickCategory: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -43,7 +49,7 @@ fun CategoryCardTitleRow(
             .height(IntrinsicSize.Max)
     ) {
         CategoryCardTitle(title)
-        DividerAndTextButton()
+        DividerAndTextButton(clickCategory)
     }
 }
 
@@ -69,13 +75,13 @@ fun CategoryCardTitle(
 }
 
 @Composable
-fun DividerAndTextButton() {
+fun DividerAndTextButton(clickCategory: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxSize()
     ) {
         TitleDivider(modifier = Modifier.weight(1f))
-        TitleTextButton()
+        TitleTextButton(clickCategory)
     }
 }
 
@@ -96,11 +102,13 @@ fun TitleDivider(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun TitleTextButton() = Box(
+fun TitleTextButton(
+    onClick: () -> Unit
+) = Box(
     modifier = Modifier.wrapContentWidth()
 ) {
     TextButton(
-        onClick = { },
+        onClick = onClick,
         text = SEE_ALL_TEXT_BUTTON
     )
 }

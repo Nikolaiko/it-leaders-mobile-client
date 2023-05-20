@@ -1,16 +1,19 @@
 package com.penguins.educationmultiplatform.android.newsScreen.view
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.penguins.educationmultiplatform.android.newsScreen.components.list.CategoriesList
+import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.components.toolbar.NewsToolbar
+import com.penguins.educationmultiplatform.android.ui.list.CategoryList
 
 @Composable
 fun NewsListFragment() {
-    Column {
+    Column(modifier = Modifier.padding(top = 32.dp)) {
         NewsToolbar()
-        CategoriesList()
+        CategoryList()
     }
 }
 

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,13 +26,18 @@ import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.data.News
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun NewsCard(news: News) {
+fun NewsCard(
+    news: News,
+    onClick: () -> Unit
+) {
     Card(
         modifier = Modifier
             .size(200.dp)
             .padding(end = 16.dp),
-        shape = RoundedCornerShape(25.dp)
+        shape = RoundedCornerShape(25.dp),
+        onClick = onClick
     ) {
         Box(
             modifier = Modifier,

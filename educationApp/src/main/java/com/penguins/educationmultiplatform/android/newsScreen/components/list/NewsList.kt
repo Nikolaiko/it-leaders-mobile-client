@@ -8,10 +8,11 @@ import com.penguins.educationmultiplatform.android.newsScreen.data.News
 import com.penguins.educationmultiplatform.android.ui.list.NewsListIntoCategory
 
 @Composable
-fun CategoryCardNewsList(news: List<News>) {
+fun CategoryCardNewsList(news: List<News>, clickNews: () -> Unit) {
     NewsListIntoCategory(
         list = news,
         modifier = Modifier
-            .padding(top = 32.dp)
+            .padding(top = 32.dp),
+        onItemClick = clickNews
     )
 }

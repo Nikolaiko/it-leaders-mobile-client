@@ -7,6 +7,6 @@ import com.penguins.educationmultiplatform.android.newsScreen.data.listOfCategor
 @Preview(showBackground = true, widthDp = 320, heightDp = 640)
 @Composable
 fun ListPreview() {
-    CategoryList(listOfCategories())
+    CategoryList()
 }
 
