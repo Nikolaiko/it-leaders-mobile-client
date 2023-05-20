@@ -11,7 +11,10 @@ fun TextButton(
     modifier: Modifier = Modifier,
     text: String
 ) {
-    MaterialTextButton(onClick = onClick) {
+    MaterialTextButton(
+        modifier = modifier,
+        onClick = onClick
+    ) {
         Text(text = text)
     }
 }
