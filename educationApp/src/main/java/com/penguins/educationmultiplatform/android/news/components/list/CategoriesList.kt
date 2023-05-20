@@ -13,8 +13,7 @@ fun CategoriesList() {
     val categories = listOfCategories()
     Column(
         modifier = Modifier
-            .padding(top = 24.dp)
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = 16.dp, vertical = 16.dp)
     ) {
         CategoryList(list = categories)
     }

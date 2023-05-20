@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,6 +22,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
+import com.penguins.educationmultiplatform.android.ui.constants.EMPTY_STRING
 
 @Composable
 fun NewsToolbar() {
@@ -40,12 +42,13 @@ fun SearchNewsEditText() {
     val screenWidth = configuration.screenWidthDp
     val width = screenWidth * 0.73
 
-    var text by remember { mutableStateOf(TITLE_SEARCH_TEXT_FIELD) }
+    var text by remember { mutableStateOf(EMPTY_STRING) }
 
     OutlinedTextField(
         modifier = Modifier.width(width.dp),
         value = text,
-        onValueChange = { text = it }
+        onValueChange = { text = it },
+        placeholder = { Text(text = TITLE_SEARCH_TEXT_FIELD)}
     )
 }
 
