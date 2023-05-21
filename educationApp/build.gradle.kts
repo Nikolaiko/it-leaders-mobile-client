@@ -72,6 +72,14 @@ dependencies {
     implementation ("com.vk:android-sdk-core:4.0.1")
     implementation ("com.vk:android-sdk-api:4.0.1")
 
+    //Accompanist
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+    implementation("com.google.accompanist:accompanist-insets:0.30.1")
+    implementation ("com.google.accompanist:accompanist-coil:0.13.0")
+    implementation ("com.google.accompanist:accompanist-permissions:0.30.1")
+//    YandexMap
+    implementation ("com.yandex.android:maps.mobile:4.3.1-lite")
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
 }

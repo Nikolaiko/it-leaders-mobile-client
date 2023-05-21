@@ -4,6 +4,7 @@ import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthView
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
 import com.penguins.educationmultiplatform.android.data.remote.api.EducationRepositoryImpl
 import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
+import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.json.*
@@ -26,5 +27,5 @@ val androidModule = module {
     single <EducationRepository> { EducationRepositoryImpl(get()) }
     single { AuthViewModel() }
     single { RegisterViewModel() }
-
+    single { YandexMapViewModel() }
 }

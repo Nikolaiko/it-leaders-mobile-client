@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import com.penguins.educationmultiplatform.android.authScreen.view.RegisterScreen
+import com.penguins.educationmultiplatform.android.mapScreen.view.YandexMapScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -14,7 +15,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MyApplicationTheme {
-
+            YandexMapScreen()
             }
         }
     }
