@@ -1,15 +1,13 @@
 package com.penguins.educationmultiplatform.android.di
 
-import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
-import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
-import com.penguins.educationmultiplatform.android.data.remote.api.EducationRepositoryImpl
-import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
-import io.ktor.client.*
-import io.ktor.client.engine.android.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
-
+import com.penguins.educationmultiplatform.android.services.navigation.AppNavigation
+import com.penguins.educationmultiplatform.android.services.navigation.DestinationController
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.LogLevel
+import io.ktor.client.features.logging.Logging
 import org.koin.dsl.module
 
 val androidModule = module {
@@ -23,8 +21,5 @@ val androidModule = module {
             }
         }
     }
-    single <EducationRepository> { EducationRepositoryImpl(get()) }
-    single { AuthViewModel() }
-    single { RegisterViewModel() }
-
+    single <AppNavigation> { DestinationController() }
 }
