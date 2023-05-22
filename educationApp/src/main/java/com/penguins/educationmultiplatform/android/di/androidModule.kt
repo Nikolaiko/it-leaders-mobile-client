@@ -2,6 +2,7 @@ package com.penguins.educationmultiplatform.android.di
 
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
+import com.penguins.educationmultiplatform.android.categoryScreen.viewModel.CategoryViewModel
 import com.penguins.educationmultiplatform.android.data.remote.api.EducationRepositoryImpl
 import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
 import com.penguins.educationmultiplatform.android.newsScreen.viewModel.NewsViewModel
@@ -29,5 +30,7 @@ val androidModule = module {
     single { RegisterViewModel() }
 
     single { NewsViewModel() }
+
+    single { CategoryViewModel() }
 
 }
