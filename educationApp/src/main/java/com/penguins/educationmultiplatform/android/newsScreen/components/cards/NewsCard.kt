@@ -28,7 +28,7 @@ import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun NewsCard(
+fun HorizontalNewsCard(
     news: News,
     onClick: () -> Unit
 ) {
@@ -43,7 +43,10 @@ fun NewsCard(
             modifier = Modifier,
             contentAlignment = Alignment.CenterStart,
         ) {
-            NewsCardImage(imageId = news.imageId ?: DEFAULT_IMAGE_NEWS)
+            NewsCardImage(
+                imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,
+                contentScale = ContentScale.Crop
+            )
             NewsCardTexts(
                 heading = news.heading ?: EMPTY_STRING,
                 title = news.title ?: EMPTY_STRING
@@ -53,24 +56,30 @@ fun NewsCard(
 }
 
 @Composable
-fun NewsCardImage(imageId: Int) {
+fun NewsCardImage(
+    imageId: Int,
+    contentScale: ContentScale
+) {
     Image(
         painter = painterResource(id = imageId),
         contentDescription = IMAGE_CARD_DESCRIPTION,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
+        contentScale = contentScale,
+        modifier = Modifier.fillMaxWidth()
     )
     Image(
         painter = painterResource(id = R.drawable.ic_news_background),
         contentDescription = IMAGE_CARD_DESCRIPTION,
-        contentScale = ContentScale.Crop,
+        contentScale = contentScale,
         modifier = Modifier
             .fillMaxWidth()
     )
 }
 
 @Composable
-fun NewsCardTexts(heading: String, title: String) {
+fun NewsCardTexts(
+    heading: String = EMPTY_STRING,
+    title: String
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -81,7 +90,9 @@ fun NewsCardTexts(heading: String, title: String) {
         Column(
             modifier = Modifier.wrapContentSize()
         ) {
-           HeadingText(heading)
+           if (heading.isNotEmpty()) {
+               HeadingText(heading)
+           }
             Text(
                 text = title,
                 color = Color.White,

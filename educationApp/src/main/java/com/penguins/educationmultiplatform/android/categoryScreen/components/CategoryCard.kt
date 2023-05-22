@@ -3,6 +3,7 @@ package com.penguins.educationmultiplatform.android.categoryScreen.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -10,6 +11,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.components.cards.DEFAULT_IMAGE_NEWS
@@ -31,6 +33,7 @@ fun LastNewsCard(
     Card(
         modifier = Modifier
             .padding(top = 24.dp)
+            .heightIn(min = 154.dp)
             .height(height.dp)
             .fillMaxWidth(),
         shape = RoundedCornerShape(25.dp),
@@ -40,9 +43,11 @@ fun LastNewsCard(
             modifier = Modifier,
             contentAlignment = Alignment.CenterStart,
         ) {
-            NewsCardImage(imageId = news.imageId ?: DEFAULT_IMAGE_NEWS)
+            NewsCardImage(
+                imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,
+                contentScale = ContentScale.FillWidth
+            )
             NewsCardTexts(
-                heading = news.heading ?: EMPTY_STRING,
                 title = news.title ?: EMPTY_STRING
             )
         }
