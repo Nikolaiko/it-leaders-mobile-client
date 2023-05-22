@@ -21,5 +21,6 @@ val androidModule = module {
             }
         }
     }
+
     single <AppNavigation> { DestinationController() }
 }
