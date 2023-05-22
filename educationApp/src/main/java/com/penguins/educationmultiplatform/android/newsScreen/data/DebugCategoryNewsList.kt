@@ -13,14 +13,14 @@ fun listOfNews() = listOf<News>(
     News(
         title = "Название новости номер один",
         imageId = R.drawable.png_debug_news,
-        text = null,
+        text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
         category = "Музыка",
         heading = "Рубрика 1"
     ),
     News(
         title = "Название новости номер два",
         imageId = R.drawable.png_debug_news,
-        text = null,
+        text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
         category = null,
         heading = "Рубрика 2"
     ),

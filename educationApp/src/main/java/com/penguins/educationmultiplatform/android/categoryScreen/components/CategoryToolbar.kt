@@ -19,6 +19,7 @@ import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 fun CategoryToolbar() {
     Row(
         modifier = Modifier
+            .padding(top = 16.dp)
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
     ) {

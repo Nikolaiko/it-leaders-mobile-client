@@ -1,6 +1,7 @@
 package com.penguins.educationmultiplatform.android.categoryScreen.view
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -19,7 +20,9 @@ import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 @Composable
 fun CategoryScreen() {
     Column(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CategoryToolbar()
@@ -30,6 +33,7 @@ fun CategoryScreen() {
 @Composable
 fun CategoryNews() {
     val news = listOfNews()
+
     LastNewsCard(
         news = getDebugNews(),
         onClick = {}
@@ -45,7 +49,7 @@ fun CategoryNews() {
             clickCategory = {}
         )
         VerticalNewsList(
-            list = news,
+            list = news.take(2),
             modifier = Modifier.padding(top = 16.dp),
             onItemClick = {}
         )

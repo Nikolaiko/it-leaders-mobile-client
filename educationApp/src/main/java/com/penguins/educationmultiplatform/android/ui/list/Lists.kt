@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.components.cards.CategoryCard
 import com.penguins.educationmultiplatform.android.newsScreen.components.cards.HorizontalNewsCard
+import com.penguins.educationmultiplatform.android.newsScreen.components.cards.VerticalNewsCard
 import com.penguins.educationmultiplatform.android.newsScreen.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.data.NewsListEvents
 import com.penguins.educationmultiplatform.android.newsScreen.viewModel.NewsViewModel
@@ -62,7 +63,7 @@ fun VerticalNewsList(
         modifier = modifier
     ) {
         items(list) { news ->
-            HorizontalNewsCard(news = news, onClick = onItemClick)
+            VerticalNewsCard(news = news, onClick = onItemClick)
         }
     }
 }
