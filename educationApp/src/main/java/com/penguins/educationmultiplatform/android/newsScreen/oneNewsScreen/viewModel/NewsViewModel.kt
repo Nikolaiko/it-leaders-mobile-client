@@ -16,9 +16,11 @@ class NewsViewModel : ViewModel() {
         onEvent(NewsEvents.SetNews(getDebugOneNews()))
     }
 
-    fun onEvent(event: NewsEvents) = when (event) {
-        is NewsEvents.SetNews -> _state.tryEmit(_state.value.copy(news = event.news))
-        NewsEvents.BackButton -> Unit
+    fun onEvent(event: NewsEvents) {
+        when (event) {
+            is NewsEvents.SetNews -> _state.tryEmit(_state.value.copy(news = event.news))
+            NewsEvents.BackButton -> Unit
+        }
     }
 
 }

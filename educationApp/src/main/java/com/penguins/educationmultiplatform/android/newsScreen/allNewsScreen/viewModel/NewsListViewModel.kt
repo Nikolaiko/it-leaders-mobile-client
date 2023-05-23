@@ -11,16 +11,18 @@ class NewsListViewModel : ViewModel() {
     private val _state = MutableStateFlow(NewsListUiState())
     val state = _state.asStateFlow()
 
-    fun onEvent(event: NewsListEvents) = when (event) {
-        is NewsListEvents.SetCategoryList -> {
-            _state.tryEmit(_state.value.copy(list = event.list))
+    fun onEvent(event: NewsListEvents) {
+        when (event) {
+            is NewsListEvents.SetCategoryList -> {
+                _state.tryEmit(_state.value.copy(list = event.list))
+            }
+            is NewsListEvents.OpenNews -> Unit
+            is NewsListEvents.SetNewsTitle -> {
+                _state.tryEmit(_state.value.copy(searchingNews = event.titleNews))
+            }
+            is NewsListEvents.FilterButton -> Unit
+            is NewsListEvents.OpenCategory -> Unit
         }
-        is NewsListEvents.OpenNews -> Unit
-        is NewsListEvents.SetNewsTitle -> {
-            _state.tryEmit(_state.value.copy(searchingNews = event.titleNews))
-        }
-        is NewsListEvents.FilterButton -> Unit
-        is NewsListEvents.OpenCategory -> Unit
     }
 
 }
