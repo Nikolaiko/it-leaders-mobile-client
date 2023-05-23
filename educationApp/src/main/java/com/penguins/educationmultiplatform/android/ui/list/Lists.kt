@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.ui.list
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -59,10 +60,10 @@ fun VerticalNewsList(
     modifier: Modifier = Modifier,
     onItemClick: () -> Unit
 ) {
-    LazyColumn(
+    Column(
         modifier = modifier
     ) {
-        items(list) { news ->
+        for (news in list) {
             VerticalNewsCard(news = news, onClick = onItemClick)
         }
     }
