@@ -14,13 +14,13 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.components.
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.VerticalNewsCard
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListEvents
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsViewModel
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CategoryList(
     modifier: Modifier = Modifier,
-    viewModel: NewsViewModel = koinViewModel()
+    viewModel: NewsListViewModel = koinViewModel()
 ) {
     val state = viewModel.state.collectAsState()
 

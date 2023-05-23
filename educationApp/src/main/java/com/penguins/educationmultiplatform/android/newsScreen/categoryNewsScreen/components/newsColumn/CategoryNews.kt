@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.getDebugNews
+import com.penguins.educationmultiplatform.android.newsScreen.common.debugData.getDebugLastNews
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.CategoryCard
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.titleRow.NewsTitleRow
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.listOfNews
@@ -18,7 +18,7 @@ fun CategoryNews() {
     val news = listOfNews()
 
     LastNewsCard(
-        news = getDebugNews(),
+        news = getDebugLastNews(),
         onClick = {}
     )
 

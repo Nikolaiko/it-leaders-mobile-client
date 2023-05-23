@@ -19,12 +19,12 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListEvents
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsViewModel
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun NewsToolbar(viewModel: NewsViewModel = koinViewModel()) {
+fun NewsToolbar(viewModel: NewsListViewModel = koinViewModel()) {
     val state = viewModel.state.collectAsState()
 
     Row (

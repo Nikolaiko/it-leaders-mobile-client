@@ -6,7 +6,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class NewsViewModel : ViewModel() {
+class NewsListViewModel : ViewModel() {
 
     private val _state = MutableStateFlow(NewsListUiState())
     val state = _state.asStateFlow()
