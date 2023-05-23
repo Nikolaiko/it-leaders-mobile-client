@@ -19,8 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
-import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.DEFAULT_IMAGE_NEWS
-import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.NewsCardImage
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.image.NewsCardImage
 import com.penguins.educationmultiplatform.android.ui.textGrayColor
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
