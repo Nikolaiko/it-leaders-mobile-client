@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.image.NewsCardImage
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 

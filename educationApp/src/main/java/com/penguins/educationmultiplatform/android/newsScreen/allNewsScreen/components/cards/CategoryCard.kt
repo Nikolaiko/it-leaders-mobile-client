@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.titleRow.NewsTitleRow
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.list.HorizontalNewsList
 
 @Composable

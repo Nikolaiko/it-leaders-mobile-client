@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.CategoryCard
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.HorizontalNewsCard
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.VerticalNewsCard
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListEvents
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import org.koin.androidx.compose.koinViewModel

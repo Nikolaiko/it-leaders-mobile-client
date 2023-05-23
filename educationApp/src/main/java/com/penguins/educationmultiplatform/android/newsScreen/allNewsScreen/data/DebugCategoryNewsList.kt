@@ -1,6 +1,7 @@
 package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data
 
 import com.penguins.educationmultiplatform.android.R
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 
 fun listOfCategories() = listOf<Pair<String, List<News>>>(
     "Музыка" to listOfNews(),

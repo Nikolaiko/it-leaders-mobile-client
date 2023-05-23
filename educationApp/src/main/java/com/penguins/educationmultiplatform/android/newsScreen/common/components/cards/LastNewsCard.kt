@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.image.NewsCardImage
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
