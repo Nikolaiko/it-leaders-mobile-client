@@ -185,9 +185,7 @@ fun YandexMapScreen(
                                         )
                                     )
                                 }
-//                                selectedMapObject = mapView.map.mapObjects.addPlacemark(mapObject.geometry)
-//                                selectedMapObject.userData = mapObject
-//                                    mapObject
+                                selectedMapObject = mapObject
                                 mapObject.setIcon(
                                     ImageProvider.fromResource(
                                         context,
