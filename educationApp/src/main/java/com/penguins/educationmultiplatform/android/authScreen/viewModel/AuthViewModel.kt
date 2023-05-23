@@ -30,7 +30,7 @@ class AuthViewModel(
     private val _state = MutableStateFlow(AuthScreenUiState())
     val state = _state.asStateFlow()
 
-    private val _errorState = MutableSharedFlow<AppError>()
+    private val _errorState = MutableSharedFlow<AppError>(replay = 2)
     val errorState = _errorState.asSharedFlow()
 
     fun onEvent(event: AuthScreenEvents){
@@ -65,7 +65,6 @@ class AuthViewModel(
             when(response) {
                 is ActionResult.Success -> saveTokens(response.result)
                 is ActionResult.Fail -> {
-                    println("dsdsdsds")
                     _errorState.tryEmit(response.failure)
                 }
             }

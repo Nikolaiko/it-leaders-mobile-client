@@ -29,7 +29,7 @@ class RegisterViewModel(
     private val _state = MutableStateFlow(RegisterScreenUiState())
     val state = _state.asStateFlow()
 
-    private val _errorState = MutableSharedFlow<AppError>()
+    private val _errorState = MutableSharedFlow<AppError>(replay = 2)
     val errorState = _errorState.asSharedFlow()
 
     fun onEvent(event: RegisterScreenEvents){
