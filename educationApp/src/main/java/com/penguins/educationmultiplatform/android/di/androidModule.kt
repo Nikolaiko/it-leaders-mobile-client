@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.di
 
+import com.penguins.educationmultiplatform.android.newsScreen.viewModel.NewsViewModel
 import com.penguins.educationmultiplatform.android.services.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.services.navigation.DestinationController
 import io.ktor.client.HttpClient
@@ -23,4 +24,5 @@ val androidModule = module {
     }
 
     single <AppNavigation> { DestinationController() }
+    single <NewsViewModel> { NewsViewModel() }
 }
