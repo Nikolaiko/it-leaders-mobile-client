@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+
     kotlin("plugin.serialization")
+    id("com.google.devtools.ksp")  version "1.8.10-1.0.9"
 //    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
@@ -72,6 +74,15 @@ dependencies {
     implementation ("com.vk:android-sdk-core:4.0.1")
     implementation ("com.vk:android-sdk-api:4.0.1")
 
+    //Navigation
+    val nav_version = "1.8.41-beta"
+    implementation("io.github.raamcosta.compose-destinations:core:$nav_version")
+    ksp("io.github.raamcosta.compose-destinations:ksp:$nav_version")
+
+    //LocalStorage
+    implementation("androidx.preference:preference-ktx:1.2.0")
+
+    //Serializaton
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
 }
