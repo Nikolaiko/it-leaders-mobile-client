@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.ui.list
+package com.penguins.educationmultiplatform.android.newsScreen.common.components.list
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
