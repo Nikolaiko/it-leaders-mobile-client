@@ -11,7 +11,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 
@@ -64,7 +66,9 @@ fun TitleToolbar(
         contentAlignment = Alignment.CenterStart
     ){
         Text(
-            text = title
+            text = title,
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold
         )
     }
 }

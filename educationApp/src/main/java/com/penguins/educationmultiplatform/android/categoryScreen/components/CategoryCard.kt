@@ -36,8 +36,9 @@ fun LastNewsCard(
             .heightIn(min = 154.dp)
             .height(height.dp)
             .fillMaxWidth(),
-        shape = RoundedCornerShape(25.dp),
-        onClick = onClick
+        shape = RoundedCornerShape(15.dp),
+        onClick = onClick,
+        elevation = 4.dp
     ) {
         Box(
             modifier = Modifier,

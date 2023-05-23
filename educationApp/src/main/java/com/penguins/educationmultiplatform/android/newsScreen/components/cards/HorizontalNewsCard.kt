@@ -21,7 +21,9 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.data.News
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
@@ -36,7 +38,7 @@ fun HorizontalNewsCard(
         modifier = Modifier
             .size(200.dp)
             .padding(end = 16.dp),
-        shape = RoundedCornerShape(25.dp),
+        shape = RoundedCornerShape(15.dp),
         onClick = onClick
     ) {
         Box(
@@ -96,7 +98,9 @@ fun NewsCardTexts(
             Text(
                 text = title,
                 color = Color.White,
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 8.dp),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
             )
         }
     }
@@ -109,7 +113,7 @@ fun HeadingText(heading: String) {
             .alpha(0.7f)
             .background(
                 Color.White,
-                RoundedCornerShape(25.dp)
+                RoundedCornerShape(15.dp)
             )
             .padding(horizontal = 10.dp, vertical = 2.dp)
     ) {

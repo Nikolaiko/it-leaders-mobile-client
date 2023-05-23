@@ -39,7 +39,7 @@ fun VerticalNewsCard(
         Box(
             modifier = Modifier
                 .size(size.dp)
-                .clip(RoundedCornerShape(25.dp))
+                .clip(RoundedCornerShape(15.dp))
         ) {
             NewsCardImage(
                 imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,

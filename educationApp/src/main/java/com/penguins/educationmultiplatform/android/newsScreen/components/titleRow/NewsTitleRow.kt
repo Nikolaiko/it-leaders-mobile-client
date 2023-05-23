@@ -17,7 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
 
 @Composable
@@ -51,7 +53,9 @@ fun CategoryCardTitle(
     ){
         Text(
             text = title,
-            modifier = Modifier.wrapContentWidth()
+            modifier = Modifier.wrapContentWidth(),
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold
         )
     }
 }
