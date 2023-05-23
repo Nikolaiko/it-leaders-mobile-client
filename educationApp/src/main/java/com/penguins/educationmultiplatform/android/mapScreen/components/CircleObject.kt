@@ -33,9 +33,6 @@ fun createTappableCircle(
             ImageProvider.fromResource(context, R.drawable.theatrical_circle)
         }
     }
-//    val circle: PlacemarkMapObject = mapObjects.addPlacemark(
-//        school.coords, imageProvider
-//    )
     val circle = clusterCollection.addPlacemark(school.coords, imageProvider)
     circle.setText(
         school.name,
