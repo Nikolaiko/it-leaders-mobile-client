@@ -20,16 +20,16 @@ fun createTappableCircle(
 ) {
     val imageProvider = when (school.type) {
         SchoolType.ARTISTIC -> {
-            ImageProvider.fromResource(context, R.drawable.artistic)
+            ImageProvider.fromResource(context, R.drawable.artist_circle)
         }
         SchoolType.MUSICAL -> {
-            ImageProvider.fromResource(context, R.drawable.musical)
+            ImageProvider.fromResource(context, R.drawable.musical_circle)
         }
         SchoolType.DANCING -> {
-            ImageProvider.fromResource(context, R.drawable.dancing)
+            ImageProvider.fromResource(context, R.drawable.dancing_circle)
         }
         SchoolType.THEATRICAL -> {
-            ImageProvider.fromResource(context, R.drawable.dancing)
+            ImageProvider.fromResource(context, R.drawable.theatrical_circle)
         }
     }
     val circle: PlacemarkMapObject = mapObjects.addPlacemark(

@@ -1,5 +1,7 @@
 package com.penguins.educationmultiplatform.android.mapScreen.components
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -31,7 +33,7 @@ fun BottomSheetFilters() {
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         Divider(modifier = Modifier.width(35.dp), color = Color(0xFFD9D9D9), thickness = 3.dp)
-        Spacer(modifier = Modifier.height(28.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = "Фильтры",
@@ -133,19 +135,190 @@ fun DistrictRadioItem(selected: Boolean, district: Districts, onClick: (District
             fontSize = 16.sp,
             fontWeight = FontWeight.W400
         )
+    }
+    AnimatedVisibility(
+        modifier = Modifier.padding(start = 32.dp),
+        visible = selected,
+        enter = expandVertically(
+            expandFrom = Alignment.Top,
+            animationSpec = tween(500)
+        ),
+        exit = shrinkVertically(
+            shrinkTowards = Alignment.Top,
+            animationSpec = tween(500)
+        )
+    ) {
+        if (selected)
+            Column() {
+                when (district) {
+                    is Districts.All -> {
+                    }
+                    is Districts.Center -> {
+                        CheckBoxes(district = district)
+                    }
+                    is Districts.East -> CheckBoxes(district = district)
 
+                    is Districts.North -> CheckBoxes(district = district)
+
+                    is Districts.North_East -> CheckBoxes(district = district)
+
+                    is Districts.South -> CheckBoxes(district = district)
+
+                    is Districts.SouthEast -> CheckBoxes(district = district)
+
+                    is Districts.South_West -> CheckBoxes(district = district)
+
+                    is Districts.West -> CheckBoxes(district = district)
+
+                }
+            }
+    }
+
+}
+
+
+@Composable
+fun CheckBoxes(district: Districts) {
+    val allCheck = remember { mutableStateOf(false) }
+    StreetCheckBox(street = null, selected = allCheck.value) {
+        allCheck.value = !allCheck.value
+    }
+    district.districts.forEach {
+        val checked = remember {
+            mutableStateOf(false)
+        }
+        if (allCheck.value) checked.value = true
+
+        StreetCheckBox(
+            street = it.first,
+            selected = if (allCheck.value) true else checked.value
+        ) {
+            checked.value = !checked.value
+            allCheck.value = !district.districts.any { !it.second }
+        }
+    }
+
+}
+
+@Composable
+fun StreetCheckBox(street: String?, selected: Boolean, onClick: () -> Unit) {
+
+    Row(
+        modifier = Modifier
+            .padding(vertical = 10.dp)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                null
+            ) { onClick.invoke() },
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Start
+    ) {
+        Checkbox(
+            checked = selected,
+            onCheckedChange = null,
+            colors = CheckboxDefaults.colors(
+                checkedColor = Color(0xFF8E74A8),
+                uncheckedColor = Color(0xFF8E74A8)
+            )
+        )
+        Spacer(modifier = Modifier.width(14.dp))
+        Text(
+            text = street ?: "Все",
+            color = Color(0xFF101010),
+            fontSize = 16.sp,
+            fontWeight = FontWeight.W400
+        )
     }
 }
 
-sealed class Districts(val text: String) {
-    object All : Districts("Все")
-    object Center : Districts("Центральный")
-    object North : Districts("Северный")
-    object North_East : Districts("Северо-Восточный")
-    object East : Districts("Восточный")
-    object SouthEast : Districts("Юго-Восточный")
-    object South : Districts("Южный")
-    object South_West : Districts("Северо-Западный")
-    object West : Districts("Западный")
+sealed class Districts(val text: String, val districts: List<Pair<String, Boolean>>) {
+    object All : Districts("Все", emptyList())
+    object Center : Districts(
+        "Центральный",
+        listOf(
+            Pair("Арбат", false),
+            Pair("Басманный", false),
+            Pair("Замоскворечье", false),
+            Pair("Красносельский", false),
+            Pair("Мещанский", false)
+        )
+    )
+
+    object North : Districts(
+        "Северный",
+        listOf(
+            Pair("Арбат", false),
+            Pair("Басманный", false),
+            Pair("Замоскворечье", false),
+            Pair("Красносельский", false),
+            Pair("Мещанский", false)
+        )
+    )
+
+    object North_East : Districts(
+        "Северо-Восточный",
+        listOf(
+            Pair("Арбат", false),
+            Pair("Басманный", false),
+            Pair("Замоскворечье", false),
+            Pair("Красносельский", false),
+            Pair("Мещанский", false)
+        )
+    )
+
+    object East : Districts(
+        "Восточный",
+        listOf(
+            Pair("Арбат", false),
+            Pair("Басманный", false),
+            Pair("Замоскворечье", false),
+            Pair("Красносельский", false),
+            Pair("Мещанский", false)
+        )
+    )
+
+    object SouthEast : Districts(
+        "Юго-Восточный",
+        listOf(
+            Pair("Арбат", false),
+            Pair("Басманный", false),
+            Pair("Замоскворечье", false),
+            Pair("Красносельский", false),
+            Pair("Мещанский", false)
+        )
+    )
+
+    object South : Districts(
+        "Южный",
+        listOf(
+            Pair("Арбат", false),
+            Pair("Басманный", false),
+            Pair("Замоскворечье", false),
+            Pair("Красносельский", false),
+            Pair("Мещанский", false)
+        )
+    )
+
+    object South_West : Districts(
+        "Северо-Западный",
+        listOf(
+            Pair("Арбат", false),
+            Pair("Басманный", false),
+            Pair("Замоскворечье", false),
+            Pair("Красносельский", false),
+            Pair("Мещанский", false)
+        )
+    )
+
+    object West : Districts(
+        "Западный",
+        listOf(
+            Pair("Арбат", false),
+            Pair("Басманный", false),
+            Pair("Замоскворечье", false),
+            Pair("Красносельский", false),
+            Pair("Мещанский", false)
+        )
+    )
 
 }
