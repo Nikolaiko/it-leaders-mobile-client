@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.data.remote.dto.profile
+package com.penguins.educationmultiplatform.android.data.model.dto.profile
 
 @kotlinx.serialization.Serializable
 data class Response(

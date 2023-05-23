@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -28,9 +29,9 @@ fun FormField(
     placeHolder: String,
     visibleIcon: Boolean = false,
     validationValue: UiText = UiText.EmptyString,
+    keyBoardOptions: KeyboardOptions = KeyboardOptions.Default,
     valueCallback: (String) -> Unit
 ) {
-
 
     val visibleText = remember {
         mutableStateOf(!visibleIcon)
@@ -58,21 +59,20 @@ fun FormField(
             shape = RoundedCornerShape(8.dp),
             elevation = 5.dp
         ) {
-                TextField(
-                    modifier = modifier.fillMaxWidth(),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = textFieldBackGroundColor,
-
-                        focusedIndicatorColor = educationGreenColor,
-                        unfocusedIndicatorColor = educationGreenColor
-                    ),
-                    value = text,
-                    onValueChange = { valueCallback.invoke(it) },
-
-                    placeholder = { Text(placeHolder) },
-                    visualTransformation = visualTransformation
-                )
-
+            TextField(
+                modifier = modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = textFieldBackGroundColor,
+                    focusedIndicatorColor = educationGreenColor,
+                    unfocusedIndicatorColor = educationGreenColor
+                ),
+                keyboardOptions = keyBoardOptions,
+                singleLine = true,
+                value = text,
+                onValueChange = { valueCallback.invoke(it) },
+                placeholder = { Text(placeHolder) },
+                visualTransformation = visualTransformation
+            )
         }
     }
 }

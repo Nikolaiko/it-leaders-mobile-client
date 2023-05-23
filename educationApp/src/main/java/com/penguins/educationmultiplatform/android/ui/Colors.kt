@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 
 val primaryBlue = Color(0xFF0076DE)
 val lightBlue = Color(0xFFB9D9FF)
+val primaryGray = Color(0xFF7C7C7B)
 
 val textFieldBackGroundColor = Color(0xFFFFFFFF)
 val educationGreenColor = Color(0xFFB4C95E)

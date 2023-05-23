@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.services.navigation
+package com.penguins.educationmultiplatform.android.domain.navigation
 
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.spec.Direction

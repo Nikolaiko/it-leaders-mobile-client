@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.data.remote.dto.vk
+package com.penguins.educationmultiplatform.android.data.model.dto.vk
 
 @kotlinx.serialization.Serializable
 data class VKPhotoResponse(

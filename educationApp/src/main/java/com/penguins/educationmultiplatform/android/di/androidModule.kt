@@ -1,8 +1,8 @@
 package com.penguins.educationmultiplatform.android.di
 
 import com.penguins.educationmultiplatform.android.newsScreen.viewModel.NewsViewModel
-import com.penguins.educationmultiplatform.android.services.navigation.AppNavigation
-import com.penguins.educationmultiplatform.android.services.navigation.DestinationController
+import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
+import com.penguins.educationmultiplatform.android.data.navigation.DestinationController
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.json.JsonFeature
@@ -14,6 +14,7 @@ import org.koin.dsl.module
 val androidModule = module {
     single  {
         HttpClient(Android) {
+            expectSuccess = true
             install(Logging) {
                 level = LogLevel.ALL
             }
