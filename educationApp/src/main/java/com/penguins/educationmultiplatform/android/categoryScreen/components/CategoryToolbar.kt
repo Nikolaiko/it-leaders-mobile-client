@@ -77,8 +77,14 @@ fun TitleToolbar(
 fun SearchButton(
     onClick: () -> Unit
 ) {
-    ImageButton(
-        onClick = onClick,
-        imageId = R.drawable.ic_search
-    )
+    Box(
+        modifier = Modifier
+            .fillMaxHeight(),
+        contentAlignment = Alignment.Center
+    ) {
+        ImageButton(
+            onClick = onClick,
+            imageId = R.drawable.ic_search
+        )
+    }
 }
