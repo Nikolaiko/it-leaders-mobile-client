@@ -16,24 +16,29 @@ class GetSchoolsFromRepository() {
             val mutableList = mutableListOf<SchoolDataUi>()
 
 
-            var type = 0
             for (i in 0..150) {
-                if (i % 5 == 0)
-                    type++
 
+                val type = when {
+                    i % 3 == 0 -> SchoolType.ARTISTIC
+                    i % 4 == 0 -> SchoolType.MUSICAL
+                    i % 5 == 0 -> SchoolType.DANCING
+                    i % 7 == 0 -> SchoolType.THEATRICAL
+                    else -> SchoolType.THEATRICAL
+                }
+
+                val school = when(type){
+                    SchoolType.ARTISTIC -> "художественн"
+                            SchoolType.MUSICAL -> "музыкальн"
+                            SchoolType.DANCING -> "танцевальн"
+                            SchoolType.THEATRICAL -> "театральн"
+                }
                 mutableList.add(
                     SchoolDataUi(
                         id = i,
-                        type = when (type) {
-                            1 -> SchoolType.ARTISTIC
-                            2 -> SchoolType.MUSICAL
-                            3 -> SchoolType.DANCING
-                            4 -> SchoolType.THEATRICAL
-                            else -> SchoolType.THEATRICAL
-                        },
-                        name = "Московская городская детская музыкальная школа имени С.С.Прокофьева",
+                        type = type,
+                        name = "Московская городская детская ${school}ая школа имени С.С.Прокофьева",
                         address = "Токмаков пер., д. 8",
-                        description = "Описание московской городской детской музыкальной школы имени С.С. Прокофьева описание московской городской детской музыкальной школы имени С.С. Прокофьева",
+                        description = "Описание московской городской детской ${school}ой школы имени С.С. Прокофьева описание московской городской детской музыкальной школы имени С.С. Прокофьева",
                         phoneNumber = "+7 (499) 261-03-83",
                         email = "dmshprokofiev@culture.mos.ru",
                         coords = Point(
