@@ -17,7 +17,7 @@ class GetSchoolsFromRepository() {
 
 
             var type = 0
-            for (i in 0..20) {
+            for (i in 0..150) {
                 if (i % 5 == 0)
                     type++
 
@@ -37,8 +37,8 @@ class GetSchoolsFromRepository() {
                         phoneNumber = "+7 (499) 261-03-83",
                         email = "dmshprokofiev@culture.mos.ru",
                         coords = Point(
-                            Random.nextDouble(55.730000, 55.760000),
-                            Random.nextDouble(37.600000, 37.630000)
+                            Random.nextDouble(55.660000, 55.870000),
+                            Random.nextDouble(37.438000, 37.835000)
                         )
                     )
                 )

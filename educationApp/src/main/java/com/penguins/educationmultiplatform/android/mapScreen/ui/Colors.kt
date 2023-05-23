@@ -13,7 +13,11 @@ val theatricalSchoolColor = Color(0xFF8E74A8)
 val artistSchoolColor = Color(0xFFBA768F)
 val dancingSchoolColor = Color(0xFF81AE7B)
 val buttonBottomSheetColor = Color(0xFFC9D670)
-val gradientBackgroundSheet = Brush.verticalGradient(0.0f to Color(0xFFB4C95E), 0.5f to Color(0xFFFFFFFF))
+val gradientMusicalBackgroundSheet = Brush.verticalGradient(0.0f to Color(0xFF9ABE95), 0.4f to Color(0xFFFFFFFF))
+val gradientArtistBackgroundSheet = Brush.verticalGradient(0.0f to Color(0xFFDBB0C2), 0.4f to Color(0xFFFFFFFF))
+val gradientTheaterBackgroundSheet = Brush.verticalGradient(0.0f to Color(0xFFBCADCC), 0.4f to Color(0xFFFFFFFF))
+val gradientDancingBackgroundSheet = Brush.verticalGradient(0.0f to Color(0xFF9ABE95), 0.4f to Color(0xFFFFFFFF))
+
 
 fun getCircleColor(type:SchoolType):Int =
     when (type) {
@@ -21,4 +25,11 @@ fun getCircleColor(type:SchoolType):Int =
         SchoolType.THEATRICAL -> R.drawable.theatrical_circle
         SchoolType.ARTISTIC -> R.drawable.artist_circle
         SchoolType.MUSICAL -> R.drawable.musical_circle
+    }
+fun getSelectedMarker(type:SchoolType) =
+    when (type) {
+        SchoolType.DANCING -> R.drawable.marker_dance
+        SchoolType.THEATRICAL -> R.drawable.marker_theatre
+        SchoolType.ARTISTIC -> R.drawable.marker_art
+        SchoolType.MUSICAL -> R.drawable.marker_music
     }

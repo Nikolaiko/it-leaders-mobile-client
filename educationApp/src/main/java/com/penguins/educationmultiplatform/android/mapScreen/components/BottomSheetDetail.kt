@@ -29,10 +29,8 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolDataUi
-import com.penguins.educationmultiplatform.android.mapScreen.ui.buttonBottomSheetColor
-import com.penguins.educationmultiplatform.android.mapScreen.ui.fontCardColor
-import com.penguins.educationmultiplatform.android.mapScreen.ui.gradientBackgroundSheet
-import com.penguins.educationmultiplatform.android.mapScreen.ui.theatricalSchoolColor
+import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
+import com.penguins.educationmultiplatform.android.mapScreen.ui.*
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -43,12 +41,19 @@ fun BottomSheetDetail(detail: SchoolDataUi, onClickClose: () -> Unit) {
         permission = Manifest.permission.CALL_PHONE,
     )
     val intent = Intent(Intent.ACTION_CALL)
+    val gradientBackground = when(detail.type){
+        SchoolType.MUSICAL -> gradientMusicalBackgroundSheet
+        SchoolType.THEATRICAL -> gradientTheaterBackgroundSheet
+        SchoolType.DANCING -> gradientDancingBackgroundSheet
+        SchoolType.ARTISTIC -> gradientArtistBackgroundSheet
+
+    }
     Column(
         modifier = Modifier
             .fillMaxHeight(0.6f)
             .fillMaxWidth()
             .background(
-                brush = gradientBackgroundSheet,
+                brush = gradientBackground,
                 shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
             )
             .padding(horizontal = 16.dp),

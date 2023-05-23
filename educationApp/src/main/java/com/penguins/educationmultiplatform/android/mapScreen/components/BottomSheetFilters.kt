@@ -218,7 +218,8 @@ fun StreetCheckBox(street: String?, selected: Boolean, onClick: () -> Unit) {
             onCheckedChange = null,
             colors = CheckboxDefaults.colors(
                 checkedColor = Color(0xFF8E74A8),
-                uncheckedColor = Color(0xFF8E74A8)
+                uncheckedColor = Color(0xFF8E74A8),
+                checkmarkColor = Color(0xFFFFFFFF)
             )
         )
         Spacer(modifier = Modifier.width(14.dp))

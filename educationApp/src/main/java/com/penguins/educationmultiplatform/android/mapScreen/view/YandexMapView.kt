@@ -28,13 +28,13 @@ import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
 import com.penguins.educationmultiplatform.android.mapScreen.data.YandexMapEvents
 import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButtonColor
 import com.penguins.educationmultiplatform.android.mapScreen.ui.getCircleColor
+import com.penguins.educationmultiplatform.android.mapScreen.ui.getSelectedMarker
 import com.penguins.educationmultiplatform.android.mapScreen.ui.nonClickedMapButtonColor
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.layers.ObjectEvent
-import com.yandex.mapkit.location.*
 import com.yandex.mapkit.map.*
 import com.yandex.mapkit.map.Map
 import com.yandex.mapkit.mapview.MapView
@@ -185,11 +185,13 @@ fun YandexMapScreen(
                                         )
                                     )
                                 }
-                                selectedMapObject = mapObject
+//                                selectedMapObject = mapView.map.mapObjects.addPlacemark(mapObject.geometry)
+//                                selectedMapObject.userData = mapObject
+//                                    mapObject
                                 mapObject.setIcon(
                                     ImageProvider.fromResource(
                                         context,
-                                        R.drawable.subtract
+                                        getSelectedMarker((selectedMapObject!!.userData as SchoolDataUi).type )
                                     ),
                                     IconStyle().setAnchor(PointF(0.5f, 1f))
                                 )
@@ -218,16 +220,6 @@ fun YandexMapScreen(
                             override fun onObjectAdded(userLocationView: UserLocationView) {
                                 Log.e("TAG", "onObjectAdded: ")
                                 userLocationLayer.resetAnchor()
-//                                setAnchor(
-//                                    PointF(
-//                                        (mapView.width * 0.5).toFloat(),
-//                                        (mapView.height * 0.5).toFloat()
-//                                    ),
-//                                    PointF(
-//                                        (mapView.width * 0.5).toFloat(),
-//                                        (mapView.height * 0.83).toFloat()
-//                                    )
-//                                )
                                 userLocationView.pin.setIcon(
                                     fromResource(
                                         context,
@@ -250,15 +242,29 @@ fun YandexMapScreen(
                             }
                         }
 
-//                        val clusterListener = ClusterListener { }
-//                        mapView.getMap().getMapObjects().addClusterizedPlacemarkCollection(clusterListener)
-
+                        val clusterListener = ClusterListener { cluster ->
+                            // We setup cluster appearance and tap handler in this method
+                            cluster.getAppearance().setIcon(
+                                TextImageProvider(
+                                    context,
+                                    Integer.toString(
+                                        cluster.getSize()
+                                    )
+                                )
+                            )
+//                            cluster.addClusterTapListener(cluster)
+                        }
+                        var clusterCollection = mapView.getMap().getMapObjects()
+                            .addClusterizedPlacemarkCollection(clusterListener)
 
                         userLocationLayer.setObjectListener(
                             userLocationObjectListener
                         )
                         scope.launch {
                             viewModel.state.collect {
+                                clusterCollection.clear()
+                                clusterCollection = mapView.map.mapObjects
+                                    .addClusterizedPlacemarkCollection(clusterListener)
                                 mapObjects.clear()
                                 selectedMapObject = null
                                 it.schools.filter { school ->
@@ -275,14 +281,16 @@ fun YandexMapScreen(
                                         school,
                                         circleMapObjectTapListener = onCircleTapListener,
                                         mapObjects,
-                                        context
+                                        context,
+                                        clusterCollection
                                     )
                                 }
+                                clusterCollection.clusterPlacemarks(70.0, 17)
                             }
                         }
                         scope.launch {
                             viewModel.currentLocation.collect {
-                                Log.e("TAG", "YandexMapScreen:LOCATION ", )
+                                Log.e("TAG", "YandexMapScreen:LOCATION ")
                                 if (it != null) {
                                     mapView.map.move(
                                         CameraPosition(
