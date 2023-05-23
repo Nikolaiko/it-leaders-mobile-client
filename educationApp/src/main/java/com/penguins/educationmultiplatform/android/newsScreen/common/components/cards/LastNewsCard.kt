@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components
+package com.penguins.educationmultiplatform.android.newsScreen.common.components.cards
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,9 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.DEFAULT_IMAGE_NEWS
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.NewsCardImage
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.NewsCardTexts
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 

@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards
+package com.penguins.educationmultiplatform.android.newsScreen.common.components.cards
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image

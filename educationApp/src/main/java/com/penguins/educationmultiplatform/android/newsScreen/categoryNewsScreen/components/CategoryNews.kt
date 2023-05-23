@@ -10,6 +10,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.CategoryCard
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.titleRow.CategoryCardTitleRow
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.listOfNews
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.LastNewsCard
 import com.penguins.educationmultiplatform.android.ui.list.VerticalNewsList
 
 @Composable
