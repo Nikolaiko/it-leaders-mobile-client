@@ -21,14 +21,16 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.data.News
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun NewsCard(
+fun HorizontalNewsCard(
     news: News,
     onClick: () -> Unit
 ) {
@@ -36,14 +38,18 @@ fun NewsCard(
         modifier = Modifier
             .size(200.dp)
             .padding(end = 16.dp),
-        shape = RoundedCornerShape(25.dp),
+        shape = RoundedCornerShape(15.dp),
         onClick = onClick
     ) {
         Box(
             modifier = Modifier,
             contentAlignment = Alignment.CenterStart,
         ) {
-            NewsCardImage(imageId = news.imageId ?: DEFAULT_IMAGE_NEWS)
+            NewsCardImage(
+                imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,
+                contentScale = ContentScale.Crop,
+                isBackgroundVisible = true
+            )
             NewsCardTexts(
                 heading = news.heading ?: EMPTY_STRING,
                 title = news.title ?: EMPTY_STRING
@@ -53,24 +59,33 @@ fun NewsCard(
 }
 
 @Composable
-fun NewsCardImage(imageId: Int) {
+fun NewsCardImage(
+    imageId: Int,
+    isBackgroundVisible: Boolean,
+    contentScale: ContentScale
+) {
     Image(
         painter = painterResource(id = imageId),
         contentDescription = IMAGE_CARD_DESCRIPTION,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
+        contentScale = contentScale,
+        modifier = Modifier.fillMaxWidth()
     )
-    Image(
-        painter = painterResource(id = R.drawable.ic_news_background),
-        contentDescription = IMAGE_CARD_DESCRIPTION,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .fillMaxWidth()
-    )
+    if (isBackgroundVisible) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_news_background),
+            contentDescription = IMAGE_CARD_DESCRIPTION,
+            contentScale = contentScale,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+    }
 }
 
 @Composable
-fun NewsCardTexts(heading: String, title: String) {
+fun NewsCardTexts(
+    heading: String = EMPTY_STRING,
+    title: String
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -81,11 +96,15 @@ fun NewsCardTexts(heading: String, title: String) {
         Column(
             modifier = Modifier.wrapContentSize()
         ) {
-           HeadingText(heading)
+           if (heading.isNotEmpty()) {
+               HeadingText(heading)
+           }
             Text(
                 text = title,
                 color = Color.White,
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 8.dp),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
             )
         }
     }
@@ -98,7 +117,7 @@ fun HeadingText(heading: String) {
             .alpha(0.7f)
             .background(
                 Color.White,
-                RoundedCornerShape(25.dp)
+                RoundedCornerShape(15.dp)
             )
             .padding(horizontal = 10.dp, vertical = 2.dp)
     ) {

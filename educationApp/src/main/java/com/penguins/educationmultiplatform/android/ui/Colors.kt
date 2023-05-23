@@ -10,6 +10,7 @@ val primaryGray = Color(0xFF7C7C7B)
 val textFieldBackGroundColor = Color(0xFFFFFFFF)
 val educationGreenColor = Color(0xFFB4C95E)
 
+val textGrayColor = Color(0xFF7C7C7B)
 val gradientSplashScreen = Brush.verticalGradient(
     0.0f to primaryBlue,
     0.5f to lightBlue
