@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.components.titleRow
+package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.titleRow
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize

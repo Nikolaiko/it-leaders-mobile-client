@@ -9,12 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.components.cards.CategoryCard
-import com.penguins.educationmultiplatform.android.newsScreen.components.cards.HorizontalNewsCard
-import com.penguins.educationmultiplatform.android.newsScreen.components.cards.VerticalNewsCard
-import com.penguins.educationmultiplatform.android.newsScreen.data.News
-import com.penguins.educationmultiplatform.android.newsScreen.data.NewsListEvents
-import com.penguins.educationmultiplatform.android.newsScreen.viewModel.NewsViewModel
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.CategoryCard
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.HorizontalNewsCard
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.VerticalNewsCard
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListEvents
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

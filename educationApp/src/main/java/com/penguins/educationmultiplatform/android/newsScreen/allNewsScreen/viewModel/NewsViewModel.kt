@@ -1,8 +1,8 @@
-package com.penguins.educationmultiplatform.android.newsScreen.viewModel
+package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel
 
 import androidx.lifecycle.ViewModel
-import com.penguins.educationmultiplatform.android.newsScreen.data.NewsListEvents
-import com.penguins.educationmultiplatform.android.newsScreen.data.NewsListUiState
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListEvents
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.components.cards
+package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.newsScreen.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @OptIn(ExperimentalMaterialApi::class)

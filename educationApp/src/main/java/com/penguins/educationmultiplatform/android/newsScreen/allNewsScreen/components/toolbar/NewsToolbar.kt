@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.components.toolbar
+package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.toolbar
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.newsScreen.data.NewsListEvents
-import com.penguins.educationmultiplatform.android.newsScreen.viewModel.NewsViewModel
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListEvents
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsViewModel
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 import org.koin.androidx.compose.koinViewModel
 

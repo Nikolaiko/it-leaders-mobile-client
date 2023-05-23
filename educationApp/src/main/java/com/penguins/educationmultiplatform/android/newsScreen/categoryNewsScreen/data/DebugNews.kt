@@ -1,7 +1,7 @@
-package com.penguins.educationmultiplatform.android.categoryScreen.data
+package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data
 
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.newsScreen.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
 
 fun getDebugNews() = News(
     title = "Название новости номер один",

@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.components.cards
+package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
 import com.penguins.educationmultiplatform.android.ui.textGrayColor
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 

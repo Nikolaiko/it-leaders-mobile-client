@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.data
+package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data
 
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
