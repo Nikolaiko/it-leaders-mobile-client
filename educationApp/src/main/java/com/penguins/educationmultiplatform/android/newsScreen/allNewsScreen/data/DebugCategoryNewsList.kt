@@ -1,6 +1,7 @@
 package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data
 
 import com.penguins.educationmultiplatform.android.R
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 
 fun listOfCategories() = listOf<Pair<String, List<News>>>(
@@ -15,7 +16,7 @@ fun listOfNews() = listOf<News>(
         title = "Название новости номер 1",
         imageId = R.drawable.png_debug_news,
         text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
-        category = "Музыка",
+        category = Category.MUSIC,
         heading = "Рубрика 1"
     ),
     News(
