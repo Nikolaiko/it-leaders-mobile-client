@@ -30,14 +30,14 @@ import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 @Composable
 fun HorizontalNewsCard(
     news: News,
-    onClick: () -> Unit
+    onClick: (News) -> Unit
 ) {
     Card(
         modifier = Modifier
             .size(200.dp)
             .padding(end = 16.dp),
         shape = RoundedCornerShape(15.dp),
-        onClick = onClick
+        onClick = { onClick(news) }
     ) {
         Box(
             modifier = Modifier,

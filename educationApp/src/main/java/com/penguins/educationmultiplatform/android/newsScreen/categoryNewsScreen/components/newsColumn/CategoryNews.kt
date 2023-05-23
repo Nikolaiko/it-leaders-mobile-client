@@ -1,47 +1,35 @@
 package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.newsColumn
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.common.debugData.getDebugLastNews
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.CategoryCard
-import com.penguins.educationmultiplatform.android.newsScreen.common.components.titleRow.NewsTitleRow
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.listOfNews
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.LastNewsCard
-import com.penguins.educationmultiplatform.android.newsScreen.common.components.list.VerticalNewsList
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.list.HorizontalListWithTitle
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.list.VerticalListWithTitle
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
+import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @Composable
-fun CategoryNews() {
-    val news = listOfNews()
-
+fun CategoryNews(
+    news: List<Pair<String, List<News>>>,
+    lastNews: News,
+    onClickNews: (News) -> Unit,
+    onClickSeeAll: (String) -> Unit
+) {
     LastNewsCard(
-        news = getDebugLastNews(),
-        onClick = {}
+        news = lastNews,
+        onClick = { onClickNews(lastNews) }
     )
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 32.dp)
-    ) {
-        NewsTitleRow(
-            title = "Подзаголовок",
-            clickCategory = {}
-        )
-        VerticalNewsList(
-            list = news.take(2),
-            modifier = Modifier.padding(top = 16.dp),
-            onItemClick = {}
-        )
-    }
+    VerticalListWithTitle(
+        title = news.firstOrNull()?.first ?: EMPTY_STRING,
+        news = news.firstOrNull()?.second ?: emptyList(),
+        onClickNews = onClickNews,
+        onClickSeeAll = onClickSeeAll
+    )
 
-    CategoryCard(
-        category = "Подзаголовок",
-        news = news,
-        clickCategory = {},
-        clickNews = {}
+    HorizontalListWithTitle(
+        category = news.lastOrNull()?.first ?: EMPTY_STRING,
+        news = news.lastOrNull()?.second ?: emptyList(),
+        clickCategory = onClickSeeAll,
+        clickNews = onClickNews
     )
 }

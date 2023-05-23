@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.newsScreen.common.components.cards
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +27,7 @@ import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 @Composable
 fun VerticalNewsCard(
     news: News,
-    onClick: () -> Unit
+    onClick: (News) -> Unit
 ) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp
@@ -37,6 +38,7 @@ fun VerticalNewsCard(
             .padding(bottom = 16.dp)
             .height(size.dp)
             .fillMaxWidth()
+            .clickable { onClick(news) }
     ) {
         Box(
             modifier = Modifier

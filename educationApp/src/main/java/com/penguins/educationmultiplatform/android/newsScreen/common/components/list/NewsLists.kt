@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.CategoryCard
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.HorizontalNewsCard
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.VerticalNewsCard
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
@@ -29,7 +28,7 @@ fun CategoryList(
             .padding(horizontal = 16.dp, vertical = 16.dp)
     ) {
         items(state.value.list) { item ->
-            CategoryCard(
+            HorizontalListWithTitle(
                 category = item.first,
                 news = item.second,
                 clickCategory = { viewModel.onEvent(NewsListEvents.OpenCategory) },
@@ -43,7 +42,7 @@ fun CategoryList(
 fun HorizontalNewsList(
     list: List<News>,
     modifier: Modifier = Modifier,
-    onItemClick: () -> Unit
+    onItemClick: (News) -> Unit
 ) {
     LazyRow(
         modifier = modifier
@@ -58,7 +57,7 @@ fun HorizontalNewsList(
 fun VerticalNewsList(
     list: List<News>,
     modifier: Modifier = Modifier,
-    onItemClick: () -> Unit
+    onItemClick: (News) -> Unit
 ) {
     Column(
         modifier = modifier

@@ -18,7 +18,11 @@ import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 
 @Composable
-fun CategoryToolbar() {
+fun CategoryToolbar(
+    title: String,
+    onBackClick: () -> Unit,
+    onSearchClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .padding(top = 16.dp)
@@ -26,14 +30,14 @@ fun CategoryToolbar() {
             .height(IntrinsicSize.Min)
     ) {
         BackButton(
-            onClick = {}
+            onClick = onBackClick
         )
         TitleToolbar(
             modifier = Modifier.weight(1f),
-            title = "Музыка"
+            title = title
         )
         SearchButton(
-            onClick = {}
+            onClick = onSearchClick
         )
     }
 }

@@ -25,7 +25,7 @@ import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
 @Composable
 fun NewsTitleRow(
     title: String,
-    clickCategory: () -> Unit
+    clickCategory: (String) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -33,7 +33,9 @@ fun NewsTitleRow(
             .height(IntrinsicSize.Max)
     ) {
         CategoryCardTitle(title)
-        DividerAndTextButton(clickCategory)
+        DividerAndTextButton {
+            clickCategory(title)
+        }
     }
 }
 
