@@ -13,12 +13,16 @@ import com.penguins.educationmultiplatform.android.authScreen.components.Educati
 import com.penguins.educationmultiplatform.android.authScreen.components.FormField
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
+import com.penguins.educationmultiplatform.android.navigation.graps.MainNavGraph
 import com.penguins.educationmultiplatform.android.ui.gradientBackground
+import com.ramcosta.composedestinations.annotation.Destination
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAuthenticationResult
 import com.vk.api.sdk.auth.VKScope
 import org.koin.androidx.compose.koinViewModel
 
+@MainNavGraph
+@Destination
 @Composable
 fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
 

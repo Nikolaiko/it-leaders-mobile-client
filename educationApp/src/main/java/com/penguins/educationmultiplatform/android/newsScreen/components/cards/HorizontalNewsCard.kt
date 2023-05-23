@@ -47,7 +47,8 @@ fun HorizontalNewsCard(
         ) {
             NewsCardImage(
                 imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                isBackgroundVisible = true
             )
             NewsCardTexts(
                 heading = news.heading ?: EMPTY_STRING,
@@ -60,6 +61,7 @@ fun HorizontalNewsCard(
 @Composable
 fun NewsCardImage(
     imageId: Int,
+    isBackgroundVisible: Boolean,
     contentScale: ContentScale
 ) {
     Image(
@@ -68,13 +70,15 @@ fun NewsCardImage(
         contentScale = contentScale,
         modifier = Modifier.fillMaxWidth()
     )
-    Image(
-        painter = painterResource(id = R.drawable.ic_news_background),
-        contentDescription = IMAGE_CARD_DESCRIPTION,
-        contentScale = contentScale,
-        modifier = Modifier
-            .fillMaxWidth()
-    )
+    if (isBackgroundVisible) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_news_background),
+            contentDescription = IMAGE_CARD_DESCRIPTION,
+            contentScale = contentScale,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+    }
 }
 
 @Composable

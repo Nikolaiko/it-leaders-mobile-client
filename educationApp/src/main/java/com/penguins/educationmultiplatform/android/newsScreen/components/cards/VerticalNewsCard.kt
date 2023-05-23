@@ -44,7 +44,8 @@ fun VerticalNewsCard(
         ) {
             NewsCardImage(
                 imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                isBackgroundVisible = false
             )
         }
 

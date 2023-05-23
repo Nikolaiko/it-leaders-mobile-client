@@ -46,7 +46,8 @@ fun LastNewsCard(
         ) {
             NewsCardImage(
                 imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,
-                contentScale = ContentScale.FillWidth
+                contentScale = ContentScale.FillWidth,
+                isBackgroundVisible = true
             )
             NewsCardTexts(
                 title = news.title ?: EMPTY_STRING
