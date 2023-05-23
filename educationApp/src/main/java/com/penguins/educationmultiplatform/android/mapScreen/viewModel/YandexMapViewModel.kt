@@ -1,81 +1,35 @@
 package com.penguins.educationmultiplatform.android.mapScreen.viewModel
 
+import android.location.Location
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
-import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenUiState
+import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
+import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
 import com.penguins.educationmultiplatform.android.mapScreen.data.*
-import com.yandex.mapkit.geometry.Point
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
-class YandexMapViewModel : ViewModel() {
+class YandexMapViewModel(
+    private val locationTracker:LocationTracker,
+    private val getSchoolsFromRepository: GetSchoolsFromRepository
+) : ViewModel() {
 
 
     private val _filter = MutableStateFlow(SchoolTypeFilter())
-
-
     private val _state = MutableStateFlow(YandexMapUiState())
     val state = combine(_filter, _state) { filter, state ->
         state.copy(filters = filter)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), YandexMapUiState())
 
+    private val _currentLocation = MutableSharedFlow<Location?>(1)
+    val currentLocation = _currentLocation.asSharedFlow()
     init {
-        _state.tryEmit(
-            YandexMapUiState(
-                listOf(
-                    SchoolDataUi(
-                        id = 1,
-                        type = SchoolType.ARTISTIC,
-                        name = "test first school",
-                        address = "testovaya ylitsa",
-                        description = "test test test test test",
-                        phoneNumber = "89130200151",
-                        email = "test@mail.ru",
-                        coords = Point(55.754405, 37.619992)
-                    ),
-                    SchoolDataUi(
-                        id = 2,
-                        type = SchoolType.MUSICAL,
-                        name = "test second school",
-                        address = "testovaya ylitsa 2",
-                        description = "test test test test test",
-                        phoneNumber = "89130200151",
-                        email = "test@mail.ru",
-                        coords = Point(55.756988, 37.629407)
-                    ),
-                    SchoolDataUi(
-                        id = 3,
-                        type = SchoolType.DANCING,
-                        name = "test 3 school",
-                        address = "testovaya ylitsa 3",
-                        description = "test test test test test",
-                        phoneNumber = "89130200151",
-                        email = "test@mail.ru",
-                        coords = Point(55.75566, 37.613448)
-                    ),
-                    SchoolDataUi(
-                        id = 4,
-                        type = SchoolType.THEATRICAL,
-                        name = "test first school4",
-                        address = "testovaya ylitsa 4",
-                        description = "test test test test test",
-                        phoneNumber = "89130200151",
-                        email = "test@mail.ru",
-                        coords = Point(55.749178, 37.615642)
-                    ),
-                    SchoolDataUi(
-                        id = 5,
-                        type = SchoolType.ARTISTIC,
-                        name = "test first school6 ",
-                        address = "testovaya ylitsa6",
-                        description = "test test test test test",
-                        phoneNumber = "89130200151",
-                        email = "test@mail.ru",
-                        coords = Point(55.750878, 37.63159)
-                    ),
-                )
-            )
-        )
+        viewModelScope.launch {
+            getSchoolsFromRepository.invoke().collect{
+                _state.tryEmit(_state.value.copy(schools = it))
+            }
+        }
+
     }
 
     fun onEvent(event: YandexMapEvents) {
@@ -96,7 +50,11 @@ class YandexMapViewModel : ViewModel() {
             }
             YandexMapEvents.SetTheaterFilter -> {
                 _filter.tryEmit(_filter.value.copy(theatricalFilter = !_filter.value.theatricalFilter))
-
+            }
+            YandexMapEvents.GetCurrentLocation -> {
+                viewModelScope.launch {
+                    _currentLocation.tryEmit(locationTracker.getCurrentLocation())
+                }
             }
         }
     }

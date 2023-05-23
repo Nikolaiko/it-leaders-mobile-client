@@ -7,7 +7,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -20,31 +19,51 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.mapScreen.components.BottomSheetDetail
-import com.penguins.educationmultiplatform.android.mapScreen.components.BottomSheetFilters
-import com.penguins.educationmultiplatform.android.mapScreen.components.FloatButtons
-import com.penguins.educationmultiplatform.android.mapScreen.components.createTappableCircle
+import com.penguins.educationmultiplatform.android.mapScreen.components.*
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolDataUi
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
-import com.penguins.educationmultiplatform.android.mapScreen.ui.*
+import com.penguins.educationmultiplatform.android.mapScreen.data.YandexMapEvents
+import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButtonColor
+import com.penguins.educationmultiplatform.android.mapScreen.ui.getCircleColor
+import com.penguins.educationmultiplatform.android.mapScreen.ui.nonClickedMapButtonColor
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
+import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
+import com.yandex.mapkit.layers.ObjectEvent
+import com.yandex.mapkit.location.*
 import com.yandex.mapkit.map.*
 import com.yandex.mapkit.map.Map
 import com.yandex.mapkit.mapview.MapView
+import com.yandex.mapkit.user_location.UserLocationObjectListener
+import com.yandex.mapkit.user_location.UserLocationView
 import com.yandex.runtime.image.ImageProvider
+import com.yandex.runtime.image.ImageProvider.fromResource
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
-import java.util.*
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalPermissionsApi::class)
 @Composable
 fun YandexMapScreen(
     viewModel: YandexMapViewModel = koinViewModel()
 ) {
+
+    val locationPermissions = rememberMultiplePermissionsState(
+        permissions = listOf(
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+        )
+    )
+    LaunchedEffect(key1 = locationPermissions.allPermissionsGranted) {
+        if (locationPermissions.allPermissionsGranted) {
+            viewModel.onEvent(YandexMapEvents.GetCurrentLocation)
+        } else
+            locationPermissions.launchMultiplePermissionRequest()
+    }
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -63,10 +82,15 @@ fun YandexMapScreen(
         targetValue = filterIconColor.value, animationSpec = tween(durationMillis = 500)
     )
 
+    val dialogShow = remember {
+        mutableStateOf(false)
+    }
+
     val scope = rememberCoroutineScope()
     val detailBottomSheetDataState: MutableState<SchoolDataUi?> = remember { mutableStateOf(null) }
     val sheetDetailState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldDetailState = rememberBottomSheetScaffoldState(bottomSheetState = sheetDetailState)
+
 
     BottomSheetScaffold(
         sheetContent = {
@@ -112,8 +136,10 @@ fun YandexMapScreen(
             Box(modifier = Modifier.fillMaxSize()) {
                 AndroidView(factory = { context ->
                     MapKitFactory.initialize(context)
-                    MapKitFactory.getInstance().onStart()
+                    val mapkit = MapKitFactory.getInstance()
+                    mapkit.onStart()
                     MapView(context).also { mapView ->
+                        mapView.onStart()
                         val mapObjects = mapView.map.mapObjects.addCollection()
                         mapView.map.move(CameraPosition(Point(55.754405, 37.619992), 14f, 0f, 0f))
                         var selectedMapObject: PlacemarkMapObject? = null
@@ -147,7 +173,7 @@ fun YandexMapScreen(
                             override fun onMapLongTap(p0: Map, p1: Point) {
                             }
                         }
-
+                        mapView.map.addInputListener(inputMapListener)
                         val onCircleTapListener = MapObjectTapListener { mapObject, point ->
                             if (mapObject is PlacemarkMapObject) {
                                 mapView.map.addInputListener(inputMapListener)
@@ -185,7 +211,52 @@ fun YandexMapScreen(
                             }
                             return@MapObjectTapListener true
                         }
-                        mapView.map.addInputListener(inputMapListener)
+                        val userLocationLayer =
+                            mapkit.createUserLocationLayer(mapView.mapWindow)
+                        userLocationLayer.isVisible = true
+                        val userLocationObjectListener = object : UserLocationObjectListener {
+                            override fun onObjectAdded(userLocationView: UserLocationView) {
+                                Log.e("TAG", "onObjectAdded: ")
+                                userLocationLayer.resetAnchor()
+//                                setAnchor(
+//                                    PointF(
+//                                        (mapView.width * 0.5).toFloat(),
+//                                        (mapView.height * 0.5).toFloat()
+//                                    ),
+//                                    PointF(
+//                                        (mapView.width * 0.5).toFloat(),
+//                                        (mapView.height * 0.83).toFloat()
+//                                    )
+//                                )
+                                userLocationView.pin.setIcon(
+                                    fromResource(
+                                        context,
+                                        R.drawable.user_location
+                                    )
+                                )
+                                userLocationView.arrow.setIcon(
+                                    fromResource(
+                                        context,
+                                        R.drawable.user_location
+                                    )
+                                )
+
+                            }
+
+                            override fun onObjectRemoved(p0: UserLocationView) {
+                            }
+
+                            override fun onObjectUpdated(p0: UserLocationView, p1: ObjectEvent) {
+                            }
+                        }
+
+//                        val clusterListener = ClusterListener { }
+//                        mapView.getMap().getMapObjects().addClusterizedPlacemarkCollection(clusterListener)
+
+
+                        userLocationLayer.setObjectListener(
+                            userLocationObjectListener
+                        )
                         scope.launch {
                             viewModel.state.collect {
                                 mapObjects.clear()
@@ -208,7 +279,22 @@ fun YandexMapScreen(
                                     )
                                 }
                             }
-
+                        }
+                        scope.launch {
+                            viewModel.currentLocation.collect {
+                                Log.e("TAG", "YandexMapScreen:LOCATION ", )
+                                if (it != null) {
+                                    mapView.map.move(
+                                        CameraPosition(
+                                            Point(it.latitude, it.longitude),
+                                            16f,
+                                            0f,
+                                            0f
+                                        ), Animation(Animation.Type.SMOOTH, 1f), null
+                                    )
+                                }
+//
+                            }
                         }
                     }
                 })
@@ -243,25 +329,20 @@ fun YandexMapScreen(
                         )
                     }
                     Spacer(Modifier.height(16.dp))
-                    Card(modifier = Modifier
-                        .size(48.dp)
-                        .clickable(remember { MutableInteractionSource() }, null) {
-
-                        }, shape = CircleShape, backgroundColor = nonClickedMapButtonColor
-                    ) {
-                        Icon(
-                            modifier = Modifier.padding(vertical = 12.dp, horizontal = 13.dp),
-                            imageVector = ImageVector.vectorResource(id = R.drawable.send),
-                            contentDescription = null,
-                            tint = clickedMapButtonColor
-                        )
-                    }
+                    NavigationButton(
+                        locationPermissions,
+                        viewModel::onEvent,
+                        showDialog = { dialogShow.value = true })
 
                 }
 
 
             }
         }
+        if (dialogShow.value)
+            GpsAlertDialog {
+                dialogShow.value = false
+            }
     }
 
     DisposableEffect(key1 = lifecycleOwner, effect = {

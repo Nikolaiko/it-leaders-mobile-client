@@ -7,6 +7,7 @@ sealed class YandexMapEvents{
     object SetTheaterFilter : YandexMapEvents()
     object SetDancingFilter : YandexMapEvents()
     object SetAllFilter : YandexMapEvents()
+    object GetCurrentLocation: YandexMapEvents()
 
 
 }

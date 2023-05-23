@@ -1,5 +1,8 @@
 package com.penguins.educationmultiplatform.android.mapScreen.components
 
+import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -15,11 +18,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolDataUi
 import com.penguins.educationmultiplatform.android.mapScreen.ui.buttonBottomSheetColor
@@ -27,9 +34,15 @@ import com.penguins.educationmultiplatform.android.mapScreen.ui.fontCardColor
 import com.penguins.educationmultiplatform.android.mapScreen.ui.gradientBackgroundSheet
 import com.penguins.educationmultiplatform.android.mapScreen.ui.theatricalSchoolColor
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun BottomSheetDetail(detail: SchoolDataUi, onClickClose: () -> Unit) {
 
+    val context = LocalContext.current
+    val permission = rememberPermissionState(
+        permission = Manifest.permission.CALL_PHONE,
+    )
+    val intent = Intent(Intent.ACTION_CALL)
     Column(
         modifier = Modifier
             .fillMaxHeight(0.6f)
@@ -99,9 +112,16 @@ fun BottomSheetDetail(detail: SchoolDataUi, onClickClose: () -> Unit) {
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             modifier = Modifier
-                .size(width = 210.dp, height = 48.dp)
+                .height(48.dp)
+                .wrapContentWidth()
                 .align(Alignment.Start),
-            onClick = { /*TODO*/ },
+            onClick = {
+                if(permission.status.isGranted) {
+                    intent.data = Uri.parse("tel:${detail.phoneNumber}")
+                    context.startActivity(intent)
+                }else
+                    permission.launchPermissionRequest()
+            },
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = buttonBottomSheetColor,
                 contentColor = fontCardColor
