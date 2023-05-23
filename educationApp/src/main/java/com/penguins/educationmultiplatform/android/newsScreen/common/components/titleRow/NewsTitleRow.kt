@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.titleRow
+package com.penguins.educationmultiplatform.android.newsScreen.common.components.titleRow
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
 
 @Composable
-fun CategoryCardTitleRow(
+fun NewsTitleRow(
     title: String,
     clickCategory: () -> Unit
 ) {

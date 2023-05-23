@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components
+package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.toolbar
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize

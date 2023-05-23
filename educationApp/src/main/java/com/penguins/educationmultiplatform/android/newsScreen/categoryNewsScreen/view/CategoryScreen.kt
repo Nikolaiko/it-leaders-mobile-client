@@ -11,9 +11,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.CategoryMap
-import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.CategoryNews
-import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.CategoryToolbar
+import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.map.CategoryMap
+import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.newsColumn.CategoryNews
+import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.toolbar.CategoryToolbar
 import com.penguins.educationmultiplatform.android.ui.gradientBackground
 
 @Composable

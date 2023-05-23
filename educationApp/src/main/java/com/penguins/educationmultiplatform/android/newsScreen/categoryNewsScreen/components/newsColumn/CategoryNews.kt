@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components
+package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.newsColumn
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,10 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.getDebugNews
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.cards.CategoryCard
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.titleRow.CategoryCardTitleRow
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.titleRow.NewsTitleRow
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.listOfNews
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.cards.LastNewsCard
-import com.penguins.educationmultiplatform.android.ui.list.VerticalNewsList
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.list.VerticalNewsList
 
 @Composable
 fun CategoryNews() {
@@ -27,7 +27,7 @@ fun CategoryNews() {
             .fillMaxWidth()
             .padding(top = 32.dp)
     ) {
-        CategoryCardTitleRow(
+        NewsTitleRow(
             title = "Подзаголовок",
             clickCategory = {}
         )

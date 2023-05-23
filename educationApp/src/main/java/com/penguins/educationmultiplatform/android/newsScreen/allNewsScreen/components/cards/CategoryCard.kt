@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.titleRow.CategoryCardTitleRow
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.titleRow.NewsTitleRow
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.News
-import com.penguins.educationmultiplatform.android.ui.list.HorizontalNewsList
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.list.HorizontalNewsList
 
 @Composable
 fun CategoryCard(
@@ -20,7 +20,7 @@ fun CategoryCard(
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        CategoryCardTitleRow(category, clickCategory)
+        NewsTitleRow(category, clickCategory)
         HorizontalNewsList(
             list = news,
             modifier = Modifier.padding(top = 32.dp),

@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components
+package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.components.map
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
