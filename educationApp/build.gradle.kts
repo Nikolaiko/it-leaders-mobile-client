@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+
     kotlin("plugin.serialization")
-//    id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.google.devtools.ksp")  version "1.8.10-1.0.9"
 }
 
 android {
@@ -71,19 +72,26 @@ dependencies {
     //VK
     implementation ("com.vk:android-sdk-core:4.0.1")
     implementation ("com.vk:android-sdk-api:4.0.1")
-
     //Accompanist
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
     implementation("com.google.accompanist:accompanist-insets:0.30.1")
     implementation ("com.google.accompanist:accompanist-coil:0.13.0")
     implementation ("com.google.accompanist:accompanist-permissions:0.30.1")
-//    YandexMap
+    // YandexMap
     implementation ("com.yandex.android:maps.mobile:4.3.1-lite")
-    // GMS - Google Mobile Services
-//    implementation("com.google.android.gms:play-services-location:21.0.1")
     // Permissions
     implementation("com.google.accompanist:accompanist-permissions:0.30.1")
     implementation ("androidx.work:work-runtime-ktx:2.8.1")
+
+    //Navigation
+    val nav_version = "1.8.41-beta"
+    implementation("io.github.raamcosta.compose-destinations:core:$nav_version")
+    ksp("io.github.raamcosta.compose-destinations:ksp:$nav_version")
+
+    //LocalStorage
+    implementation("androidx.preference:preference-ktx:1.2.0")
+
+    //Serializaton
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
 }

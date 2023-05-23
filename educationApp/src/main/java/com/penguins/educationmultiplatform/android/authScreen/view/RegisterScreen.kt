@@ -36,8 +36,10 @@ import com.penguins.educationmultiplatform.android.authScreen.components.FormFie
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
 import com.penguins.educationmultiplatform.android.data.remote.api.VKUsersCommand
+import com.penguins.educationmultiplatform.android.navigation.graps.MainNavGraph
 import com.penguins.educationmultiplatform.android.ui.educationGreenColor
 import com.penguins.educationmultiplatform.android.ui.gradientBackground
+import com.ramcosta.composedestinations.annotation.Destination
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAuthenticationResult
 import com.vk.api.sdk.auth.VKScope
@@ -47,6 +49,8 @@ import org.koin.androidx.compose.koinViewModel
 import java.io.File
 import java.util.*
 
+@MainNavGraph
+@Destination
 @Composable
 fun RegisterScreen(
     viewModel: RegisterViewModel = koinViewModel()

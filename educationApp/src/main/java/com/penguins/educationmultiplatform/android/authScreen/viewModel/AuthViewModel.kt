@@ -13,7 +13,6 @@ class AuthViewModel: ViewModel() {
     private val _state = MutableStateFlow(AuthScreenUiState())
     val state = _state.asStateFlow()
 
-
     fun onEvent(event: AuthScreenEvents){
         when(event){
             is AuthScreenEvents.JoinWithVK -> TODO()
