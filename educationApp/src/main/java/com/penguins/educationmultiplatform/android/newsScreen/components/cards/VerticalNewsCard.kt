@@ -2,7 +2,6 @@ package com.penguins.educationmultiplatform.android.newsScreen.components.cards
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.data.News
+import com.penguins.educationmultiplatform.android.ui.textGrayColor
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @Composable
@@ -34,6 +34,7 @@ fun VerticalNewsCard(
     Row(
         modifier = Modifier
             .padding(bottom = 16.dp)
+            .height(size.dp)
             .fillMaxWidth()
     ) {
         Box(
@@ -58,8 +59,11 @@ fun VerticalNewsCard(
             )
             Text(
                 text = news.text ?: EMPTY_STRING,
-                modifier = Modifier.padding(top = 8.dp),
-                overflow = TextOverflow.Ellipsis
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .fillMaxHeight(),
+                overflow = TextOverflow.Ellipsis,
+                color = textGrayColor
             )
         }
     }

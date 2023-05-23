@@ -17,7 +17,6 @@ import com.penguins.educationmultiplatform.android.newsScreen.components.cards.C
 import com.penguins.educationmultiplatform.android.newsScreen.components.titleRow.CategoryCardTitleRow
 import com.penguins.educationmultiplatform.android.newsScreen.data.listOfNews
 import com.penguins.educationmultiplatform.android.ui.list.VerticalNewsList
-import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @Composable
 fun CategoryScreen() {
@@ -52,7 +51,7 @@ fun CategoryNews() {
             .padding(top = 32.dp)
     ) {
         CategoryCardTitleRow(
-            title = news.first().category ?: EMPTY_STRING,
+            title = "Подзаголовок",
             clickCategory = {}
         )
         VerticalNewsList(
@@ -63,14 +62,14 @@ fun CategoryNews() {
     }
 
     CategoryCard(
-        category = news.first().category ?: EMPTY_STRING,
+        category = "Подзаголовок",
         news = news,
         clickCategory = {},
         clickNews = {}
     )
 }
 
-@Preview(showBackground = true, widthDp = 320, heightDp = 640, backgroundColor = 0xffffff)
+@Preview(showBackground = true, widthDp = 320, heightDp = 1640, backgroundColor = 0xffffff)
 @Composable
 fun NewsPreview() {
     CategoryScreen()
