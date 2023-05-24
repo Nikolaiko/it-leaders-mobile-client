@@ -137,8 +137,8 @@ fun YandexMapScreen(
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
                 AndroidView(factory = { context ->
-                    val mapkit = MapKitFactory.getInstance()
                     MapKitFactory.initialize(context)
+                    val mapkit = MapKitFactory.getInstance()
                     MapKitFactory.getInstance().onStart()
                     MapView(context).also { mapView ->
                         mapView.onStart()
