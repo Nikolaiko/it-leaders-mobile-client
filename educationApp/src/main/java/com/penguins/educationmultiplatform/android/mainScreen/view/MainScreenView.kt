@@ -69,7 +69,9 @@ fun BottomBar(navController: NavHostController) {
             val sizeItem = maxWidth / 5
 
             Card(
-                modifier = Modifier.wrapContentWidth().height(60.dp),
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .height(60.dp),
                 shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                 elevation = 0.dp
             ) {
@@ -87,7 +89,7 @@ fun BottomBar(navController: NavHostController) {
                     }
 
                 }
-                Row(modifier = Modifier.fillMaxHeight(),verticalAlignment = Alignment.Bottom) {
+                Row(modifier = Modifier.fillMaxHeight(), verticalAlignment = Alignment.Bottom) {
                     BottomSelector(
                         width = sizeItem,
                         selected = currentDestination?.hierarchy?.any {
@@ -159,9 +161,15 @@ fun RowScope.AddItem(
         unselectedContentColor = primaryGray,
         selectedContentColor = primaryWhite,
         onClick = {
-            navController.navigate(screen.route) {
-                popUpTo(navController.graph.findStartDestination().id)
-                launchSingleTop = true
+            if (currentDestination?.hierarchy?.any {
+                    it.route == MainScreenTabRoute.MapTab.route
+                } == true && screen.route == MainScreenTabRoute.MapTab.route) {
+
+            } else {
+                navController.navigate(screen.route) {
+                    popUpTo(navController.graph.findStartDestination().id)
+                    launchSingleTop = true
+                }
             }
         })
 }
@@ -169,9 +177,11 @@ fun RowScope.AddItem(
 @Composable
 fun BottomSelector(width: Dp, selected: Boolean) {
 
-    Box(modifier = Modifier
-        .width(width)
-        .background(primaryWhite)) {
+    Box(
+        modifier = Modifier
+            .width(width)
+            .background(primaryWhite)
+    ) {
         AnimatedVisibility(
             modifier = Modifier.width(width),
             visible = selected,

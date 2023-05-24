@@ -8,6 +8,6 @@ sealed class YandexMapEvents{
     object SetDancingFilter : YandexMapEvents()
     object SetAllFilter : YandexMapEvents()
     object GetCurrentLocation: YandexMapEvents()
-
+    object SetGeoposition:YandexMapEvents()
 
 }
