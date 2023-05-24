@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="com_vk_sdk_AppId">51650181</integer>
+    <string name="yandex_map_key">89b650b7-af61-47a8-9ac6-06378f4e0556</string>
 </resources>

@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun MyApplicationTheme(
@@ -50,6 +51,11 @@ fun MyApplicationTheme(
         colors = colors,
         typography = typography,
         shapes = shapes,
-        content = content
+        content = {
+            val systemUiController = rememberSystemUiController()
+            systemUiController.setStatusBarColor(Color.Transparent,true)
+            systemUiController.setNavigationBarColor(Color.Transparent,darkIcons = true, navigationBarContrastEnforced = false)
+            content.invoke()
+        }
     )
 }

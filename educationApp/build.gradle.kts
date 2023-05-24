@@ -4,7 +4,6 @@ plugins {
 
     kotlin("plugin.serialization")
     id("com.google.devtools.ksp")  version "1.8.10-1.0.9"
-//    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -73,6 +72,16 @@ dependencies {
     //VK
     implementation ("com.vk:android-sdk-core:4.0.1")
     implementation ("com.vk:android-sdk-api:4.0.1")
+    //Accompanist
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+    implementation("com.google.accompanist:accompanist-insets:0.30.1")
+    implementation ("com.google.accompanist:accompanist-coil:0.13.0")
+    implementation ("com.google.accompanist:accompanist-permissions:0.30.1")
+    // YandexMap
+    implementation ("com.yandex.android:maps.mobile:4.3.1-lite")
+    // Permissions
+    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
+    implementation ("androidx.work:work-runtime-ktx:2.8.1")
 
     //Navigation
     val nav_version = "1.8.41-beta"
