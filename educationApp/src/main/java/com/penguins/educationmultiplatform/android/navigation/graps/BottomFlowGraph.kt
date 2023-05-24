@@ -26,7 +26,6 @@ fun BottomFlowGraph(navController: NavHostController) {
 
         }
         composable(route = MainScreenTabRoute.MapTab.route) {
-
         }
         composable(route = MainScreenTabRoute.ProfileTab.route) {
 

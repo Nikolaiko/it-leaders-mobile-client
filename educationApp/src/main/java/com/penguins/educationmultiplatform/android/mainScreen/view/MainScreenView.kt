@@ -7,6 +7,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,7 +36,6 @@ fun MainScreenView(navController: NavHostController = rememberNavController()) {
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
             .navigationBarsPadding(),
         bottomBar = { BottomBar(navController = navController) }) {
         it
@@ -68,41 +68,55 @@ fun BottomBar(navController: NavHostController) {
         ) {
             val sizeItem = maxWidth / 5
 
-
-            BottomNavigation(
-                modifier = Modifier.height(60.dp),
-                backgroundColor = Color.Transparent,
+            Card(
+                modifier = Modifier.wrapContentWidth().height(60.dp),
+                shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                 elevation = 0.dp
             ) {
-                screens.forEach { screen ->
-                    AddItem(
-                        screen = screen,
-                        currentDestination = currentDestination,
-                        navController = navController
-                    )
+                BottomNavigation(
+                    modifier = Modifier.height(60.dp),
+                    backgroundColor = primaryWhite,
+                    elevation = 0.dp,
+                ) {
+                    screens.forEach { screen ->
+                        AddItem(
+                            screen = screen,
+                            currentDestination = currentDestination,
+                            navController = navController
+                        )
+                    }
+
+                }
+                Row(modifier = Modifier.fillMaxHeight(),verticalAlignment = Alignment.Bottom) {
+                    BottomSelector(
+                        width = sizeItem,
+                        selected = currentDestination?.hierarchy?.any {
+                            it.route == MainScreenTabRoute.NewsTab.route
+                        } == true)
+                    BottomSelector(
+                        width = sizeItem,
+                        selected = currentDestination?.hierarchy?.any {
+                            it.route == MainScreenTabRoute.CoursesTab.route
+                        } == true)
+                    BottomSelector(
+                        width = sizeItem,
+                        selected = currentDestination?.hierarchy?.any {
+                            it.route == MainScreenTabRoute.TestsTab.route
+                        } == true)
+                    BottomSelector(
+                        width = sizeItem,
+                        selected = currentDestination?.hierarchy?.any {
+                            it.route == MainScreenTabRoute.MapTab.route
+                        } == true)
+                    BottomSelector(
+                        width = sizeItem,
+                        selected = currentDestination?.hierarchy?.any {
+                            it.route == MainScreenTabRoute.ProfileTab.route
+                        } == true)
+
                 }
 
             }
-            Row(verticalAlignment = Alignment.Bottom) {
-                BottomSelector(width = sizeItem, selected = currentDestination?.hierarchy?.any {
-                    it.route == MainScreenTabRoute.NewsTab.route
-                } == true)
-                BottomSelector(width = sizeItem, selected = currentDestination?.hierarchy?.any {
-                    it.route == MainScreenTabRoute.CoursesTab.route
-                } == true)
-                BottomSelector(width = sizeItem, selected = currentDestination?.hierarchy?.any {
-                    it.route == MainScreenTabRoute.TestsTab.route
-                } == true)
-                BottomSelector(width = sizeItem, selected = currentDestination?.hierarchy?.any {
-                    it.route == MainScreenTabRoute.MapTab.route
-                } == true)
-                BottomSelector(width = sizeItem, selected = currentDestination?.hierarchy?.any {
-                    it.route == MainScreenTabRoute.ProfileTab.route
-                } == true)
-
-            }
-
-
         }
     }
 }
@@ -155,7 +169,9 @@ fun RowScope.AddItem(
 @Composable
 fun BottomSelector(width: Dp, selected: Boolean) {
 
-    Box(modifier = Modifier.width(width)) {
+    Box(modifier = Modifier
+        .width(width)
+        .background(primaryWhite)) {
         AnimatedVisibility(
             modifier = Modifier.width(width),
             visible = selected,
@@ -170,6 +186,7 @@ fun BottomSelector(width: Dp, selected: Boolean) {
         ) {
             Box(
                 modifier = Modifier
+                    .background(primaryWhite)
                     .fillMaxWidth()
                     .wrapContentHeight(), contentAlignment = Alignment.Center
             ) {
@@ -181,5 +198,4 @@ fun BottomSelector(width: Dp, selected: Boolean) {
             }
         }
     }
-    
 }
