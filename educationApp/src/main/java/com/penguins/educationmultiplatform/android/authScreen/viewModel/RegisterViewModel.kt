@@ -9,11 +9,10 @@ import com.penguins.educationmultiplatform.android.data.model.auth.UserTokens
 import com.penguins.educationmultiplatform.android.data.model.dto.AuthResponse
 import com.penguins.educationmultiplatform.android.data.model.dto.RegisterRequest
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
-import com.penguins.educationmultiplatform.android.destinations.MainScreenViewDestination
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.usecases.RegisterUserUseCase
-import kotlinx.coroutines.channels.BufferOverflow
+import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -51,7 +50,7 @@ class RegisterViewModel(
             }
             is RegisterScreenEvents.AuthLater -> {
                 localStorage.setSkippedAuthorization(true)
-                navigation.navigateTo(MainScreenViewDestination)
+                navigation.navigateTo(AppScreens.MainAppScreen)
             }
             is RegisterScreenEvents.RegisterUser -> {
                 sendUserRegisterRequest()
@@ -89,6 +88,6 @@ class RegisterViewModel(
 
     private fun saveTokens(auth: AuthResponse) {
         localStorage.setTokens(UserTokens(accessToken = auth.accessToken))
-        navigation.navigateTo(MainScreenViewDestination)
+        navigation.navigateTo(AppScreens.MainAppScreen)
     }
 }

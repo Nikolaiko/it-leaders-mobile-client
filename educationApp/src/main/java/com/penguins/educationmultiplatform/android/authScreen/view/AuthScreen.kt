@@ -22,7 +22,6 @@ import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthView
 import com.penguins.educationmultiplatform.android.data.localUserDataRepository.SharedPreferencesRepository
 import com.penguins.educationmultiplatform.android.data.model.consts.errorEffect
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
-import com.penguins.educationmultiplatform.android.navigation.graps.MainNavGraph
 import com.penguins.educationmultiplatform.android.data.navigation.DestinationController
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.ui.gradientBackground
@@ -32,8 +31,6 @@ import com.vk.api.sdk.auth.VKAuthenticationResult
 import com.vk.api.sdk.auth.VKScope
 import org.koin.androidx.compose.koinViewModel
 
-@MainNavGraph
-@Destination
 @Composable
 fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
 
