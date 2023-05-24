@@ -10,11 +10,34 @@ val textFieldBackGroundColor = Color(0xFFFFFFFF)
 val educationGreenColor = Color(0xFFB4C95E)
 
 val textGrayColor = Color(0xFF7C7C7B)
+
 val gradientSplashScreen = Brush.verticalGradient(
     0.0f to primaryBlue,
     0.5f to lightBlue
 )
 val gradientBackground = Brush.linearGradient(
     0.0f to Color(0xFFB4C95E),
+    0.5f to Color(0xFFFFFFFF)
+)
+
+val artBackgroundColor = Color(0xFFBA768F)
+val danceBackgroundColor = Color(0xFF81AE7B)
+val musicBackgroundColor = Color(0xFFB4C95E)
+val theatreBackgroundColor = Color(0xFF8E74A8)
+
+val artGradientBackground = Brush.linearGradient(
+    0.0f to artBackgroundColor,
+    0.5f to Color(0xFFFFFFFF)
+)
+val danceGradientBackground = Brush.linearGradient(
+    0.0f to danceBackgroundColor,
+    0.5f to Color(0xFFFFFFFF)
+)
+val musicGradientBackground = Brush.linearGradient(
+    0.0f to musicBackgroundColor,
+    0.5f to Color(0xFFFFFFFF)
+)
+val theatreGradientBackground = Brush.linearGradient(
+    0.0f to theatreBackgroundColor,
     0.5f to Color(0xFFFFFFFF)
 )

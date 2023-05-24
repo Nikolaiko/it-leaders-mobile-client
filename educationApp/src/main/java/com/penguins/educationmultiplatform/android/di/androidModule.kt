@@ -1,5 +1,8 @@
 package com.penguins.educationmultiplatform.android.di
 
+import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel.CategoryViewModel
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
+import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
 import com.google.android.gms.location.LocationServices
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
@@ -10,9 +13,6 @@ import com.penguins.educationmultiplatform.android.domain.remoteRepository.Educa
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import org.koin.android.ext.koin.androidContext
-
-import com.penguins.educationmultiplatform.android.categoryScreen.viewModel.CategoryViewModel
-import com.penguins.educationmultiplatform.android.newsScreen.viewModel.NewsViewModel
 import com.penguins.educationmultiplatform.android.services.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.services.navigation.DestinationController
 import io.ktor.client.HttpClient
@@ -40,8 +40,9 @@ val androidModule = module {
     single { AuthViewModel() }
     single { RegisterViewModel() }
     single { YandexMapViewModel(get(), get()) }
-    single <NewsViewModel> { NewsViewModel() }
     single { CategoryViewModel() }
+    single { NewsListViewModel() }
+    single { NewsViewModel() }
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
