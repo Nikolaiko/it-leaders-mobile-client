@@ -3,6 +3,16 @@ package com.penguins.educationmultiplatform.android.di
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel.CategoryViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
+import com.google.android.gms.location.LocationServices
+import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
+import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
+import com.penguins.educationmultiplatform.android.data.location.DefaultLocationTracker
+import com.penguins.educationmultiplatform.android.data.remote.api.EducationRepositoryImpl
+import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
+import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
+import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
+import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
+import org.koin.android.ext.koin.androidContext
 import com.penguins.educationmultiplatform.android.services.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.services.navigation.DestinationController
 import io.ktor.client.HttpClient
@@ -24,10 +34,21 @@ val androidModule = module {
             }
         }
     }
+    single <EducationRepository> { EducationRepositoryImpl(get()) }
 
+    //viewModels
+    single { AuthViewModel() }
+    single { RegisterViewModel() }
+    single { YandexMapViewModel(get(), get()) }
     single { CategoryViewModel() }
     single { NewsListViewModel() }
     single { NewsViewModel() }
 
+    //location
+    single { LocationServices.getFusedLocationProviderClient(androidContext()) }
+    single <LocationTracker>{ DefaultLocationTracker(get(),androidContext()) }
+
+    //useCases
+    single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }
 }
