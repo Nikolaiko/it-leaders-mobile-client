@@ -13,12 +13,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.ui.educationGreenColor
-import com.penguins.educationmultiplatform.android.ui.textFieldBackGroundColor
+import com.penguins.educationmultiplatform.android.ui.primaryWhite
 import com.penguins.educationmultiplatform.android.utils.UiText
 
 
@@ -62,7 +61,7 @@ fun FormField(
             TextField(
                 modifier = modifier.fillMaxWidth(),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = textFieldBackGroundColor,
+                    backgroundColor = primaryWhite,
                     focusedIndicatorColor = educationGreenColor,
                     unfocusedIndicatorColor = educationGreenColor
                 ),

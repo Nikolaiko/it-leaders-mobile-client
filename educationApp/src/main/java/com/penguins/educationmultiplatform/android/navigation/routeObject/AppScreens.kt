@@ -1,7 +1,6 @@
 package com.penguins.educationmultiplatform.android.navigation.routeObject
 
 import androidx.navigation.NavOptions
-import com.penguins.educationmultiplatform.android.mainScreen.view.Screens
 
 
 const val mainScreenRoute = "mainScreen"
@@ -30,7 +29,7 @@ sealed class AppScreens(
     val inclusive: Boolean = false,
     val saveState: Boolean = false,
     val popTargetRoute: String = ""
-) : Screens(){
+){
 
 
     object SplashScreenRoute: AppScreens(
