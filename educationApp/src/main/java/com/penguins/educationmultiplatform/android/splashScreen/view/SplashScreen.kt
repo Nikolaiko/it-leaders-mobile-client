@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import com.penguins.educationmultiplatform.android.data.splashScreenEffect
+import com.penguins.educationmultiplatform.android.data.model.consts.splashScreenEffect
 import com.penguins.educationmultiplatform.android.navigation.graps.MainNavGraph
-import com.penguins.educationmultiplatform.android.services.navigation.AppNavigation
+import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.splashScreen.viewModel.SplashScreenViewModel
 import com.penguins.educationmultiplatform.android.ui.gradientSplashScreen
 import com.ramcosta.composedestinations.annotation.Destination

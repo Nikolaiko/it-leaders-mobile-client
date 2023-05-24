@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.background
@@ -11,10 +12,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -22,6 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import coil.compose.AsyncImagePainter
@@ -35,6 +41,8 @@ import com.penguins.educationmultiplatform.android.authScreen.components.Educati
 import com.penguins.educationmultiplatform.android.authScreen.components.FormField
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
+import com.penguins.educationmultiplatform.android.data.model.consts.errorEffect
+import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.data.remote.api.VKUsersCommand
 import com.penguins.educationmultiplatform.android.navigation.graps.MainNavGraph
 import com.penguins.educationmultiplatform.android.ui.educationGreenColor
@@ -82,7 +90,7 @@ fun RegisterScreen(
 //    val screenIsBusy = uiState.screenBusy.observeAsState(false)
     val state = viewModel.state.collectAsState()
 
-    val context = LocalContext.current
+    val context = LocalContext.current.applicationContext
     val cropImage = rememberLauncherForActivityResult(contract = CropImageContract()) { result ->
         when (result.isSuccessful) {
             true -> {
@@ -96,6 +104,14 @@ fun RegisterScreen(
         }
     }
 
+    LaunchedEffect(key1 = errorEffect) {
+        viewModel.errorState.collect {
+            if (it !is AppError.NoError) {
+                Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -105,34 +121,79 @@ fun RegisterScreen(
         verticalArrangement = Arrangement.Center
     ) {
 
-        ChangeProfilePhoto(
-            isPhotoBusy = false,
-            photoUri = state.value.photoUri,
-            context,
-            cropImage
+//        ChangeProfilePhoto(
+//            isPhotoBusy = false,
+//            photoUri = state.value.photoUri,
+//            context,
+//            cropImage
+//        )
+        FormField(
+            text = state.value.email,
+            placeHolder = "Email",
+            keyBoardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next
+            ),
+            valueCallback = {
+                viewModel.onEvent(RegisterScreenEvents.SetEmailField(it))
+            }
         )
-        Spacer(modifier = Modifier.height(50.dp))
-        FormField(text = state.value.name, placeHolder = "Имя", valueCallback = {viewModel.onEvent(RegisterScreenEvents.SetNameField(it))})
         Spacer(modifier = Modifier.height(20.dp))
-        FormField(text = state.value.age?.toString()?:"",placeHolder = "Возраст", valueCallback = {viewModel.onEvent(RegisterScreenEvents.SetAgeField(it.toInt()))})
+        FormField(
+            text = state.value.password,
+            placeHolder = "Пароль",
+            keyBoardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = ImeAction.Next
+            ),
+            valueCallback = {
+                viewModel.onEvent(RegisterScreenEvents.SetPasswordField(it))
+            }
+        )
         Spacer(modifier = Modifier.height(20.dp))
-        FormField(text = state.value.password,placeHolder = "Пароль", valueCallback = {viewModel.onEvent(RegisterScreenEvents.SetPasswordField(it))})
-        Spacer(modifier = Modifier.height(50.dp))
+        FormField(
+            text = state.value.name,
+            placeHolder = "Имя",
+            keyBoardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Words,
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Next
+            ),
+            valueCallback = {
+                viewModel.onEvent(RegisterScreenEvents.SetNameField(it))
+            }
+        )
         Spacer(modifier = Modifier.height(20.dp))
-        EducationButton(modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp), text = "Зарегистрироваться"){
-            launcher.launch(listOf(VKScope.EMAIL))
+        FormField(
+            text = state.value.age?.toString() ?: "",
+            keyBoardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done
+            ),
+            placeHolder = "Возраст",
+            valueCallback = {
+                viewModel.onEvent(RegisterScreenEvents.SetAgeField(it.toInt()))
+            }
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        EducationButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp), text = "Зарегистрироваться",
+            enabled = viewModel.validateFields()
+        ) {
+            viewModel.onEvent(RegisterScreenEvents.RegisterUser)
+            //launcher.launch(listOf(VKScope.EMAIL))
         }
         Spacer(modifier = Modifier.height(20.dp))
-        EducationButton(modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp), text = "Войти позже"){
-
+        EducationButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp), text = "Войти позже"
+        ) {
+            viewModel.onEvent(RegisterScreenEvents.AuthLater)
         }
-
     }
-
 }
 
 @Composable

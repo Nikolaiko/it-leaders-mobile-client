@@ -4,17 +4,13 @@ import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
 import com.google.android.gms.location.LocationServices
-import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
-import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
 import com.penguins.educationmultiplatform.android.data.location.DefaultLocationTracker
-import com.penguins.educationmultiplatform.android.data.remote.api.EducationRepositoryImpl
+import com.penguins.educationmultiplatform.android.data.navigation.DestinationController
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
-import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
+import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import org.koin.android.ext.koin.androidContext
-import com.penguins.educationmultiplatform.android.services.navigation.AppNavigation
-import com.penguins.educationmultiplatform.android.services.navigation.DestinationController
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.json.JsonFeature
@@ -26,6 +22,7 @@ import org.koin.dsl.module
 val androidModule = module {
     single  {
         HttpClient(Android) {
+            expectSuccess = true
             install(Logging) {
                 level = LogLevel.ALL
             }
@@ -34,11 +31,8 @@ val androidModule = module {
             }
         }
     }
-    single <EducationRepository> { EducationRepositoryImpl(get()) }
 
     //viewModels
-    single { AuthViewModel() }
-    single { RegisterViewModel() }
     single { YandexMapViewModel(get(), get()) }
     single { CategoryViewModel() }
     single { NewsListViewModel() }
