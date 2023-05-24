@@ -1,7 +1,7 @@
 package com.penguins.educationmultiplatform.android.data.remote.api
 
-import com.penguins.educationmultiplatform.android.data.remote.dto.profile.VKProfile
-import com.penguins.educationmultiplatform.android.data.remote.dto.vk.VKPhotoResponse
+import com.penguins.educationmultiplatform.android.data.model.dto.profile.VKProfile
+import com.penguins.educationmultiplatform.android.data.model.dto.vk.VKPhotoResponse
 import com.vk.api.sdk.VKApiJSONResponseParser
 import com.vk.api.sdk.VKApiManager
 import com.vk.api.sdk.VKMethodCall

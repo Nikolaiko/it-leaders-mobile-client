@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.penguins.educationmultiplatform.android.destinations.AuthScreenDestination
 import com.penguins.educationmultiplatform.android.destinations.MainScreenViewDestination
 import com.penguins.educationmultiplatform.android.domain.usecases.CheckAuthStateUseCase
-import com.penguins.educationmultiplatform.android.services.navigation.AppNavigation
+import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 
 class SplashScreenViewModel(
     private val navigation: AppNavigation,
