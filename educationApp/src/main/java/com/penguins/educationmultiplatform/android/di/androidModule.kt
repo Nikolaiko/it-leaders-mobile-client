@@ -35,11 +35,8 @@ val androidModule = module {
             }
         }
     }
-    single <EducationRepository> { EducationRepositoryImpl(get()) }
 
     //viewModels
-    single { AuthViewModel() }
-    single { RegisterViewModel() }
     single { YandexMapViewModel(get(), get()) }
     single <NewsViewModel> { NewsViewModel() }
     single { CategoryViewModel() }
