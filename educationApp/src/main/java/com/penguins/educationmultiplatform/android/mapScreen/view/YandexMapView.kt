@@ -12,6 +12,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.vectorResource
@@ -60,7 +61,7 @@ fun YandexMapScreen(
     )
     LaunchedEffect(key1 = locationPermissions.allPermissionsGranted) {
         if (locationPermissions.allPermissionsGranted) {
-            viewModel.onEvent(YandexMapEvents.GetCurrentLocation)
+            viewModel.onEvent(YandexMapEvents.SetGeoposition)
         } else
             locationPermissions.launchMultiplePermissionRequest()
     }
@@ -121,27 +122,28 @@ fun YandexMapScreen(
         }
         BottomSheetScaffold(
             sheetContent = {
-                BottomSheetFilters()
+                Column(modifier = Modifier.fillMaxWidth().wrapContentHeight()){
+                    FloatButtons(uiState = uiState, onEvent = viewModel::onEvent)
+                    Spacer(modifier = Modifier.height(17.dp))
+                    BottomSheetFilters()
+                }
             },
-            sheetPeekHeight = 0.dp,
+            sheetPeekHeight = 137.dp,
             scaffoldState = scaffoldFilterState,
-            floatingActionButton = {
-                FloatButtons(uiState = uiState, onEvent = viewModel::onEvent)
-            },
             floatingActionButtonPosition = FabPosition.Center,
-            sheetShape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp),
-            sheetBackgroundColor = clickedMapButtonColor,
-            sheetElevation = 2.dp,
+            sheetShape = RoundedCornerShape(topEnd = 0.dp, topStart = 0.dp),
+            sheetBackgroundColor = Color.Unspecified,
+            sheetElevation = 0.dp,
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
                 AndroidView(factory = { context ->
-                    MapKitFactory.initialize(context)
                     val mapkit = MapKitFactory.getInstance()
-                    mapkit.onStart()
+                    MapKitFactory.initialize(context)
+                    MapKitFactory.getInstance().onStart()
                     MapView(context).also { mapView ->
                         mapView.onStart()
                         val mapObjects = mapView.map.mapObjects.addCollection()
-                        mapView.map.move(CameraPosition(Point(55.754405, 37.619992), 14f, 0f, 0f))
+                        mapView.map.move(CameraPosition(Point(55.754405, 37.619992), 10f, 0f, 0f))
                         var selectedMapObject: PlacemarkMapObject? = null
 
                         val inputMapListener = object : InputListener {
@@ -211,34 +213,6 @@ fun YandexMapScreen(
                             }
                             return@MapObjectTapListener true
                         }
-                        val userLocationLayer =
-                            mapkit.createUserLocationLayer(mapView.mapWindow)
-                        userLocationLayer.isVisible = true
-                        val userLocationObjectListener = object : UserLocationObjectListener {
-                            override fun onObjectAdded(userLocationView: UserLocationView) {
-                                Log.e("TAG", "onObjectAdded: ")
-                                userLocationLayer.resetAnchor()
-                                userLocationView.pin.setIcon(
-                                    fromResource(
-                                        context,
-                                        R.drawable.user_location
-                                    )
-                                )
-                                userLocationView.arrow.setIcon(
-                                    fromResource(
-                                        context,
-                                        R.drawable.user_location
-                                    )
-                                )
-
-                            }
-
-                            override fun onObjectRemoved(p0: UserLocationView) {
-                            }
-
-                            override fun onObjectUpdated(p0: UserLocationView, p1: ObjectEvent) {
-                            }
-                        }
 
                         val clusterListener = ClusterListener { cluster ->
                             // We setup cluster appearance and tap handler in this method
@@ -254,10 +228,47 @@ fun YandexMapScreen(
                         }
                         var clusterCollection = mapView.getMap().getMapObjects()
                             .addClusterizedPlacemarkCollection(clusterListener)
+                        scope.launch {
+                            viewModel.setGeo.collect{
+                                if(it) {
+                                    val userLocationLayer =
+                                        mapkit.createUserLocationLayer(mapView.mapWindow)
+                                    userLocationLayer.isVisible = true
+                                    val userLocationObjectListener =
+                                        object : UserLocationObjectListener {
+                                            override fun onObjectAdded(userLocationView: UserLocationView) {
+                                                Log.e("TAG", "onObjectAdded: ")
+                                                userLocationLayer.resetAnchor()
+                                                userLocationView.pin.setIcon(
+                                                    fromResource(
+                                                        context,
+                                                        R.drawable.user_location
+                                                    )
+                                                )
+                                                userLocationView.arrow.setIcon(
+                                                    fromResource(
+                                                        context,
+                                                        R.drawable.user_location
+                                                    )
+                                                )
 
-                        userLocationLayer.setObjectListener(
-                            userLocationObjectListener
-                        )
+                                            }
+
+                                            override fun onObjectRemoved(p0: UserLocationView) {
+                                            }
+
+                                            override fun onObjectUpdated(
+                                                p0: UserLocationView,
+                                                p1: ObjectEvent
+                                            ) {
+                                            }
+                                        }
+                                    userLocationLayer.setObjectListener(
+                                        userLocationObjectListener
+                                    )
+                                }
+                            }
+                        }
                         scope.launch {
                             viewModel.state.collect {
                                 clusterCollection.clear()
@@ -288,7 +299,6 @@ fun YandexMapScreen(
                         }
                         scope.launch {
                             viewModel.currentLocation.collect {
-                                Log.e("TAG", "YandexMapScreen:LOCATION ")
                                 if (it != null) {
                                     mapView.map.move(
                                         CameraPosition(
@@ -303,6 +313,8 @@ fun YandexMapScreen(
                             }
                         }
                     }
+                }, update = { mapView ->
+
                 })
                 Column(
                     modifier = Modifier
@@ -390,7 +402,6 @@ fun YandexMapScreen(
                 }
                 Lifecycle.Event.ON_PAUSE -> {}
                 Lifecycle.Event.ON_STOP -> {
-                    MapKitFactory.getInstance().onStop()
                 }
                 Lifecycle.Event.ON_DESTROY -> {
                 }

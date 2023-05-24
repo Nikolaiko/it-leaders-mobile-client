@@ -23,6 +23,9 @@ class YandexMapViewModel(
 
     private val _currentLocation = MutableSharedFlow<Location?>(1)
     val currentLocation = _currentLocation.asSharedFlow()
+
+    private val _setGeo = MutableStateFlow(false)
+    val setGeo = _setGeo.asStateFlow()
     init {
         viewModelScope.launch {
             getSchoolsFromRepository.invoke().collect{
@@ -56,6 +59,7 @@ class YandexMapViewModel(
                     _currentLocation.tryEmit(locationTracker.getCurrentLocation())
                 }
             }
+            YandexMapEvents.SetGeoposition -> {_setGeo.tryEmit(true)}
         }
     }
 }

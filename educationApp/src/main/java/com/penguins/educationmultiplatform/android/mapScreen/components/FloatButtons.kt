@@ -34,7 +34,7 @@ fun FloatButtons(uiState: State<YandexMapUiState>,onEvent:(YandexMapEvents)->Uni
         modifier = Modifier
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState())
-            .padding(bottom = 20.dp)
+
     ) {
         Spacer(modifier = Modifier.width(15.dp))
         SchoolCard(

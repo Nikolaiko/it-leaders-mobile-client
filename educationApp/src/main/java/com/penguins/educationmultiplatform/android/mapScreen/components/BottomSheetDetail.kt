@@ -173,5 +173,6 @@ fun BottomSheetDetail(detail: SchoolDataUi, onClickClose: () -> Unit) {
                 tint = theatricalSchoolColor
             )
         }
+        Spacer(modifier = Modifier.height(70.dp))
     }
 }

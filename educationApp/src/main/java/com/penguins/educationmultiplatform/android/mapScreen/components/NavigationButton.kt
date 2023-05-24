@@ -46,14 +46,12 @@ fun NavigationButton(
             }
                 when {
                     locationPermissions.allPermissionsGranted -> {
-                        Log.e("TAG", "NavigationButton: ")
                         onEvent.invoke(YandexMapEvents.GetCurrentLocation)
                     }
                     locationPermissions.shouldShowRationale -> {
                         locationPermissions.launchMultiplePermissionRequest()
                     }
                     !locationPermissions.allPermissionsGranted && !locationPermissions.shouldShowRationale -> {
-                        Log.e("TAG", "NavigationButton: DIALOG")
                         locationPermissions.launchMultiplePermissionRequest()
 
                     }

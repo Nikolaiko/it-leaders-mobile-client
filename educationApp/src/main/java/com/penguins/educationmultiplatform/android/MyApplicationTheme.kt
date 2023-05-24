@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.penguins.educationmultiplatform.android.ui.primaryWhite
 
 @Composable
 fun MyApplicationTheme(
@@ -54,7 +55,7 @@ fun MyApplicationTheme(
         content = {
             val systemUiController = rememberSystemUiController()
             systemUiController.setStatusBarColor(Color.Transparent,true)
-            systemUiController.setNavigationBarColor(Color.Transparent,darkIcons = true, navigationBarContrastEnforced = false)
+            systemUiController.setNavigationBarColor(primaryWhite,darkIcons = true, navigationBarContrastEnforced = false)
             content.invoke()
         }
     )

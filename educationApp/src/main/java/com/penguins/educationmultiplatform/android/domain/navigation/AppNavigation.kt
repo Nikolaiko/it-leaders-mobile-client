@@ -1,10 +1,12 @@
 package com.penguins.educationmultiplatform.android.domain.navigation
 
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.ramcosta.composedestinations.spec.Direction
+import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
+import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 
 interface AppNavigation {
-    fun setNavigator(controller: DestinationsNavigator)
-    fun navigateTo(destination: Direction)
+    fun setNavigator(controller: NavHostController)
+    fun navigateTo(route: String, options:NavOptions? = null)
+    fun navigateTo(destination:AppScreens)
     fun popBackStack()
 }
