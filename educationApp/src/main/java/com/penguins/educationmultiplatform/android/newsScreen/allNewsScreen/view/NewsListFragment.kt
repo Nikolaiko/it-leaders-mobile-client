@@ -38,7 +38,7 @@ fun NewsListScreen() {
         Column(
             modifier = Modifier
                 .background(brush = allNewsGradientBackground)
-                .padding(top = 32.dp, bottom = 32.dp)
+                .padding(top = 32.dp)
         ) {
             NewsToolbar()
             AllNewsColumn()
