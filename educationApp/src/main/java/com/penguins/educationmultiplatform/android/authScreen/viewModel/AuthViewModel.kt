@@ -9,12 +9,10 @@ import com.penguins.educationmultiplatform.android.data.model.auth.UserTokens
 import com.penguins.educationmultiplatform.android.data.model.dto.AuthRequest
 import com.penguins.educationmultiplatform.android.data.model.dto.AuthResponse
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
-import com.penguins.educationmultiplatform.android.destinations.MainScreenViewDestination
-import com.penguins.educationmultiplatform.android.destinations.RegisterScreenDestination
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.usecases.LoginWithEmailUseCase
-import kotlinx.coroutines.channels.BufferOverflow
+import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -38,7 +36,7 @@ class AuthViewModel(
             is AuthScreenEvents.JoinWithVK -> TODO()
             is AuthScreenEvents.AuthWithEmail -> authWithEmail()
             is AuthScreenEvents.RegisterButton -> {
-                navigation.navigateTo(RegisterScreenDestination)
+                navigation.navigateTo(AppScreens.RegisterScreenRoute)
             }
             is AuthScreenEvents.SetLogin -> {
                 _state.tryEmit(_state.value.copy(login = event.text))
@@ -48,7 +46,7 @@ class AuthViewModel(
             }
             is AuthScreenEvents.AuthLater -> {
                 localStorage.setSkippedAuthorization(true)
-                navigation.navigateTo(MainScreenViewDestination)
+                navigation.navigateTo(AppScreens.MainAppScreen)
             }
         }
     }
@@ -73,6 +71,6 @@ class AuthViewModel(
 
     private fun saveTokens(auth: AuthResponse) {
         localStorage.setTokens(UserTokens(accessToken = auth.accessToken))
-        navigation.navigateTo(MainScreenViewDestination)
+        navigation.navigateTo(AppScreens.MainAppScreen)
     }
 }

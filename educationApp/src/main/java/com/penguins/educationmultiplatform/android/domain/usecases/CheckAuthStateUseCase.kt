@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.domain.usecases
+package com.penguins.educationmultiplatform.android.domain.useCases
 
 import com.penguins.educationmultiplatform.android.data.model.auth.AuthStatus
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository

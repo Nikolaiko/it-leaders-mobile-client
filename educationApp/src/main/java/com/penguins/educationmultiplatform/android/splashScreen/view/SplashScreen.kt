@@ -6,21 +6,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import com.penguins.educationmultiplatform.android.data.model.consts.splashScreenEffect
-import com.penguins.educationmultiplatform.android.navigation.graps.MainNavGraph
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.splashScreen.viewModel.SplashScreenViewModel
 import com.penguins.educationmultiplatform.android.ui.gradientSplashScreen
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.get
 import org.koin.androidx.compose.koinViewModel
 
-@MainNavGraph(start = true)
-@Destination
+
 @Composable
 fun SplashScreenView(
-    navigator: DestinationsNavigator,
+    navigator: NavHostController,
     viewModel: SplashScreenViewModel = koinViewModel()
 ) {
     val service = get<AppNavigation>()
