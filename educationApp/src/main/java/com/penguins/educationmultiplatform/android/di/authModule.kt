@@ -6,6 +6,7 @@ import com.penguins.educationmultiplatform.android.domain.useCases.CheckAuthStat
 import com.penguins.educationmultiplatform.android.domain.usecases.LoginWithEmailUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.RegisterUserUseCase
 import com.penguins.educationmultiplatform.android.splashScreen.viewModel.SplashScreenViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val authModule = module {
@@ -13,7 +14,7 @@ val authModule = module {
     single { RegisterUserUseCase( get()) }
     single { LoginWithEmailUseCase( get()) }
 
-    single { SplashScreenViewModel(get(), get()) }
-    single { AuthViewModel( get(), get(), get() ) }
-    single { RegisterViewModel( get(), get(), get() ) }
+    viewModel { SplashScreenViewModel(get(), get()) }
+    viewModel { AuthViewModel( get(), get(), get() ) }
+    viewModel { RegisterViewModel( get(), get(), get() ) }
 }
