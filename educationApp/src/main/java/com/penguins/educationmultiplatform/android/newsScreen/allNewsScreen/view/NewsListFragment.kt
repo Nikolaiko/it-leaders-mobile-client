@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,9 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButtonColor
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.AllNewsColumn
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.bottomSheet.FilterBottomSheet
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.toolbar.NewsToolbar
-import com.penguins.educationmultiplatform.android.newsScreen.common.components.list.CategoryList
+import com.penguins.educationmultiplatform.android.ui.allNewsGradientBackground
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -33,9 +35,13 @@ fun NewsListScreen() {
         sheetShape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp),
         sheetBackgroundColor = clickedMapButtonColor
     ) {
-        Column(modifier = Modifier.padding(top = 32.dp)) {
+        Column(
+            modifier = Modifier
+                .background(brush = allNewsGradientBackground)
+                .padding(top = 32.dp, bottom = 32.dp)
+        ) {
             NewsToolbar()
-            CategoryList()
+            AllNewsColumn()
         }
     }
 }
