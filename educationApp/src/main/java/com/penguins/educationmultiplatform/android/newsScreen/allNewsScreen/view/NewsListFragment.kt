@@ -22,7 +22,6 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.components.
 fun NewsListScreen() {
     val bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = bottomSheetState)
-//    val scope = rememberCoroutineScope()
 
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
