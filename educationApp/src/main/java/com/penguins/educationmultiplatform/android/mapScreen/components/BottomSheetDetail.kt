@@ -7,7 +7,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -63,116 +65,122 @@ fun BottomSheetDetail(detail: SchoolDataUi, onClickClose: () -> Unit) {
         Spacer(modifier = Modifier.height(8.dp))
         Divider(modifier = Modifier.width(35.dp), color = Color(0x99FFFFFF), thickness = 3.dp)
         Spacer(modifier = Modifier.height(28.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
         ) {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth(0.8f)
-                    .wrapContentHeight(),
-                text = detail.name,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.W700,
-                color = Color(0xFF101010)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Icon(
-                imageVector = Icons.Default.Close,
-                modifier = Modifier
-                    .size(32.dp)
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = null,
-                        onClick = onClickClose
-                    ),
-                contentDescription = null,
-                tint = fontCardColor
-            )
-
-        }
-        Spacer(Modifier.height(6.dp))
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            text = detail.address,
-            fontSize = 18.sp,
-            color = Color(0xFF7C7C7B),
-            fontWeight = FontWeight.W400,
-            textAlign = TextAlign.Start
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            text = detail.description,
-            fontSize = 18.sp,
-            color = Color(0xFF7C7C7B),
-            fontWeight = FontWeight.W400,
-            textAlign = TextAlign.Start
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        Button(
-            modifier = Modifier
-                .height(48.dp)
-                .wrapContentWidth()
-                .align(Alignment.Start),
-            onClick = {
-                if(permission.status.isGranted) {
-                    intent.data = Uri.parse("tel:${detail.phoneNumber}")
-                    context.startActivity(intent)
-                }else
-                    permission.launchPermissionRequest()
-            },
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = buttonBottomSheetColor,
-                contentColor = fontCardColor
-            ),
-            elevation = ButtonDefaults.elevation(0.dp)
-        ) {
-            Icon(imageVector = Icons.Default.Call, contentDescription = null)
-            Spacer(modifier = Modifier.width(13.dp))
-            Text(
-                text = detail.phoneNumber,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.W700,
-                color = Color(0xFF101010)
-            )
-        }
-        Spacer(modifier = Modifier.height(24.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                        .wrapContentHeight(),
+                    text = detail.name,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.W700,
+                    color = Color(0xFF101010)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
                 Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_world),
+                    imageVector = Icons.Default.Close,
+                    modifier = Modifier
+                        .size(32.dp)
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = onClickClose
+                        ),
+                    contentDescription = null,
+                    tint = fontCardColor
+                )
+
+            }
+            Spacer(Modifier.height(6.dp))
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                text = detail.address,
+                fontSize = 18.sp,
+                color = Color(0xFF7C7C7B),
+                fontWeight = FontWeight.W400,
+                textAlign = TextAlign.Start
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                text = detail.description,
+                fontSize = 18.sp,
+                color = Color(0xFF7C7C7B),
+                fontWeight = FontWeight.W400,
+                textAlign = TextAlign.Start
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            Button(
+                modifier = Modifier
+                    .height(48.dp)
+                    .wrapContentWidth()
+                    .align(Alignment.Start),
+                onClick = {
+                    if (permission.status.isGranted) {
+                        intent.data = Uri.parse("tel:${detail.phoneNumber}")
+                        context.startActivity(intent)
+                    } else
+                        permission.launchPermissionRequest()
+                },
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = buttonBottomSheetColor,
+                    contentColor = fontCardColor
+                ),
+                elevation = ButtonDefaults.elevation(0.dp)
+            ) {
+                Icon(imageVector = Icons.Default.Call, contentDescription = null)
+                Spacer(modifier = Modifier.width(13.dp))
+                Text(
+                    text = detail.phoneNumber,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.W700,
+                    color = Color(0xFF101010)
+                )
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_world),
+                        contentDescription = null,
+                        tint = theatricalSchoolColor
+                    )
+                    Spacer(modifier = Modifier.width(11.dp))
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f)
+                            .wrapContentHeight(),
+                        text = detail.email,
+                        fontSize = 16.sp,
+                        color = theatricalSchoolColor,
+                        fontWeight = FontWeight.W700,
+                        textAlign = TextAlign.Start
+                    )
+                }
+                Spacer(modifier = Modifier.width(8.dp))
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.icon_arrows__1_),
                     contentDescription = null,
                     tint = theatricalSchoolColor
                 )
-                Spacer(modifier = Modifier.width(11.dp))
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth(0.9f)
-                        .wrapContentHeight(),
-                    text = detail.email,
-                    fontSize = 16.sp,
-                    color = theatricalSchoolColor,
-                    fontWeight = FontWeight.W700,
-                    textAlign = TextAlign.Start
-                )
             }
-            Spacer(modifier = Modifier.width(8.dp))
-            Icon(
-                imageVector = ImageVector.vectorResource(id = R.drawable.icon_arrows__1_),
-                contentDescription = null,
-                tint = theatricalSchoolColor
-            )
+            Spacer(modifier = Modifier.height(70.dp))
         }
-        Spacer(modifier = Modifier.height(70.dp))
     }
 }
