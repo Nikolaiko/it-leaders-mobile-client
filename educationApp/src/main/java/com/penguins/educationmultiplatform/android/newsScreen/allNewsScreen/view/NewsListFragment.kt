@@ -57,9 +57,7 @@ fun NewsActivity(
     navController: NavHostController = rememberNavController()
 ) {
     NewsNavHost(navController)
-//    if (navigation.getNavigator() != null) {
-        navigation.setNavigator(navController)
-//    }
+    navigation.setNavigator(navController)
 }
 
 @Preview(showBackground = true, widthDp = 320, heightDp = 640, backgroundColor = 0xffffff)

@@ -4,8 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
-import com.penguins.educationmultiplatform.android.navigation.routeObject.ALL_NEWS_SCREEN
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.ONE_NEWS_SCREEN
 import com.penguins.educationmultiplatform.android.navigation.routeObject.newsTab
@@ -23,9 +21,7 @@ fun NewsNavHost(navController: NavHostController) {
             NewsListScreen()
         }
         composable(route = "$newsTab/$ONE_NEWS_SCREEN") {
-            NewsScreen(
-                onBackClick = navController::popBackStack
-            )
+            NewsScreen()
         }
     }
 }

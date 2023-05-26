@@ -38,7 +38,7 @@ val androidModule = module {
     viewModel { YandexMapViewModel(get(), get()) }
     viewModel { CategoryViewModel() }
     viewModel { NewsListViewModel(get()) }
-    viewModel { NewsViewModel() }
+    viewModel { NewsViewModel(get()) }
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }

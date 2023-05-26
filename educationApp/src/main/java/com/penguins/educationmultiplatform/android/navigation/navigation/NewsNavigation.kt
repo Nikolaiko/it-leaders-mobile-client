@@ -14,14 +14,12 @@ class NewsNavigation {
         navController = controller
     }
 
-    fun getNavigator() = navController
-
     fun back() = navController?.popBackStack()
 
     fun navigateTo(screen: NewsScreens) = when (screen) {
         NewsScreens.AllNewsScreen -> navController?.navigate(screen.route)
         is NewsScreens.CategoryNewsScreen -> {
-            navController?.navigate("${screen.route}/${screen.category.title}")
+            navController?.navigate("${screen.route}/${screen.category}")
         }
         is NewsScreens.OneNewsScreen -> {
             val json = Json.encodeToString(screen.news)

@@ -25,7 +25,9 @@ class NewsListViewModel(
                 _state.tryEmit(_state.value.copy(searchingNews = event.titleNews))
             }
             is NewsListEvents.FilterButton -> Unit
-            is NewsListEvents.OpenCategory -> Unit
+            is NewsListEvents.OpenCategory -> navigation.navigateTo(
+                NewsScreens.CategoryNewsScreen(event.category)
+            )
         }
     }
 

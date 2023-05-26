@@ -42,13 +42,17 @@ fun AllNewsColumn(
                 0 -> VerticalListWithTitle(
                     title = item.first,
                     news = item.second,
-                    onClickSeeAll = { viewModel.onEvent(NewsListEvents.OpenCategory) },
+                    onClickSeeAll = { category ->
+                        viewModel.onEvent(NewsListEvents.OpenCategory(category))
+                    },
                     onClickNews = { news -> viewModel.onEvent(NewsListEvents.OpenNews(news)) }
                 )
                 1 -> HorizontalListWithTitle(
                     title = item.first,
                     news = item.second,
-                    onClickSeeAll = { viewModel.onEvent(NewsListEvents.OpenCategory) },
+                    onClickSeeAll = { category ->
+                        viewModel.onEvent(NewsListEvents.OpenCategory(category))
+                    },
                     onClickNews = { news -> viewModel.onEvent(NewsListEvents.OpenNews(news)) }
                 )
             }
