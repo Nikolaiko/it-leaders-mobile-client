@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.penguins.educationmultiplatform.android.mapScreen.components.YandexMapScreenForIntegration
+import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
 import com.penguins.educationmultiplatform.android.mapScreen.view.YandexMapScreen
 import com.penguins.educationmultiplatform.android.navigation.routeObject.MainScreenTabRoute
 import com.penguins.educationmultiplatform.android.navigation.routeObject.mainGraph
@@ -26,7 +28,6 @@ fun BottomFlowGraph(navController: NavHostController) {
 
         }
         composable(route = MainScreenTabRoute.TestsTab.route) {
-
         }
         composable(route = MainScreenTabRoute.MapTab.route) {
             YandexMapScreen()
