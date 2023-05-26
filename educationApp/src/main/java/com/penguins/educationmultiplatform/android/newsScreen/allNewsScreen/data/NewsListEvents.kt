@@ -7,6 +7,6 @@ sealed class NewsListEvents {
     class SetCategoryList(val list: List<Pair<String, List<News>>>) : NewsListEvents()
     object FilterButton : NewsListEvents()
     object OpenCategory : NewsListEvents()
-    object OpenNews : NewsListEvents()
+    class OpenNews(val news: News) : NewsListEvents()
 }
 

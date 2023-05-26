@@ -10,6 +10,7 @@ import com.penguins.educationmultiplatform.android.domain.location.LocationTrack
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
+import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
 import org.koin.android.ext.koin.androidContext
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
@@ -36,7 +37,7 @@ val androidModule = module {
     //viewModels
     viewModel { YandexMapViewModel(get(), get()) }
     viewModel { CategoryViewModel() }
-    viewModel { NewsListViewModel() }
+    viewModel { NewsListViewModel(get()) }
     viewModel { NewsViewModel() }
 
     //location
@@ -46,4 +47,5 @@ val androidModule = module {
     //useCases
     single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }
+    single { NewsNavigation() }
 }

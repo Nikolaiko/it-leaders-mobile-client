@@ -9,7 +9,6 @@ import kotlin.random.Random
 
 class GetSchoolsFromRepository() {
 
-
     fun invoke(): Flow<List<SchoolDataUi>> {
         return flow {
 

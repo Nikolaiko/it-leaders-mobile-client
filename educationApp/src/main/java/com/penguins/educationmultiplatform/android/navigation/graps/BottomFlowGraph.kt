@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.penguins.educationmultiplatform.android.mapScreen.view.YandexMapScreen
 import com.penguins.educationmultiplatform.android.navigation.routeObject.MainScreenTabRoute
 import com.penguins.educationmultiplatform.android.navigation.routeObject.mainGraph
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view.NewsActivity
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view.NewsListScreen
 
 @Composable
@@ -19,7 +20,7 @@ fun BottomFlowGraph(navController: NavHostController) {
         startDestination = MainScreenTabRoute.NewsTab.route
     ){
         composable(route = MainScreenTabRoute.NewsTab.route) {
-            NewsListScreen()
+            NewsActivity()
         }
         composable(route = MainScreenTabRoute.CoursesTab.route) {
 
