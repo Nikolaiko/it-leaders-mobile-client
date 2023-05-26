@@ -8,7 +8,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolDataUi
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
 import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButtonColor
@@ -29,15 +28,12 @@ import org.koin.androidx.compose.koinViewModel
 fun YandexMapScreenForIntegration(
     modifier: Modifier = Modifier,
     viewModel: YandexMapViewModel = koinViewModel(),
-    type: SchoolType,
+    type: SchoolType
 ) {
-
-
     val scope = rememberCoroutineScope()
     val detailBottomSheetDataState: MutableState<SchoolDataUi?> = remember { mutableStateOf(null) }
     val sheetDetailState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldDetailState = rememberBottomSheetScaffoldState(bottomSheetState = sheetDetailState)
-
 
     BottomSheetScaffold(
         modifier = modifier,
@@ -128,16 +124,14 @@ fun YandexMapScreenForIntegration(
 
                     val clusterListener = ClusterListener { cluster ->
                         // We setup cluster appearance and tap handler in this method
-                        cluster.getAppearance().setIcon(
+                        cluster.appearance.setIcon(
                             TextImageProvider(
                                 context,
-                                Integer.toString(
-                                    cluster.getSize()
-                                )
+                                cluster.size.toString()
                             )
                         )
                     }
-                    var clusterCollection = mapView.getMap().getMapObjects()
+                    var clusterCollection = mapView.map.mapObjects
                         .addClusterizedPlacemarkCollection(clusterListener)
 
                     scope.launch {
