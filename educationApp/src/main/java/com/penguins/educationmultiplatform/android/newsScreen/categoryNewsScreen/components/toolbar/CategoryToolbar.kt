@@ -71,7 +71,7 @@ fun TitleToolbar(
     ){
         Text(
             text = title,
-            fontSize = 32.sp,
+            fontSize = 28.sp,
             fontWeight = FontWeight.Bold
         )
     }
