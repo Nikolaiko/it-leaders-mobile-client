@@ -23,7 +23,7 @@ fun BottomFlowGraph(navController: NavHostController) {
 
         }
         composable(route = MainScreenTabRoute.CoursesTab.route) {
-
+            CoursesTabScreen()
         }
         composable(route = MainScreenTabRoute.TestsTab.route) {
         }

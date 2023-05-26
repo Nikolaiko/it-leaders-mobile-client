@@ -2,6 +2,7 @@ package com.penguins.educationmultiplatform.android.di
 
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.gms.location.LocationServices
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.CoursesViewModel
 import com.penguins.educationmultiplatform.android.data.location.DefaultLocationTracker
 import com.penguins.educationmultiplatform.android.data.navigation.DestinationController
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
@@ -39,6 +40,7 @@ val androidModule = module {
     viewModel { CategoryViewModel() }
     viewModel { NewsListViewModel() }
     viewModel { NewsViewModel() }
+    viewModel {CoursesViewModel()}
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }

@@ -9,6 +9,7 @@ val primaryGray = Color(0xFF7C7C7B)
 val primaryWhite = Color(0xFFFFFFFF)
 val educationGreenColor = Color(0xFFB4C95E)
 val primaryGreen = Color(0xFF9AAE4F)
+val primaryBlack = Color(0xFF000000)
 
 val textGrayColor = Color(0xFF7C7C7B)
 
@@ -25,7 +26,7 @@ val artBackgroundColor = Color(0xFFBA768F)
 val danceBackgroundColor = Color(0xFF81AE7B)
 val musicBackgroundColor = Color(0xFFB4C95E)
 val theatreBackgroundColor = Color(0xFF8E74A8)
-
+val fontPlaceholderColor = Color(0xFF404040)
 val artGradientBackground = Brush.linearGradient(
     0.0f to artBackgroundColor,
     0.5f to Color(0xFFFFFFFF)
