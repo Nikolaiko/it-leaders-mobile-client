@@ -10,10 +10,14 @@ import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGO
 import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_NEWS_ROUTE
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NEWS_ARGUMENT
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
-import com.penguins.educationmultiplatform.android.navigation.routeObject.ONE_NEWS_SCREEN
+import com.penguins.educationmultiplatform.android.navigation.routeObject.ONE_NEWS_ROUTE
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view.NewsListScreen
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.view.CategoryScreen
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.view.NewsScreen
+import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 @Composable
 fun NewsNavHost(navController: NavHostController) {
@@ -26,16 +30,18 @@ fun NewsNavHost(navController: NavHostController) {
             NewsListScreen()
         }
         composable(
-            route = ONE_NEWS_SCREEN,
+            route = ONE_NEWS_ROUTE,
             arguments = listOf(navArgument(NEWS_ARGUMENT) { type = NavType.StringType })
         ) {
-            NewsScreen()
+            val json = it.arguments?.getString(NEWS_ARGUMENT) ?: EMPTY_STRING
+            val news = Json.decodeFromString<News>(json)
+            NewsScreen(news)
         }
         composable(
             route = CATEGORY_NEWS_ROUTE,
             arguments = listOf(navArgument(CATEGORY_ARGUMENTS) { type = NavType.StringType })
         ) {
-            val category = it.arguments?.getString(CATEGORY_ARGUMENTS)?.replace("\"", "")
+            val category = it.arguments?.getString(CATEGORY_ARGUMENTS)
             CategoryScreen(category)
         }
     }

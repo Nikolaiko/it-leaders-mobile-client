@@ -21,8 +21,7 @@ class NewsNavigation {
         NewsScreens.AllNewsScreen -> navController?.navigate(screen.route)
 
         is NewsScreens.CategoryNewsScreen -> {
-            val json = Json.encodeToString(screen.category)
-            navController?.navigate("${screen.route}/${json}")
+            navController?.navigate("${screen.route}/${screen.category}")
         }
 
         is NewsScreens.OneNewsScreen -> {
