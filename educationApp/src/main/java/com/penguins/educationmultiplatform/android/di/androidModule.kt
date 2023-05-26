@@ -36,7 +36,7 @@ val androidModule = module {
 
     //viewModels
     viewModel { YandexMapViewModel(get(), get()) }
-    viewModel { CategoryViewModel() }
+    viewModel { CategoryViewModel(get()) }
     viewModel { NewsListViewModel(get()) }
     viewModel { NewsViewModel(get()) }
 

@@ -1,6 +1,8 @@
 package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel
 
 import androidx.lifecycle.ViewModel
+import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
+import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.listOfCategories
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.CategoryEvents
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.CategoryUiState
@@ -10,7 +12,9 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.debugData.g
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class CategoryViewModel : ViewModel() {
+class CategoryViewModel(
+    val navigation: NewsNavigation
+) : ViewModel() {
 
     private val _state = MutableStateFlow(CategoryUiState())
     val state = _state.asStateFlow()
@@ -32,9 +36,11 @@ class CategoryViewModel : ViewModel() {
                 _state.value.copy(headingNews = event.list)
             )
             is CategoryEvents.SetSchool -> Unit
-            is CategoryEvents.OpenNews -> Unit
+            is CategoryEvents.OpenNews -> navigation.navigateTo(
+                NewsScreens.OneNewsScreen(event.news)
+            )
             is CategoryEvents.OpenNewsList -> Unit
-            CategoryEvents.BackButton -> Unit
+            CategoryEvents.BackButton -> navigation.back()
             CategoryEvents.SearchButton -> Unit
         }
     }

@@ -4,10 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_NEWS_SCREEN
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.ONE_NEWS_SCREEN
 import com.penguins.educationmultiplatform.android.navigation.routeObject.newsTab
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view.NewsListScreen
+import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.view.CategoryScreen
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.view.NewsScreen
 
 @Composable
@@ -22,6 +24,9 @@ fun NewsNavHost(navController: NavHostController) {
         }
         composable(route = "$newsTab/$ONE_NEWS_SCREEN") {
             NewsScreen()
+        }
+        composable(route = "$newsTab/$CATEGORY_NEWS_SCREEN") {
+            CategoryScreen()
         }
     }
 }
