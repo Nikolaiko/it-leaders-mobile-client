@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components
+package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.column
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,9 +26,13 @@ fun AllNewsColumn(
             .padding(bottom = 64.dp)
             .padding(horizontal = 16.dp)
     ) {
-        item {
-            LastNewsCard(news = state.value.list.last().second.last()) {
-                viewModel.onEvent(NewsListEvents.OpenNews)
+
+        val lastNews = state.value.lastNews
+        if (lastNews != null) {
+            item {
+                LastNewsCard(news = lastNews) {
+                    viewModel.onEvent(NewsListEvents.OpenNews(lastNews))
+                }
             }
         }
 
@@ -39,13 +43,13 @@ fun AllNewsColumn(
                     title = item.first,
                     news = item.second,
                     onClickSeeAll = { viewModel.onEvent(NewsListEvents.OpenCategory) },
-                    onClickNews = { viewModel.onEvent(NewsListEvents.OpenNews) }
+                    onClickNews = { news -> viewModel.onEvent(NewsListEvents.OpenNews(news)) }
                 )
                 1 -> HorizontalListWithTitle(
                     title = item.first,
                     news = item.second,
                     onClickSeeAll = { viewModel.onEvent(NewsListEvents.OpenCategory) },
-                    onClickNews = { viewModel.onEvent(NewsListEvents.OpenNews) }
+                    onClickNews = { news -> viewModel.onEvent(NewsListEvents.OpenNews(news)) }
                 )
             }
         }
