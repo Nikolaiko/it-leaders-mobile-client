@@ -5,10 +5,10 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.data.Catego
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 
 fun listOfCategories() = listOf<Pair<String, List<News>>>(
-    "Музыка" to listOfNews(),
-    "Хореография" to listOfNews(),
-    "Изобразительное искусство" to listOfNews(),
-    "Театр" to listOfNews()
+    Category.MUSIC.title to listOfNews(),
+    Category.DANCE.title to listOfNews(),
+    Category.ART.title to listOfNews(),
+    Category.THEATRE.title to listOfNews()
 )
 
 fun listOfNews() = listOf<News>(

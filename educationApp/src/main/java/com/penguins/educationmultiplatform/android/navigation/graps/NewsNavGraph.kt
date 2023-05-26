@@ -2,12 +2,15 @@ package com.penguins.educationmultiplatform.android.navigation.graps
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_NEWS_SCREEN
+import androidx.navigation.navArgument
+import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_ARGUMENTS
+import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_NEWS_ROUTE
+import com.penguins.educationmultiplatform.android.navigation.routeObject.NEWS_ARGUMENT
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.ONE_NEWS_SCREEN
-import com.penguins.educationmultiplatform.android.navigation.routeObject.newsTab
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view.NewsListScreen
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.view.CategoryScreen
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.view.NewsScreen
@@ -22,11 +25,18 @@ fun NewsNavHost(navController: NavHostController) {
         composable(route = NewsScreens.AllNewsScreen.route) {
             NewsListScreen()
         }
-        composable(route = "$newsTab/$ONE_NEWS_SCREEN") {
+        composable(
+            route = ONE_NEWS_SCREEN,
+            arguments = listOf(navArgument(NEWS_ARGUMENT) { type = NavType.StringType })
+        ) {
             NewsScreen()
         }
-        composable(route = "$newsTab/$CATEGORY_NEWS_SCREEN") {
-            CategoryScreen()
+        composable(
+            route = CATEGORY_NEWS_ROUTE,
+            arguments = listOf(navArgument(CATEGORY_ARGUMENTS) { type = NavType.StringType })
+        ) {
+            val category = it.arguments?.getString(CATEGORY_ARGUMENTS)?.replace("\"", "")
+            CategoryScreen(category)
         }
     }
 }

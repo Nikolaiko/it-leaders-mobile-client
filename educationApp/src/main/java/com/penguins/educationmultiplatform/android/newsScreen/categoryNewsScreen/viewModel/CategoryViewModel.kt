@@ -19,9 +19,9 @@ class CategoryViewModel(
     private val _state = MutableStateFlow(CategoryUiState())
     val state = _state.asStateFlow()
 
-    init {
+    fun setCategory(category: String?) {
         _state.value = _state.value.copy(
-            category = Category.MUSIC,
+            category = Category.values().firstOrNull { it.title == category },
             lastNews = getDebugLastNews(),
             headingNews = listOfNewByHeading()
         )
