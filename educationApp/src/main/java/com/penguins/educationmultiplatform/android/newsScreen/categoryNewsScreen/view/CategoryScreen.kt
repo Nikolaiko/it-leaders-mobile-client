@@ -29,7 +29,8 @@ fun CategoryScreen(
     categoryTitle: String? = null,
     viewModel: CategoryViewModel = koinViewModel()
 ) {
-    viewModel.setCategory(categoryTitle)
+    viewModel.onEvent(CategoryEvents.SetCategory(categoryTitle ?: EMPTY_STRING))
+
     val state = viewModel.state.collectAsState()
     val category = state.value.category
 

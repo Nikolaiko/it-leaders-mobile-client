@@ -3,7 +3,6 @@ package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScree
 import androidx.lifecycle.ViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.listOfCategories
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.CategoryEvents
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.CategoryUiState
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.listOfNewByHeading
@@ -19,9 +18,8 @@ class CategoryViewModel(
     private val _state = MutableStateFlow(CategoryUiState())
     val state = _state.asStateFlow()
 
-    fun setCategory(category: String?) {
+    init {
         _state.value = _state.value.copy(
-            category = Category.values().firstOrNull { it.title == category },
             lastNews = getDebugLastNews(),
             headingNews = listOfNewByHeading()
         )
@@ -29,18 +27,28 @@ class CategoryViewModel(
 
     fun onEvent(event: CategoryEvents) {
         when (event) {
+            is CategoryEvents.SetCategory -> _state.tryEmit(
+                _state.value.copy(
+                    category = Category.values().firstOrNull { it.title == event.category }
+                )
+            )
+
             is CategoryEvents.SetLastNews -> _state.tryEmit(
                 _state.value.copy(lastNews = event.news)
             )
+
             is CategoryEvents.SetHeadingNewsList -> _state.tryEmit(
                 _state.value.copy(headingNews = event.list)
             )
-            is CategoryEvents.SetSchool -> Unit
+
             is CategoryEvents.OpenNews -> navigation.navigateTo(
                 NewsScreens.OneNewsScreen(event.news)
             )
+
             is CategoryEvents.OpenNewsList -> Unit
+
             CategoryEvents.BackButton -> navigation.back()
+
             CategoryEvents.SearchButton -> Unit
         }
     }

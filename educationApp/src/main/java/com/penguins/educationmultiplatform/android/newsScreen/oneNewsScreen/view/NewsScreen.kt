@@ -30,7 +30,7 @@ fun NewsScreen(
     news: News? = null,
     viewModel: NewsViewModel = koinViewModel()
 ) {
-    viewModel.setNews(news)
+    news?.let { viewModel.onEvent(NewsEvents.SetNews(it)) }
     val state = viewModel.state.collectAsState()
 
     Column {
