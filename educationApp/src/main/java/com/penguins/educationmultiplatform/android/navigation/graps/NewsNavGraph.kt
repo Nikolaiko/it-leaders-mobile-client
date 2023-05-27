@@ -15,6 +15,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.view.CategoryScreen
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.view.NewsScreen
+import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.view.SearchNewsScreen
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -44,5 +45,12 @@ fun NewsNavHost(navController: NavHostController) {
             val category = it.arguments?.getString(CATEGORY_ARGUMENTS)
             CategoryScreen(category)
         }
+
+        composable(
+            route = NewsScreens.SearchNewsScreen.route
+        ) {
+            SearchNewsScreen()
+        }
+
     }
 }

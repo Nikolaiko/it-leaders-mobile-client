@@ -28,6 +28,9 @@ class NewsListViewModel(
             is NewsListEvents.OpenCategory -> navigation.navigateTo(
                 NewsScreens.CategoryNewsScreen(event.category)
             )
+            is NewsListEvents.OpenSearchNews -> navigation.navigateTo(
+                NewsScreens.SearchNewsScreen
+            )
         }
     }
 

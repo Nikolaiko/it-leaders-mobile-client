@@ -1,6 +1,5 @@
 package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.toolbar
 
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListEvents
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
@@ -20,7 +18,6 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun NewsToolbar(viewModel: NewsListViewModel = koinViewModel()) {
     val state = viewModel.state.collectAsState()
-    val c = LocalContext.current
 
     Row (
         modifier = Modifier
@@ -30,11 +27,11 @@ fun NewsToolbar(viewModel: NewsListViewModel = koinViewModel()) {
     ) {
         SearchNewsEditText(
             text = state.value.searchingNews,
-            onTextChange = { viewModel.onEvent(NewsListEvents.SetNewsTitle(it)) },
+            onTextChange = {},//{ viewModel.onEvent(NewsListEvents.SetNewsTitle(it)) },
             enabled = false,
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { Toast.makeText(c, "click serach", Toast.LENGTH_SHORT).show() }
+                .clickable { viewModel.onEvent(NewsListEvents.OpenSearchNews) }
         )
     }
 }

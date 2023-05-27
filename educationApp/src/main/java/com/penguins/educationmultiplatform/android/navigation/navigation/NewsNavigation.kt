@@ -29,5 +29,6 @@ class NewsNavigation {
             navController?.navigate("${screen.route}/$json")
         }
 
+        NewsScreens.SearchNewsScreen -> navController?.navigate(screen.route)
     }
 }

@@ -8,5 +8,6 @@ sealed class NewsListEvents {
     object FilterButton : NewsListEvents()
     class OpenCategory(val category: String) : NewsListEvents()
     class OpenNews(val news: News) : NewsListEvents()
+    object OpenSearchNews : NewsListEvents()
 }
 
