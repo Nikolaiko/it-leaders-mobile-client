@@ -38,7 +38,7 @@ fun SearchNewsScreen() {
                 .padding(bottom = 64.dp, top = 32.dp)
         ) {
             SearchNewsToolbar()
-            SearchingNews(list = emptyList(), onItemClick = {})
+            SearchingNews()
         }
     }
 }

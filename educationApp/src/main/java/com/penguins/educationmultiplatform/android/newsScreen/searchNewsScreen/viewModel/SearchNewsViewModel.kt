@@ -2,6 +2,8 @@ package com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.
 
 import androidx.lifecycle.ViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
+import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
+import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.listOfNews
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsEvents
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsUiState
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
@@ -15,6 +17,12 @@ class SearchNewsViewModel(
     private val _state = MutableStateFlow(SearchNewsUiState())
     val state = _state.asStateFlow()
 
+    init {
+        _state.value = _state.value.copy(
+            findingNews = listOfNews()
+        )
+    }
+
     fun onEvent(event: SearchNewsEvents) {
         when (event) {
             is SearchNewsEvents.SetSearchingText ->  _state.tryEmit(
@@ -26,7 +34,10 @@ class SearchNewsViewModel(
             )
 
             is SearchNewsEvents.ClearSearch -> _state.tryEmit(
-                _state.value.copy(searchingText = EMPTY_STRING)
+                _state.value.copy(
+                    searchingText = EMPTY_STRING,
+                    findingNews = emptyList()
+                )
             )
 
             is SearchNewsEvents.SearchButton -> Unit//findNewsUseCase
@@ -34,6 +45,10 @@ class SearchNewsViewModel(
             is SearchNewsEvents.FilterButton -> Unit//open BottomSheet
 
             is SearchNewsEvents.BackButton -> navigation.back()
+
+            is SearchNewsEvents.OpenNews -> navigation.navigateTo(
+                NewsScreens.OneNewsScreen(event.news)
+            )
         }
     }
 

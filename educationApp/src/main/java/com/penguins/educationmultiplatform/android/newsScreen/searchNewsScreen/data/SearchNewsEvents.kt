@@ -9,4 +9,5 @@ sealed class SearchNewsEvents {
     object BackButton : SearchNewsEvents()
     object SearchButton : SearchNewsEvents()
     object FilterButton: SearchNewsEvents()
+    class OpenNews(val news: News) : SearchNewsEvents()
 }
