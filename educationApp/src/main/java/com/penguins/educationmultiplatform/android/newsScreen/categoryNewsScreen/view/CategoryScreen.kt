@@ -25,7 +25,12 @@ import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun CategoryScreen(viewModel: CategoryViewModel = koinViewModel()) {
+fun CategoryScreen(
+    categoryTitle: String? = null,
+    viewModel: CategoryViewModel = koinViewModel()
+) {
+    viewModel.onEvent(CategoryEvents.SetCategory(categoryTitle ?: EMPTY_STRING))
+
     val state = viewModel.state.collectAsState()
     val category = state.value.category
 

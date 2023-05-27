@@ -57,7 +57,7 @@ fun CategoryCardTitle(
         Text(
             text = title,
             modifier = Modifier.wrapContentWidth(),
-            fontSize = 18.sp,
+            fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )
     }
@@ -101,7 +101,7 @@ fun TitleTextButton(
         text = SEE_ALL_TEXT_BUTTON,
         fontWeight = FontWeight.Bold,
         color = theatreBackgroundColor,
-        fontSize = 16.sp
+        fontSize = 14.sp
     )
 }
 

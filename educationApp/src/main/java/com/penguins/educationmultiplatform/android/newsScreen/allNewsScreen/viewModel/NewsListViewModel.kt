@@ -20,13 +20,17 @@ class NewsListViewModel(
             is NewsListEvents.SetCategoryList -> {
                 _state.tryEmit(_state.value.copy(list = event.list))
             }
-            is NewsListEvents.OpenNews -> navigation.navigateTo(NewsScreens.OneNewsScreen(event.news))
-            is NewsListEvents.SetNewsTitle -> {
-                _state.tryEmit(_state.value.copy(searchingNews = event.titleNews))
-            }
-            is NewsListEvents.FilterButton -> Unit
+
+            is NewsListEvents.OpenNews -> navigation.navigateTo(
+                NewsScreens.OneNewsScreen(event.news)
+            )
+
             is NewsListEvents.OpenCategory -> navigation.navigateTo(
                 NewsScreens.CategoryNewsScreen(event.category)
+            )
+
+            is NewsListEvents.OpenSearchNews -> navigation.navigateTo(
+                NewsScreens.SearchNewsScreen
             )
         }
     }
