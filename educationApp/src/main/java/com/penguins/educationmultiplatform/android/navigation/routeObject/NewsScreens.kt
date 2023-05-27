@@ -6,7 +6,6 @@ sealed class NewsScreens (val route: String) {
     object AllNewsScreen : NewsScreens("$newsTab/$ALL_NEWS_SCREEN")
     class OneNewsScreen(val news: News) : NewsScreens("$newsTab/$ONE_NEWS_SCREEN")
     class CategoryNewsScreen(val category: String) : NewsScreens("$newsTab/$CATEGORY_NEWS_SCREEN")
-
     object SearchNewsScreen : NewsScreens("$newsTab/$SEARCH_NEWS_SCREEN")
 }
 

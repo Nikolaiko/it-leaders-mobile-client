@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.toolbar
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -14,19 +15,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.buttons.BackButton
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.editTexts.SearchNewsEditText
+import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsEvents
+import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SearchNewsToolbar() {
-//    val state = viewModel.state.collectAsState()
-    val c = LocalContext.current
+fun SearchNewsToolbar(viewModel: SearchNewsViewModel = koinViewModel()) {
+    val state = viewModel.state.collectAsState()
 
     Row (
         modifier = Modifier
@@ -36,19 +38,27 @@ fun SearchNewsToolbar() {
             .height(IntrinsicSize.Min)
     ) {
         BackButton(
-            onClick = {}
+            onClick = { viewModel.onEvent(SearchNewsEvents.BackButton) }
         )
         SearchEditText(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            text = state.value.searchingText,
+            onTextChanged = { viewModel.onEvent(SearchNewsEvents.SetSearchingText(it)) },
+            onIconClick = { viewModel.onEvent(SearchNewsEvents.ClearSearch) }
         )
         FilterButton(
-            onClick = {}//{ viewModel.onEvent(NewsListEvents.FilterButton) }
+            onClick = { viewModel.onEvent(SearchNewsEvents.FilterButton) }
         )
     }
 }
 
 @Composable
-private fun SearchEditText(modifier: Modifier) {
+private fun SearchEditText(
+    modifier: Modifier,
+    text: String,
+    onTextChanged: (String) -> Unit,
+    onIconClick: () -> Unit
+) {
     Box(
         modifier = modifier
             .padding(start = 16.dp)
@@ -56,12 +66,13 @@ private fun SearchEditText(modifier: Modifier) {
         SearchNewsEditText(
             modifier = Modifier
                 .fillMaxWidth(),
-            text = "",//state.value.searchingNews,
-            onTextChange = {},//{ viewModel.onEvent(NewsListEvents.SetNewsTitle(it)) },
+            text = text,
+            onTextChange = onTextChanged,
             trailingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_close),
-                    contentDescription = "Закрыть поиск."
+                    contentDescription = "Закрыть поиск.",
+                    modifier = Modifier.clickable { onIconClick() }
                 )
             }
         )

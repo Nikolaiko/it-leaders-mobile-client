@@ -46,9 +46,7 @@ fun NewsNavHost(navController: NavHostController) {
             CategoryScreen(category)
         }
 
-        composable(
-            route = NewsScreens.SearchNewsScreen.route
-        ) {
+        composable(route = NewsScreens.SearchNewsScreen.route) {
             SearchNewsScreen()
         }
 
