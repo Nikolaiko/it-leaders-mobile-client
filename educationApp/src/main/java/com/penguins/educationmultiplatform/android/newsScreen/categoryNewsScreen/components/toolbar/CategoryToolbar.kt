@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.buttons.BackButton
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 
 @Composable
@@ -38,22 +39,6 @@ fun CategoryToolbar(
         )
         SearchButton(
             onClick = onSearchClick
-        )
-    }
-}
-
-@Composable
-fun BackButton(
-    onClick: () -> Unit
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxHeight(),
-        contentAlignment = Alignment.Center
-    ) {
-        ImageButton(
-            onClick = onClick,
-            imageId = R.drawable.ic_back
         )
     }
 }
