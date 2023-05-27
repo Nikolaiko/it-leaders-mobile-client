@@ -17,8 +17,12 @@ class SplashScreenViewModel(
         when {
             authState.tokens != null -> navigation.navigateTo(AppScreens.MainAppScreen)
             authState.skippedAuth -> navigation.navigateTo(AppScreens.MainAppScreen)
-            else -> navigation.navigateTo(nonLoggedUserGraph, NavOptions.Builder().setPopUpTo(
-                rootGraph, true).build())
+            else -> navigation.navigateTo(
+                nonLoggedUserGraph,
+                NavOptions.Builder()
+                    .setPopUpTo(rootGraph, true)
+                    .build()
+            )
         }
     }
 }

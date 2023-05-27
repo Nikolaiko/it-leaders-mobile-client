@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.image.NewsCardImage
-import com.penguins.educationmultiplatform.android.newsScreen.common.debugData.getDebugOneNews
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.data.NewsEvents
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
@@ -26,12 +25,15 @@ import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun NewsScreen(viewModel: NewsViewModel = koinViewModel()) {
+fun NewsScreen(
+    viewModel: NewsViewModel = koinViewModel()
+) {
     val state = viewModel.state.collectAsState()
 
     Column {
         Column(
             modifier = Modifier
+                .padding(bottom = 64.dp)
                 .verticalScroll(rememberScrollState())
                 .weight(1f, false)
         ) {

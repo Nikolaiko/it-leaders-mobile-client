@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,16 +29,17 @@ fun NewsToolbar(viewModel: NewsListViewModel = koinViewModel()) {
 
     Row (
         modifier = Modifier
-            .padding(top = 24.dp, start = 24.dp)
+            .padding(top = 24.dp)
+            .padding(horizontal = 24.dp)
             .height(IntrinsicSize.Min)
     ) {
         SearchNewsEditText(
             text = state.value.searchingNews,
             onTextChange = { viewModel.onEvent(NewsListEvents.SetNewsTitle(it)) }
         )
-        FilterButton(
-            onClick = { viewModel.onEvent(NewsListEvents.FilterButton) }
-        )
+//        FilterButton(
+//            onClick = { viewModel.onEvent(NewsListEvents.FilterButton) }
+//        )
     }
 }
 
@@ -47,17 +48,14 @@ fun SearchNewsEditText(
     text: String,
     onTextChange: (String) -> Unit
 ) {
-    val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp
-    val width = screenWidth * 0.73
-
     OutlinedTextField(
-        modifier = Modifier.width(width.dp),
+        modifier = Modifier.fillMaxWidth(),
         value = text,
         onValueChange = {
             onTextChange(it)
         },
-        placeholder = { Text(text = TITLE_SEARCH_TEXT_FIELD)}
+        placeholder = { Text(text = TITLE_SEARCH_TEXT_FIELD)},
+        shape = RoundedCornerShape(15.dp)
     )
 }
 

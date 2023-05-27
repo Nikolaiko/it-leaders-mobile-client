@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
+import com.penguins.educationmultiplatform.android.ui.theatreBackgroundColor
 
 @Composable
 fun NewsTitleRow(
@@ -97,7 +98,10 @@ fun TitleTextButton(
 ) {
     TextButton(
         onClick = onClick,
-        text = SEE_ALL_TEXT_BUTTON
+        text = SEE_ALL_TEXT_BUTTON,
+        fontWeight = FontWeight.Bold,
+        color = theatreBackgroundColor,
+        fontSize = 16.sp
     )
 }
 

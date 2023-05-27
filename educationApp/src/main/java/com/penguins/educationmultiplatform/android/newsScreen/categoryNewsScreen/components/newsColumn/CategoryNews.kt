@@ -27,9 +27,9 @@ fun CategoryNews(
     )
 
     HorizontalListWithTitle(
-        category = news.lastOrNull()?.first ?: EMPTY_STRING,
+        title = news.lastOrNull()?.first ?: EMPTY_STRING,
         news = news.lastOrNull()?.second ?: emptyList(),
-        clickCategory = onClickSeeAll,
-        clickNews = onClickNews
+        onClickSeeAll = onClickSeeAll,
+        onClickNews = onClickNews
     )
 }
