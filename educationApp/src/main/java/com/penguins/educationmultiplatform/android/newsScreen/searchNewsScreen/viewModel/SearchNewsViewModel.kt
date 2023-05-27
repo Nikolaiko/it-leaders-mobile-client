@@ -17,12 +17,6 @@ class SearchNewsViewModel(
     private val _state = MutableStateFlow(SearchNewsUiState())
     val state = _state.asStateFlow()
 
-    init {
-        _state.value = _state.value.copy(
-            findingNews = listOfNews()
-        )
-    }
-
     fun onEvent(event: SearchNewsEvents) {
         when (event) {
             is SearchNewsEvents.SetSearchingText ->  _state.tryEmit(
@@ -40,7 +34,11 @@ class SearchNewsViewModel(
                 )
             )
 
-            is SearchNewsEvents.SearchButton -> Unit//findNewsUseCase
+            is SearchNewsEvents.SearchButton -> _state.tryEmit(
+                _state.value.copy(
+                    findingNews = listOfNews()
+                )
+            )//findNewsUseCase
 
             is SearchNewsEvents.FilterButton -> Unit//open BottomSheet
 

@@ -44,7 +44,8 @@ fun SearchNewsToolbar(viewModel: SearchNewsViewModel = koinViewModel()) {
             modifier = Modifier.weight(1f),
             text = state.value.searchingText,
             onTextChanged = { viewModel.onEvent(SearchNewsEvents.SetSearchingText(it)) },
-            onIconClick = { viewModel.onEvent(SearchNewsEvents.ClearSearch) }
+            onIconClick = { viewModel.onEvent(SearchNewsEvents.ClearSearch) },
+            onSearch = { viewModel.onEvent(SearchNewsEvents.SearchButton) }
         )
         FilterButton(
             onClick = { viewModel.onEvent(SearchNewsEvents.FilterButton) }
@@ -57,7 +58,8 @@ private fun SearchEditText(
     modifier: Modifier,
     text: String,
     onTextChanged: (String) -> Unit,
-    onIconClick: () -> Unit
+    onIconClick: () -> Unit,
+    onSearch: () -> Unit
 ) {
     Box(
         modifier = modifier
@@ -74,7 +76,8 @@ private fun SearchEditText(
                     contentDescription = "Закрыть поиск.",
                     modifier = Modifier.clickable { onIconClick() }
                 )
-            }
+            },
+            onSearch = onSearch
         )
     }
 }
