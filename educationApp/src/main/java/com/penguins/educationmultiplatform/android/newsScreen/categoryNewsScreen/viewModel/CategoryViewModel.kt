@@ -9,6 +9,7 @@ import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNav
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.CategoryEvents
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.data.CategoryUiState
+import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -28,7 +29,7 @@ class CategoryViewModel(
 
     fun onEvent(event: CategoryEvents) {
         when (event) {
-            is CategoryEvents.SetCategory -> {
+            is CategoryEvents.SetCategoryAndNews -> {
                 viewModelScope.launch {
                     setNewsList(event.category)
                 }
@@ -38,19 +39,20 @@ class CategoryViewModel(
                 _state.value.copy(lastNews = event.news)
             )
 
-            is CategoryEvents.SetHeadingNewsList -> Unit//_state.tryEmit(
-//                _state.value.copy(headingNews = event.list)
-//            )
-
             is CategoryEvents.OpenNews -> navigation.navigateTo(
                 NewsScreens.OneNewsScreen(event.news)
             )
 
-            is CategoryEvents.OpenNewsList -> Unit
+            is CategoryEvents.OpenNewsListByHeading -> navigation.navigateTo(
+                NewsScreens.HeadingNewsScreen(
+                    category = _state.value.category?.title ?: EMPTY_STRING,
+                    heading = event.heading
+                )
+            )
 
             CategoryEvents.BackButton -> navigation.back()
 
-            CategoryEvents.SearchButton -> Unit
+            CategoryEvents.SearchButton -> navigation.navigateTo(NewsScreens.SearchNewsScreen)
         }
     }
 

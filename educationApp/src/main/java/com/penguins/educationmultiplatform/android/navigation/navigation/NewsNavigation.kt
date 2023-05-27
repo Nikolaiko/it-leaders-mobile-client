@@ -2,6 +2,8 @@ package com.penguins.educationmultiplatform.android.navigation.navigation
 
 import android.annotation.SuppressLint
 import androidx.navigation.NavHostController
+import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_ARGUMENTS
+import com.penguins.educationmultiplatform.android.navigation.routeObject.HEADING_ARGUMENT
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -27,6 +29,12 @@ class NewsNavigation {
         is NewsScreens.OneNewsScreen -> {
             val json = Json.encodeToString(screen.news)
             navController?.navigate("${screen.route}/$json")
+        }
+
+        is NewsScreens.HeadingNewsScreen -> {
+            navController?.navigate(
+                "${screen.route}?$CATEGORY_ARGUMENTS=${screen.category}&$HEADING_ARGUMENT=${screen.heading}"
+            )
         }
 
         NewsScreens.SearchNewsScreen -> navController?.navigate(screen.route)

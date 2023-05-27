@@ -29,7 +29,7 @@ fun CategoryScreen(
     categoryTitle: String? = null,
     viewModel: CategoryViewModel = koinViewModel()
 ) {
-    viewModel.onEvent(CategoryEvents.SetCategory(categoryTitle ?: EMPTY_STRING))
+    viewModel.onEvent(CategoryEvents.SetCategoryAndNews(categoryTitle ?: EMPTY_STRING))
 
     val state = viewModel.state.collectAsState()
     val category = state.value.category
@@ -62,7 +62,7 @@ fun CategoryScreen(
                         viewModel.onEvent(CategoryEvents.OpenNews(news))
                     },
                     onClickSeeAll = { heading ->
-                        viewModel.onEvent(CategoryEvents.OpenNewsList(heading))
+                        viewModel.onEvent(CategoryEvents.OpenNewsListByHeading(heading))
                     }
                 )
             }

@@ -13,6 +13,7 @@ import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByCate
 import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
+import com.penguins.educationmultiplatform.android.newsScreen.headingNews.viewModel.HeadingNewsViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
 import org.koin.android.ext.koin.androidContext
 import io.ktor.client.HttpClient
@@ -43,6 +44,7 @@ val androidModule = module {
     viewModel { NewsListViewModel(get(), get()) }
     viewModel { NewsViewModel(get()) }
     viewModel { SearchNewsViewModel(get()) }
+    viewModel { HeadingNewsViewModel(get()) }
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
