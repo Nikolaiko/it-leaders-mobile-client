@@ -56,7 +56,7 @@ fun CategoryScreen(
                     onSearchClick = { viewModel.onEvent(CategoryEvents.SearchButton) }
                 )
                 CategoryNews(
-                    news = viewModel.state.value.headingNews,
+                    news = viewModel.state.value.headingNews.toList(),
                     lastNews = viewModel.state.value.lastNews ?: News(),
                     onClickNews = { news ->
                         viewModel.onEvent(CategoryEvents.OpenNews(news))

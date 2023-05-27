@@ -30,7 +30,7 @@ class NewsListViewModel(
 
     init {
         viewModelScope.launch {
-            getNewsFromServer()
+            setNewsList()
         }
     }
 
@@ -54,7 +54,7 @@ class NewsListViewModel(
         }
     }
 
-    private suspend fun getNewsFromServer() {
+    private suspend fun setNewsList() {
         when (val response = getNewsUseCase()) {
             is ActionResult.Success -> saveNews(response.result)
             is ActionResult.Fail -> _errorState.tryEmit(response.failure)

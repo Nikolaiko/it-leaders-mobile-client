@@ -9,6 +9,7 @@ import com.penguins.educationmultiplatform.android.data.navigation.DestinationCo
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
+import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByCategoryUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
@@ -38,7 +39,7 @@ val androidModule = module {
 
     //viewModels
     viewModel { YandexMapViewModel(get(), get()) }
-    viewModel { CategoryViewModel(get()) }
+    viewModel { CategoryViewModel(get(), get()) }
     viewModel { NewsListViewModel(get(), get()) }
     viewModel { NewsViewModel(get()) }
     viewModel { SearchNewsViewModel(get()) }
@@ -53,5 +54,6 @@ val androidModule = module {
 
     single { NewsNavigation() }
     single { GetNewsListUseCase(get()) }
+    single { GetNewsByCategoryUseCase(get()) }
 
 }
