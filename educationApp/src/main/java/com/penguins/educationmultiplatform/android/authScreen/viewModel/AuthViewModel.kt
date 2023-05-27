@@ -6,8 +6,8 @@ import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenEve
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenUiState
 import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.auth.UserTokens
-import com.penguins.educationmultiplatform.android.data.model.dto.AuthRequest
-import com.penguins.educationmultiplatform.android.data.model.dto.AuthResponse
+import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthRequest
+import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
