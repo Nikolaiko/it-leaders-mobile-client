@@ -68,6 +68,14 @@ val linksBoldTextStyle = TextStyle(
     fontFamily = calibri
 )
 
+val body1RegularTextStyle = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.W400,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)
+
 val body2RegularTextStyle = TextStyle(
     fontSize = 16.sp,
     fontWeight = FontWeight.W400,
