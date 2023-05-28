@@ -77,8 +77,7 @@ class SearchNewsViewModel(
             }
 
             is SearchNewsEvents.AllCategoriesChecked -> {
-                if (!event.isChecked) return
-                val newMap = _state.value.mapCategories.mapValues { true }
+                val newMap = _state.value.mapCategories.mapValues { event.isChecked }
                 _state.tryEmit(_state.value.copy(mapCategories = newMap))
             }
 
