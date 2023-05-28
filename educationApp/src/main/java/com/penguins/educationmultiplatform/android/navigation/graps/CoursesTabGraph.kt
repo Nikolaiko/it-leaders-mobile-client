@@ -8,10 +8,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.view.CoursesScreen
-import com.penguins.educationmultiplatform.android.navigation.routeObject.CoursesTapScreens
-import com.penguins.educationmultiplatform.android.navigation.routeObject.MainScreenTabRoute
-import com.penguins.educationmultiplatform.android.navigation.routeObject.courseId
-import com.penguins.educationmultiplatform.android.navigation.routeObject.coursesGraphRoute
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.view.DetailCourseScreen
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.view.MapWithCategoryScreen
+import com.penguins.educationmultiplatform.android.navigation.routeObject.*
 
 @Composable
 fun CoursesTabScreen(navController: NavHostController = rememberNavController()) {
@@ -25,12 +24,7 @@ fun CoursesTabScreen(navController: NavHostController = rememberNavController())
 
         composable(route = CoursesTapScreens.CoursesScreenRoute.route) {
 
-            CoursesScreen()
-
-        }
-
-        composable(route = CoursesTapScreens.DetailCourseListScreenRoute.route) {
-
+            CoursesScreen(navController = navController)
 
         }
         composable(
@@ -45,11 +39,33 @@ fun CoursesTabScreen(navController: NavHostController = rememberNavController())
             val id = it.arguments?.getInt(
                 courseId
             )
+            DetailCourseScreen(id = id, navController = navController)
 
         }
 
-        composable(route = CoursesTapScreens.MapScreenRoute.route) {
+        composable(route = CoursesTapScreens.MapScreenRoute.route, arguments = listOf(
+            navArgument(
+                typeId
+            ) {
+                type = NavType.IntType
+            }
+        )) {
+            val id = it.arguments?.getInt(
+                typeId
+            )
+            MapWithCategoryScreen(id, navController)
 
+        }
+        composable(route = CoursesTapScreens.DetailCourseListScreenRoute.route, arguments = listOf(
+            navArgument(
+                lessonId
+            ) {
+                type = NavType.IntType
+            }
+        )) {
+            val id = it.arguments?.getInt(
+                lessonId
+            )
 
         }
 

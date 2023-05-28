@@ -8,6 +8,8 @@ const val detailCourseListScreenRoute = "detailCourseListScreenRoute"
 const val detailCourseScreenRoute = "detailCourseScreenRoute"
 const val mapScreenRoute = "mapScreenRoute"
 const val courseId = "courseId"
+const val lessonId = "lessonId"
+const val typeId = "typeId"
 
 sealed class CoursesTapScreens(
     var route: String,
@@ -21,15 +23,25 @@ sealed class CoursesTapScreens(
         options = NavOptions.Builder().setPopUpTo(0, inclusive = false).build()
     )
 
-    object DetailCourseListScreenRoute : CoursesTapScreens(route = detailCourseListScreenRoute)
-    object DetailCourseScreenRoute : CoursesTapScreens(route = "$detailCourseScreenRoute?$courseId={$courseId}") {
-        fun createRoute(id: Int) : String {
+    object DetailCourseListScreenRoute :
+        CoursesTapScreens(route = "$detailCourseListScreenRoute?$lessonId={$lessonId}") {
+        fun createRoute(id: Int): String {
+            return "$detailCourseListScreenRoute?$lessonId=$id"
+        }
+    }
+
+    object DetailCourseScreenRoute :
+        CoursesTapScreens(route = "$detailCourseScreenRoute?$courseId={$courseId}") {
+        fun createRoute(id: Int): String {
             return "$detailCourseScreenRoute?$courseId=$id"
         }
     }
 
     object MapScreenRoute : CoursesTapScreens(
-        route = mapScreenRoute,
-        options = NavOptions.Builder().setPopUpTo(0, inclusive = false).build()
-    )
+        route = "$mapScreenRoute?$typeId={$typeId}"
+    ) {
+        fun createRoute(id: Int): String {
+            return "$mapScreenRoute?$typeId=$id"
+        }
+    }
 }

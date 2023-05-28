@@ -30,6 +30,7 @@ fun YandexMapScreenForIntegration(
     modifier: Modifier = Modifier,
     viewModel: YandexMapViewModel = koinViewModel(),
     type: SchoolType,
+    bottomSheetHeight:Float = 0.6f
 ) {
 
 
@@ -43,7 +44,7 @@ fun YandexMapScreenForIntegration(
         modifier = modifier,
         sheetContent = {
             if (detailBottomSheetDataState.value != null) {
-                BottomSheetDetail(detail = detailBottomSheetDataState.value!!) {
+                BottomSheetDetail(detail = detailBottomSheetDataState.value!!, bottomSheetHeight = bottomSheetHeight) {
                     scope.launch {
                         sheetDetailState.collapse()
                         detailBottomSheetDataState.value = null
@@ -148,14 +149,7 @@ fun YandexMapScreenForIntegration(
                             mapObjects.clear()
                             selectedMapObject = null
                             it.schools.filter { school ->
-                                when (type) {
-                                    SchoolType.DANCING -> {
-                                        it.filters.dancingFilter
-                                    }
-                                    SchoolType.MUSICAL -> it.filters.musicalFilter
-                                    SchoolType.ARTISTIC -> it.filters.artistFilter
-                                    SchoolType.THEATRICAL -> it.filters.theatricalFilter
-                                }
+                                school.type == type
                             }.forEach { school ->
                                 createTappableCircle(
                                     school,
