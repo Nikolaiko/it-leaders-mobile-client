@@ -19,7 +19,6 @@ const val FIREBASE_URL ="https://firebasestorage.googleapis.com/v0/b/lost-pets-e
 
 class CoursesViewModel(
     val getVideoCoursesUseCase: GetVideoCoursesUseCase,
-    val player:Player
 ) : ViewModel() {
 
     val uri = mutableStateOf<Uri?>(null)
@@ -42,26 +41,14 @@ class CoursesViewModel(
 
     init {
 
-        player.prepare()
-        player.playWhenReady = true
         getVideoCoursesUseCase.invoke().onEach {
             _state.emit(_state.value.copy(courses = it ))
         }.launchIn(viewModelScope)
     }
 
-    fun addVideoUri(uri: Uri){
-        player.addMediaItem(MediaItem.fromUri(uri))
-    }
-
-    fun playVideo(uri: Uri){
-        player.setMediaItem(
-            MediaItem.fromUri(uri)
-        )
-    }
 
     override fun onCleared() {
         super.onCleared()
-        player.release()
     }
 
     fun onEvent(event: CoursesUiEvents) {

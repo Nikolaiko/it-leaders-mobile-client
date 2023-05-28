@@ -10,8 +10,9 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class DetailCourseViewModel(
-    val getVideoCoursesUseCase: GetVideoCoursesUseCase
-):ViewModel() {
+    private val getVideoCoursesUseCase: GetVideoCoursesUseCase,
+    private val sharedViewModel: SharedViewModel
+) : ViewModel() {
 
     private val _state = MutableStateFlow<List<VideoCourse>>(emptyList())
     val state = _state.asStateFlow()
@@ -21,5 +22,16 @@ class DetailCourseViewModel(
             _state.emit(it)
         }.launchIn(viewModelScope)
     }
+
+    fun setSelectedCourse(id:Int){
+        sharedViewModel.idCourse = id
+    }
+    fun setSelectedLesson(id:Int){
+        sharedViewModel.idLesson = id
+    }
+
+
+
+
 
 }

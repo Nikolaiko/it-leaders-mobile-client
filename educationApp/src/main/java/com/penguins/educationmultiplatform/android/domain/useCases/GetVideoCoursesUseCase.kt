@@ -19,6 +19,7 @@ class GetVideoCoursesUseCase {
                 val listVideo = mutableListOf<VideoLesson>()
                 when {
                     i < 3 -> {
+                        var j = 0
                         repeat(3) {
                             listVideo.add(
                                 VideoLesson(
@@ -26,11 +27,13 @@ class GetVideoCoursesUseCase {
                                     description = "Описание урока для курса от: ${SchoolType.MUSICAL.nameSchool} ",
                                     nameTeacher = "Величевский Валерий Анатольевич",
                                     graduation = "Заведующий кафедой хорового искусства",
-                                    videoName = "music ${i + 1}.mp4",
+                                    videoName = "music ${j + 1}.mp4",
 //                                    uriRef.reference.child("music ${i + 1}.mp4").downloadUrl.await(),
-                                    nameSchool = SchoolType.MUSICAL.nameSchool
+                                    nameSchool = SchoolType.MUSICAL.nameSchool,
+                                    id = j
                                 )
                             )
+                            j++
                         }
                         listCourses.add(
                             VideoCourse(
@@ -41,7 +44,7 @@ class GetVideoCoursesUseCase {
                         )
                     }
                     i in 3..5 -> {
-
+                        var j = 0
                         repeat(3) {
                             listVideo.add(
                                 VideoLesson(
@@ -49,10 +52,12 @@ class GetVideoCoursesUseCase {
                                     description = "Описание урока для курса от: ${SchoolType.DANCING.nameSchool} ",
                                     nameTeacher = "Величевский Валерий Анатольевич",
                                     graduation = "Заведующий кафедой хорового искусства",
-                                    videoName = "music ${i - 3 + 1}.mp4",
-                                    nameSchool = SchoolType.DANCING.nameSchool
+                                    videoName = "music ${j + 1}.mp4",
+                                    nameSchool = SchoolType.DANCING.nameSchool,
+                                    id = j
                                 )
                             )
+                            j++
                         }
                         listCourses.add(
                             VideoCourse(
@@ -64,6 +69,7 @@ class GetVideoCoursesUseCase {
                     }
                     i in 6..8 -> {
 
+                        var j = 0
                         repeat(3) {
                             listVideo.add(
                                 VideoLesson(
@@ -71,10 +77,12 @@ class GetVideoCoursesUseCase {
                                     description = "Описание урока для курса от: ${SchoolType.ARTISTIC.nameSchool} ",
                                     nameTeacher = "Величевский Валерий Анатольевич",
                                     graduation = "Заведующий кафедой хорового искусства",
-                                    videoName = "music ${i - 6 + 1}.mp4",
-                                    nameSchool = SchoolType.ARTISTIC.nameSchool
+                                    videoName = "music ${j + 1}.mp4",
+                                    nameSchool = SchoolType.ARTISTIC.nameSchool,
+                                    id = j
                                 )
                             )
+                            j++
                         }
                         listCourses.add(
                             VideoCourse(
@@ -86,6 +94,7 @@ class GetVideoCoursesUseCase {
 
                     }
                     i in 10..11 -> {
+                        var j = 0
 
                         repeat(3) {
                             listVideo.add(
@@ -94,10 +103,12 @@ class GetVideoCoursesUseCase {
                                     description = "Описание урока для курса от: ${SchoolType.THEATRICAL.nameSchool} ",
                                     nameTeacher = "Величевский Валерий Анатольевич",
                                     graduation = "Заведующий кафедой хорового искусства",
-                                    videoName = "music ${i - 10 + 1}.mp4",
-                                    nameSchool = SchoolType.THEATRICAL.nameSchool
+                                    videoName = "music ${j + 1}.mp4",
+                                    nameSchool = SchoolType.THEATRICAL.nameSchool,
+                                    id = j
                                 )
                             )
+                            j++
                         }
                         listCourses.add(
                             VideoCourse(

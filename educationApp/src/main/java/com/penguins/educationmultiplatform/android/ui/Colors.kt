@@ -66,3 +66,19 @@ val theatreHorizontalGradientBackground = Brush.horizontalGradient(
     0.0f to theatreBackgroundColor,
     0.8f to Color(0xFFFFFFFF)
 )
+val artVerticalGradientBackground = Brush.verticalGradient(
+    0.0f to artBackgroundColor,
+    0.8f to Color(0xFFFFFFFF)
+)
+val danceVerticalGradientBackground = Brush.verticalGradient(
+    0.0f to danceBackgroundColor,
+    0.8f to Color(0xFFFFFFFF)
+)
+val musicVerticalGradientBackground = Brush.verticalGradient(
+    0.0f to musicBackgroundColor,
+    0.8f to Color(0xFFFFFFFF)
+)
+val theatreVerticalGradientBackground = Brush.verticalGradient(
+    0.0f to theatreBackgroundColor,
+    0.8f to Color(0xFFFFFFFF)
+)

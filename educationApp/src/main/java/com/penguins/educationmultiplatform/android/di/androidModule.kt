@@ -1,11 +1,12 @@
 package com.penguins.educationmultiplatform.android.di
 
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import com.google.android.gms.location.LocationServices
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.CoursesViewModel
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.DetailCourseViewModel
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.SharedViewModel
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.VideoItemViewModel
 import com.penguins.educationmultiplatform.android.data.location.DefaultLocationTracker
 import com.penguins.educationmultiplatform.android.data.navigation.DestinationController
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
@@ -47,8 +48,10 @@ val androidModule = module {
     viewModel { CategoryViewModel() }
     viewModel { NewsListViewModel() }
     viewModel { NewsViewModel() }
-    viewModel { CoursesViewModel(get(), get()) }
-    viewModel { DetailCourseViewModel(get()) }
+    viewModel { CoursesViewModel(get()) }
+    single { SharedViewModel() }
+    viewModel { DetailCourseViewModel(get(), get()) }
+    viewModel { VideoItemViewModel(get(),get(), get())}
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }

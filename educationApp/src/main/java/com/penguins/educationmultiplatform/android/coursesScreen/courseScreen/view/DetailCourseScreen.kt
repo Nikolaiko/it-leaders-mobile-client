@@ -17,7 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -45,7 +44,10 @@ fun DetailCourseScreen(
 ) {
 
     val state = viewModel.state.collectAsState()
-    val courseState = id?.let { state.value[it] }
+    val courseState = id?.let {state.value[it]}
+    id?.let {
+        viewModel.setSelectedCourse(it)
+    }
     courseState?.let { videoCourse ->
         Box(
             modifier = Modifier
@@ -186,7 +188,9 @@ fun DetailCourseScreen(
 
                 }
 
-                LazyColumn(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+                LazyColumn(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)) {
                     items(videoCourse.listVideo.size) {
                         videoCourse.listVideo[it].apply {
                             if(it == 0){
@@ -197,6 +201,7 @@ fun DetailCourseScreen(
                                 img = R.drawable.course_cover,
                                 count = it
                             ) {
+                                viewModel.setSelectedLesson(it)
                                 navController.navigate(CoursesTapScreens.DetailCourseListScreenRoute.createRoute(it))
                             }
                             if (it == videoCourse.listVideo.size - 1)

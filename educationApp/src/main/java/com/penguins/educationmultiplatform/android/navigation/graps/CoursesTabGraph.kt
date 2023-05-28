@@ -10,10 +10,16 @@ import androidx.navigation.navArgument
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.view.CoursesScreen
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.view.DetailCourseScreen
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.view.MapWithCategoryScreen
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.view.VideoItemScreen
 import com.penguins.educationmultiplatform.android.navigation.routeObject.*
 
 @Composable
-fun CoursesTabScreen(navController: NavHostController = rememberNavController()) {
+fun CoursesScreens(navController: NavHostController = rememberNavController()){
+    CoursesTabScreen(navController = navController)
+}
+
+@Composable
+fun CoursesTabScreen(navController: NavHostController) {
 
 
     NavHost(
@@ -66,6 +72,7 @@ fun CoursesTabScreen(navController: NavHostController = rememberNavController())
             val id = it.arguments?.getInt(
                 lessonId
             )
+            VideoItemScreen(id = id, navController = navController)
 
         }
 

@@ -5,5 +5,5 @@ import androidx.media3.common.MediaItem
 
 data class VideoItem(
     val uri:Uri,
-    val mediaItem:MediaItem
+    val mediaItem:MediaItem = MediaItem.fromUri(uri)
 )
