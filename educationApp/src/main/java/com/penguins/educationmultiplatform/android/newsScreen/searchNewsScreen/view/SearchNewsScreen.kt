@@ -3,18 +3,24 @@ package com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Text
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButtonColor
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.bottomSheet.FilterBottomSheet
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.list.SearchingNews
@@ -35,16 +41,17 @@ fun SearchNewsScreen(
     val state = viewModel.state.collectAsState()
     val categories = state.value.categories
 
-    val bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
-    val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = bottomSheetState)
+//    val bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
+//    val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = bottomSheetState)
 
     BottomSheetScaffold(
-        scaffoldState = scaffoldState,
+        modifier = Modifier.fillMaxSize(),
+//        scaffoldState = scaffoldState,
         sheetContent = {
-            FilterBottomSheet()
+           FilterBottomSheet()
         },
         sheetElevation = 2.dp,
-        sheetPeekHeight = 0.dp,
+        sheetPeekHeight = 300.dp,
         sheetShape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp),
         sheetBackgroundColor = clickedMapButtonColor
     ) {
