@@ -9,6 +9,7 @@ import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNav
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.getCategory
 import com.penguins.educationmultiplatform.android.newsScreen.headingNews.data.HeadingNewsEvents
 import com.penguins.educationmultiplatform.android.newsScreen.headingNews.data.HeadingNewsUiState
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -33,7 +34,7 @@ class HeadingNewsViewModel(
             is HeadingNewsEvents.SetTitleAndNews -> {
                 _state.tryEmit(
                     _state.value.copy(
-                        category = Category.values().first { event.category == it.title },
+                        category = getCategory(event.category),
                         title = event.title
                     )
                 )

@@ -11,6 +11,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,14 +19,22 @@ import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButton
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.bottomSheet.FilterBottomSheet
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.list.SearchingNews
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.toolbar.SearchNewsToolbar
+import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsEvents
+import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
 import com.penguins.educationmultiplatform.android.ui.allNewsGradientBackground
-import com.penguins.educationmultiplatform.android.ui.gradientBackground
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SearchNewsScreen(
-    category: String? = null
+    category: String? = null,
+    viewModel: SearchNewsViewModel = koinViewModel()
 ) {
+    viewModel.onEvent(SearchNewsEvents.SetCategory(category))
+
+    val state = viewModel.state.collectAsState()
+    val categories = state.value.categories
+
     val bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = bottomSheetState)
 
@@ -42,7 +51,12 @@ fun SearchNewsScreen(
         Column(
             modifier = Modifier
                 .fillMaxHeight()
-                .background(brush =/* category?.background ?:*/ allNewsGradientBackground)
+                .background(
+                    brush = when {
+                        categories.isEmpty() || categories.size > 1 -> allNewsGradientBackground
+                        else -> categories.first().background
+                    }
+                )
                 .padding(bottom = 64.dp, top = 32.dp)
         ) {
             SearchNewsToolbar()

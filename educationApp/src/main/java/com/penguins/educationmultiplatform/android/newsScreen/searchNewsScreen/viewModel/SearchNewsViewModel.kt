@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.listOfNews
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.getCategory
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsEvents
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsUiState
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
@@ -39,6 +40,16 @@ class SearchNewsViewModel(
                     findingNews = listOfNews()
                 )
             )//findNewsUseCase
+
+            is SearchNewsEvents.SetCategory -> {
+                getCategory(event.category)?.let {
+                    _state.tryEmit(
+                        _state.value.copy(
+                            categories = _state.value.categories.plus(it)
+                        )
+                    )
+                }
+            }
 
             is SearchNewsEvents.FilterButton -> Unit//open BottomSheet
 

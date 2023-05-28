@@ -5,7 +5,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.data.Catego
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 
 fun List<NewsResponse>.toCategoryNewsList(): CategoryNewsList = CategoryNewsList(
-    category = getCategory(firstOrNull()?.category),
+    category = getCategoryFromCategoryParam(firstOrNull()?.category),
     news = toNewsList()
 )
 
@@ -15,6 +15,6 @@ fun List<NewsResponse>.toNewsList() = this
 fun NewsResponse.toNews() = News(
     title = title,
     text = info,
-    category = getCategory(category),
+    category = getCategoryFromCategoryParam(category),
     heading = heading
 )
