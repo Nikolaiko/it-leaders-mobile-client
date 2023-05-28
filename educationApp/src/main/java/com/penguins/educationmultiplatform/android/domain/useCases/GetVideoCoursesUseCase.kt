@@ -14,8 +14,7 @@ class GetVideoCoursesUseCase {
         return flow {
 
             val listCourses = mutableListOf<VideoCourse>()
-            val uriRef = FirebaseStorage.getInstance(FIREBASE_STORAGE)
-            for (i in 0..11) {
+            for (i in 0..14) {
                 val listVideo = mutableListOf<VideoLesson>()
                 when {
                     i < 3 -> {
@@ -43,16 +42,16 @@ class GetVideoCoursesUseCase {
                             )
                         )
                     }
-                    i in 3..5 -> {
+                    i in 3..6 -> {
                         var j = 0
-                        repeat(3) {
+                        repeat(4) {
                             listVideo.add(
                                 VideoLesson(
                                     name = "урок курса от ${SchoolType.DANCING.nameSchool}",
                                     description = "Описание урока для курса от: ${SchoolType.DANCING.nameSchool} ",
                                     nameTeacher = "Величевский Валерий Анатольевич",
                                     graduation = "Заведующий кафедой хорового искусства",
-                                    videoName = "music ${j + 1}.mp4",
+                                    videoName = "dance ${j + 1}.mp4",
                                     nameSchool = SchoolType.DANCING.nameSchool,
                                     id = j
                                 )
@@ -67,17 +66,17 @@ class GetVideoCoursesUseCase {
                             )
                         )
                     }
-                    i in 6..8 -> {
+                    i in 7..10 -> {
 
                         var j = 0
-                        repeat(3) {
+                        repeat(4) {
                             listVideo.add(
                                 VideoLesson(
                                     name = "урок курса от ${SchoolType.ARTISTIC.nameSchool}",
                                     description = "Описание урока для курса от: ${SchoolType.ARTISTIC.nameSchool} ",
                                     nameTeacher = "Величевский Валерий Анатольевич",
                                     graduation = "Заведующий кафедой хорового искусства",
-                                    videoName = "music ${j + 1}.mp4",
+                                    videoName = "artist ${j + 1}.mp4",
                                     nameSchool = SchoolType.ARTISTIC.nameSchool,
                                     id = j
                                 )
@@ -93,17 +92,17 @@ class GetVideoCoursesUseCase {
                         )
 
                     }
-                    i in 10..11 -> {
+                    i in 11..14 -> {
                         var j = 0
 
-                        repeat(3) {
+                        repeat(4) {
                             listVideo.add(
                                 VideoLesson(
                                     name = "урок курса от ${SchoolType.THEATRICAL.nameSchool}",
                                     description = "Описание урока для курса от: ${SchoolType.THEATRICAL.nameSchool} ",
                                     nameTeacher = "Величевский Валерий Анатольевич",
                                     graduation = "Заведующий кафедой хорового искусства",
-                                    videoName = "music ${j + 1}.mp4",
+                                    videoName = "theater ${j + 1}.mp4",
                                     nameSchool = SchoolType.THEATRICAL.nameSchool,
                                     id = j
                                 )
