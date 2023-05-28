@@ -25,7 +25,12 @@ import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun CategoryScreen(viewModel: CategoryViewModel = koinViewModel()) {
+fun CategoryScreen(
+    categoryTitle: String? = null,
+    viewModel: CategoryViewModel = koinViewModel()
+) {
+    viewModel.onEvent(CategoryEvents.SetCategory(categoryTitle ?: EMPTY_STRING))
+
     val state = viewModel.state.collectAsState()
     val category = state.value.category
 
@@ -36,6 +41,7 @@ fun CategoryScreen(viewModel: CategoryViewModel = koinViewModel()) {
     ) {
         Column(
             modifier = Modifier
+                .padding(bottom = 64.dp)
                 .verticalScroll(rememberScrollState())
                 .weight(1f, false),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -60,7 +66,7 @@ fun CategoryScreen(viewModel: CategoryViewModel = koinViewModel()) {
                     }
                 )
             }
-            CategoryMap()
+            CategoryMap(state.value.category)
         }
     }
 }

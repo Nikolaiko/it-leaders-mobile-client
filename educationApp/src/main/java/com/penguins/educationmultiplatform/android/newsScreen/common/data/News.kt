@@ -1,5 +1,8 @@
 package com.penguins.educationmultiplatform.android.newsScreen.common.data
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class News(
     val title: String? = null,
     val imageId: Int? = null,

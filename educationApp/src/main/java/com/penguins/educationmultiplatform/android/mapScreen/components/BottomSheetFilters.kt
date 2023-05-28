@@ -34,10 +34,9 @@ fun BottomSheetFilters() {
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(
-                    clickedMapButtonColor,
-                    shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
-                )
+                .background(clickedMapButtonColor)
+//                    shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+//                )
         ) {
             Column(
                 modifier = Modifier

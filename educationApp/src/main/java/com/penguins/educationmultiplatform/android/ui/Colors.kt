@@ -26,11 +26,16 @@ val gradientBackground = Brush.linearGradient(
     0.5f to Color(0xFFFFFFFF)
 )
 
+val allNewsBackgroundColor = Color(0xFFAED7F1)
 val artBackgroundColor = Color(0xFFBA768F)
 val danceBackgroundColor = Color(0xFF81AE7B)
 val musicBackgroundColor = Color(0xFFB4C95E)
 val theatreBackgroundColor = Color(0xFF8E74A8)
 
+val allNewsGradientBackground = Brush.linearGradient(
+    0.0f to allNewsBackgroundColor,
+    0.5f to Color(0xFFFFFFFF)
+)
 val artGradientBackground = Brush.linearGradient(
     0.0f to artBackgroundColor,
     0.5f to Color(0xFFFFFFFF)

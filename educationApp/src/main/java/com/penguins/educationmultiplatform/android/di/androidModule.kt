@@ -1,6 +1,5 @@
 package com.penguins.educationmultiplatform.android.di
 
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.gms.location.LocationServices
 import com.penguins.educationmultiplatform.android.data.location.DefaultLocationTracker
 import com.penguins.educationmultiplatform.android.data.navigation.DestinationController
@@ -8,10 +7,11 @@ import com.penguins.educationmultiplatform.android.domain.location.LocationTrack
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
+import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel.CategoryViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
-import com.penguins.educationmultiplatform.android.profileScreen.view.ProfileScreenView
+import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileScreenViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
@@ -38,10 +38,11 @@ val androidModule = module {
 
     //viewModels
     viewModel { YandexMapViewModel(get(), get()) }
-    viewModel { CategoryViewModel() }
-    viewModel { NewsListViewModel() }
-    viewModel { NewsViewModel() }
     viewModel { ProfileScreenViewModel(get(), get()) }
+    viewModel { CategoryViewModel(get()) }
+    viewModel { NewsListViewModel(get()) }
+    viewModel { NewsViewModel(get()) }
+    viewModel { SearchNewsViewModel(get()) }
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
@@ -50,4 +51,5 @@ val androidModule = module {
     //useCases
     single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }
+    single { NewsNavigation() }
 }
