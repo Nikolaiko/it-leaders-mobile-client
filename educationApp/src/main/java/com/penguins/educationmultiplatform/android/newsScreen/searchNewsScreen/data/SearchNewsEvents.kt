@@ -9,7 +9,7 @@ sealed class SearchNewsEvents {
     class SetCategory(val category: String?) : SearchNewsEvents()
     class SetCategories(val categories: List<Category>) : SearchNewsEvents()//???
     class CategoryChecked(val category: Category) : SearchNewsEvents()
-    object AllCategoriesChecked : SearchNewsEvents()
+    class AllCategoriesChecked(val isChecked: Boolean) : SearchNewsEvents()
     object ClearSearch : SearchNewsEvents()
     object BackButton : SearchNewsEvents()
     object SearchButton : SearchNewsEvents()

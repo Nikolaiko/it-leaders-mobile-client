@@ -77,7 +77,9 @@ class SearchNewsViewModel(
             }
 
             is SearchNewsEvents.AllCategoriesChecked -> {
-//                _state.tryEmit(_state.value.copy(mapCategories = ))
+                if (!event.isChecked) return
+                val newMap = _state.value.mapCategories.mapValues { true }
+                _state.tryEmit(_state.value.copy(mapCategories = newMap))
             }
 
             is SearchNewsEvents.FilterButton -> Unit//open BottomSheet

@@ -28,7 +28,9 @@ fun FilterBottomSheet(
         TitleBottomSheet()
         FiltersCheckboxBottomSheet(
             categories = state.value.mapCategories,
-            onAllCategoriesChecked = {},
+            onAllCategoriesChecked = { isChecked ->
+                viewModel.onEvent(SearchNewsEvents.AllCategoriesChecked(isChecked))
+            },
             onCategoryChecked = { category ->
                 viewModel.onEvent(SearchNewsEvents.CategoryChecked(category))
             }
@@ -48,15 +50,16 @@ fun TitleBottomSheet() {
 @Composable
 fun FiltersCheckboxBottomSheet(
     categories: Map<Category, Boolean>,
-    onAllCategoriesChecked: () -> Unit,
+    onAllCategoriesChecked: (Boolean) -> Unit,
     onCategoryChecked: (Category) -> Unit
 ) {
     Column(
         modifier = Modifier
             .padding(top = 16.dp, bottom = 64.dp)
     ) {
-        StreetCheckBox(street = "Все", selected = categories.values.all { it }) {
-            onAllCategoriesChecked()
+        val isAllSelected = categories.values.all { it }
+        StreetCheckBox(street = "Все", selected = isAllSelected) {
+            onAllCategoriesChecked(!isAllSelected)
         }
 
         categories.forEach {
