@@ -3,8 +3,7 @@ package com.penguins.educationmultiplatform.android.profileScreen.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavOptions
-import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenUiState
-import com.penguins.educationmultiplatform.android.data.model.profile.ProfileScreenState
+import com.penguins.educationmultiplatform.android.profileScreen.data.ProfileScreenState
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.LogoutUseCase
 import com.penguins.educationmultiplatform.android.navigation.routeObject.nonLoggedUserGraph

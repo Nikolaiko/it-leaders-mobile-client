@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
+import com.penguins.educationmultiplatform.android.commonViews.AppBackToolbar
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.image.NewsCardImage
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.data.NewsEvents
@@ -40,7 +41,7 @@ fun NewsScreen(
                 .verticalScroll(rememberScrollState())
                 .weight(1f, false)
         ) {
-            NewsToolbar(
+            AppBackToolbar(
                 onClick = { viewModel.onEvent(NewsEvents.BackButton) }
             )
             NewsImage(
@@ -51,23 +52,6 @@ fun NewsScreen(
                 text = state.value.news?.text ?: EMPTY_STRING
             )
         }
-    }
-}
-
-@Composable
-fun NewsToolbar(
-    onClick: () -> Unit
-) {
-    Box(
-        modifier = Modifier
-            .padding(top = 56.dp, start = 32.dp)
-            .fillMaxWidth(),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        ImageButton(
-            onClick = onClick,
-            imageId = R.drawable.ic_back
-        )
     }
 }
 

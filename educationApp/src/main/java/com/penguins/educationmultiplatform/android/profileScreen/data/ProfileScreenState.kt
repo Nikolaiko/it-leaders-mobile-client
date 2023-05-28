@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.data.model.profile
+package com.penguins.educationmultiplatform.android.profileScreen.data
 
 data class ProfileScreenState(
     val userName: String = "",

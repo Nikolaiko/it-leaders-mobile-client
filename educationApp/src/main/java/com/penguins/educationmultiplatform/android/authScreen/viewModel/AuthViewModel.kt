@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenUiState
 import com.penguins.educationmultiplatform.android.data.model.ActionResult
-import com.penguins.educationmultiplatform.android.data.model.auth.UserTokens
+import com.penguins.educationmultiplatform.android.authScreen.data.UserTokens
 import com.penguins.educationmultiplatform.android.data.model.dto.AuthRequest
 import com.penguins.educationmultiplatform.android.data.model.dto.AuthResponse
 import com.penguins.educationmultiplatform.android.data.model.dto.profile.VKProfile

@@ -2,4 +2,12 @@
 <resources>
     <integer name="com_vk_sdk_AppId">51650181</integer>
     <string name="yandex_map_key">89b650b7-af61-47a8-9ac6-06378f4e0556</string>
+
+    <string name="music_category_label">Музыка</string>
+    <string name="dance_category_label">Танцы</string>
+    <string name="theatere_category_label">Театр</string>
+    <string name="art_category_label">Изобразительное\nискусство</string>
+
+
+    <string name="test_categories_title">Выберите интересные вам направления</string>
 </resources>

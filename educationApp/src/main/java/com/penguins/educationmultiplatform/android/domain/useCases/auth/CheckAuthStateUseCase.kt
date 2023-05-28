@@ -1,6 +1,6 @@
 package com.penguins.educationmultiplatform.android.domain.usecases.auth
 
-import com.penguins.educationmultiplatform.android.data.model.auth.AuthStatus
+import com.penguins.educationmultiplatform.android.authScreen.data.AuthStatus
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 
 class CheckAuthStateUseCase(

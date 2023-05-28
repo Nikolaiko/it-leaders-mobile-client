@@ -36,10 +36,26 @@ val neutral900Size20Weight700Style = TextStyle(
     fontFamily = calibri,
 )
 
+val neutral900Size32Weight700Style = TextStyle(
+    fontSize = 32.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri,
+)
+
 val neutral700Size18Weight400Style = TextStyle(
     fontSize = 14.sp,
     fontWeight = FontWeight.W700,
     fontStyle = FontStyle.Normal,
     color = neutral700,
+    fontFamily = calibri,
+)
+
+val neutral0Size17Weight700Style = TextStyle(
+    fontSize = 17.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral0,
     fontFamily = calibri,
 )

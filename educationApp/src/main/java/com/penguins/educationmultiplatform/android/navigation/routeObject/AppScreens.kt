@@ -17,6 +17,8 @@ const val registerRoute = "registerScreen"
 
 const val splashScreenRoute = "splashScreenRoute"
 
+const val testCaseScreenRoute = "testCaseRoute"
+
 const val rootGraph = "rootGraph"
 
 const val mainGraph = "mainGraph"
@@ -52,6 +54,7 @@ sealed class AppScreens(
         options = NavOptions.Builder().setPopUpTo(rootGraph, true).build()
     )
 
+    object TestCaseScreen: AppScreens(route = testCaseScreenRoute)
 
     object PopBackToMain: AppScreens(
         route = popRouteName,

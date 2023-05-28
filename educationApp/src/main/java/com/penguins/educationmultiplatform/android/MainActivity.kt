@@ -16,6 +16,7 @@ import com.penguins.educationmultiplatform.android.navigation.graps.authGraph
 import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.rootGraph
 import com.penguins.educationmultiplatform.android.splashScreen.view.SplashScreenView
+import com.penguins.educationmultiplatform.android.testsScreen.view.TestCaseView
 
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +36,6 @@ class MainActivity : ComponentActivity() {
                         route = rootGraph,
                         startDestination = AppScreens.SplashScreenRoute.route
                     ) {
-
                         composable(route = AppScreens.SplashScreenRoute.route){
                             SplashScreenView(navigator = navController)
                         }
@@ -43,8 +43,9 @@ class MainActivity : ComponentActivity() {
                         composable(route = AppScreens.MainAppScreen.route) {
                             MainScreenView()
                         }
-
-
+                        composable(route = AppScreens.TestCaseScreen.route) {
+                            TestCaseView()
+                        }
                     }
                 }
 

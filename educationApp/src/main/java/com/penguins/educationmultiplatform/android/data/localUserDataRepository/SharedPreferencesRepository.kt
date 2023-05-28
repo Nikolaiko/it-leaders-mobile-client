@@ -2,7 +2,7 @@ package com.penguins.educationmultiplatform.android.data.localUserDataRepository
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import com.penguins.educationmultiplatform.android.data.model.auth.UserTokens
+import com.penguins.educationmultiplatform.android.authScreen.data.UserTokens
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString

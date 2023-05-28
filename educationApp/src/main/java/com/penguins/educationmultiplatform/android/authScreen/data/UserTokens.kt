@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.data.model.auth
+package com.penguins.educationmultiplatform.android.authScreen.data
 
 import kotlinx.serialization.Serializable
 

@@ -7,6 +7,13 @@ import androidx.compose.ui.graphics.Color
 val neutral900 = Color(0xFF101010)
 val neutral700 = Color(0xFF7C7C7B)
 val neutral400 = Color(0xFFEDEDED)
+val neutral0 = Color(0xFFFFFFFF)
+
+
+val primary600 = Color(0xFF81AE7B)
+val primary500 = Color(0xFF9AAE4F)
+
+val secondary400 = Color(0xFF8E74A8)
 
 val primaryBlue = Color(0xFF0076DE)
 val lightBlue = Color(0xFFB9D9FF)
