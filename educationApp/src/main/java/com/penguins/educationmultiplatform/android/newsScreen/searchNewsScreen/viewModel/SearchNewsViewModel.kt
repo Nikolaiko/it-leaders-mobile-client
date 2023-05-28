@@ -92,8 +92,9 @@ class SearchNewsViewModel(
     }
 
     private suspend fun setNewsByFilter() {
+        val categories = _state.value.mapCategories.filter { it.value }.keys.toList()
         val response = getNewsByParamsUseCase(
-            categories = _state.value.categories,
+            categories = categories,
             text = _state.value.searchingText
         )
 
