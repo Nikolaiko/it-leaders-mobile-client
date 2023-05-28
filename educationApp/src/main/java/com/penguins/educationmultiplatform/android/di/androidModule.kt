@@ -7,10 +7,6 @@ import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.vi
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.DetailCourseViewModel
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.SharedViewModel
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.VideoItemViewModel
-import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.CoursesViewModel
-import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.DetailCourseViewModel
-import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.SharedViewModel
-import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.VideoItemViewModel
 import com.penguins.educationmultiplatform.android.data.location.DefaultLocationTracker
 import com.penguins.educationmultiplatform.android.data.navigation.DestinationController
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker

@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.components.toolbar.TITLE_SEARCH_TEXT_FIELD
+import com.penguins.educationmultiplatform.android.newsScreen.common.components.editTexts.TITLE_SEARCH_TEXT_FIELD
 import com.penguins.educationmultiplatform.android.ui.*
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 
