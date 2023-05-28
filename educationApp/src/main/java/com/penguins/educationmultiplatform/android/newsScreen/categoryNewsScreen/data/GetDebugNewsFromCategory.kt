@@ -8,14 +8,12 @@ fun listOfNewByHeading() = listOf(
     "Подзаголовок" to listOf(
         News(
             title = "Заголовок новости",
-            imageId = R.drawable.png_debug_news,
             text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
             category = Category.MUSIC,
             heading = "Рубрика 1"
         ),
         News(
             title = "Заголовок новости",
-            imageId = R.drawable.png_debug_news,
             text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
             category = Category.MUSIC,
             heading = "Рубрика 1"
@@ -24,28 +22,24 @@ fun listOfNewByHeading() = listOf(
     "Подзаголовок" to listOf(
         News(
             title = "Заголовок новости",
-            imageId = R.drawable.png_debug_news,
             text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
             category = Category.MUSIC,
             heading = "Рубрика 1"
         ),
         News(
             title = "Заголовок новости",
-            imageId = R.drawable.png_debug_news,
             text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
             category = Category.MUSIC,
             heading = "Рубрика 1"
         ),
         News(
             title = "Заголовок новости",
-            imageId = R.drawable.png_debug_news,
             text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
             category = Category.MUSIC,
             heading = "Рубрика 3"
         ),
         News(
             title = "Заголовок новости",
-            imageId = R.drawable.png_debug_news,
             text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
             category = Category.MUSIC,
             heading = "Рубрика 4"

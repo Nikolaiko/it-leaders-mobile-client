@@ -17,11 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.ui.buttons.TextButton
-import com.penguins.educationmultiplatform.android.ui.theatreBackgroundColor
+import com.penguins.educationmultiplatform.android.ui.headingTextStyle
+import com.penguins.educationmultiplatform.android.ui.linksBoldTextStyle
+import com.penguins.educationmultiplatform.android.ui.neutral900
 
 @Composable
 fun NewsTitleRow(
@@ -57,8 +57,8 @@ fun CategoryCardTitle(
         Text(
             text = title,
             modifier = Modifier.wrapContentWidth(),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
+            style = headingTextStyle,
+            color = neutral900
         )
     }
 }
@@ -99,9 +99,7 @@ fun TitleTextButton(
     TextButton(
         onClick = onClick,
         text = SEE_ALL_TEXT_BUTTON,
-        fontWeight = FontWeight.Bold,
-        color = theatreBackgroundColor,
-        fontSize = 14.sp
+        style = linksBoldTextStyle
     )
 }
 

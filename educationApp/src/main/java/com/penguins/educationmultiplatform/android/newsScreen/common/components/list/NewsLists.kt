@@ -13,13 +13,18 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 fun HorizontalNewsList(
     list: List<News>,
     modifier: Modifier = Modifier,
-    onItemClick: (News) -> Unit
+    onItemClick: (News) -> Unit,
+    isHeadingVisible: Boolean
 ) {
     LazyRow(
         modifier = modifier
     ) {
         items(list) { news ->
-            HorizontalNewsCard(news = news, onClick = onItemClick)
+            HorizontalNewsCard(
+                news = news,
+                onClick = onItemClick,
+                isHeadingVisible = isHeadingVisible
+            )
         }
     }
 }

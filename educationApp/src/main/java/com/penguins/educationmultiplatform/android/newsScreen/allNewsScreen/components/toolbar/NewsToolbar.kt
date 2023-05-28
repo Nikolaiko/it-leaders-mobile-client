@@ -20,7 +20,7 @@ fun NewsToolbar(viewModel: NewsListViewModel = koinViewModel()) {
     Row (
         modifier = Modifier
             .padding(top = 24.dp)
-            .padding(horizontal = 24.dp)
+            .padding(horizontal = 16.dp)
             .height(IntrinsicSize.Min)
     ) {
         SearchNewsEditText(

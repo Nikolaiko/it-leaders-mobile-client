@@ -43,3 +43,51 @@ val neutral700Size18Weight400Style = TextStyle(
     color = neutral700,
     fontFamily = calibri,
 )
+
+val neutral900Size12Weight400Style = TextStyle(
+    fontSize = 12.sp,
+    fontWeight = FontWeight.W400,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri,
+)
+
+val headingTextStyle = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = Color.White,
+    fontFamily = calibri
+)
+
+val linksBoldTextStyle = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = theatreBackgroundColor,
+    fontFamily = calibri
+)
+
+val body1RegularTextStyle = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.W400,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)
+
+val body2RegularTextStyle = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight.W400,
+    fontStyle = FontStyle.Normal,
+    color = neutral700,
+    fontFamily = calibri
+)
+
+val heading1BoldTextStyle = TextStyle(
+    fontSize = 32.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)

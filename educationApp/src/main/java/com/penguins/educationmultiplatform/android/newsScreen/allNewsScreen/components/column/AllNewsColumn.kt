@@ -50,6 +50,7 @@ fun AllNewsColumn(
                 1 -> HorizontalListWithTitle(
                     title = item.first,
                     news = item.second,
+                    isHeadingVisible = true,
                     onClickSeeAll = { category ->
                         viewModel.onEvent(NewsListEvents.OpenCategory(category))
                     },
