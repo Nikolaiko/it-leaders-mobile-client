@@ -13,6 +13,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 fun HorizontalListWithTitle(
     title: String,
     news: List<News>,
+    isHeadingVisible: Boolean,
     onClickSeeAll: (String) -> Unit,
     onClickNews: (News) -> Unit
 ) {
@@ -29,6 +30,7 @@ fun HorizontalListWithTitle(
             list = news,
             modifier = Modifier.padding(top = 16.dp),
             onItemClick = onClickNews,
+            isHeadingVisible = isHeadingVisible
         )
     }
 }

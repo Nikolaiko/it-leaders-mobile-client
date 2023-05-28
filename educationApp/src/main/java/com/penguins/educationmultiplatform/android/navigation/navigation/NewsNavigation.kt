@@ -7,6 +7,8 @@ import com.penguins.educationmultiplatform.android.navigation.routeObject.HEADIN
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 class NewsNavigation {
     @SuppressLint("StaticFieldLeak")
@@ -27,7 +29,8 @@ class NewsNavigation {
         }
 
         is NewsScreens.OneNewsScreen -> {
-            val json = Json.encodeToString(screen.news)
+            val encodedUrl = URLEncoder.encode(screen.news.imageUrl, StandardCharsets.UTF_8.toString())
+            val json = Json.encodeToString(screen.news.copy(imageUrl = encodedUrl))
             navController?.navigate("${screen.route}/$json")
         }
 

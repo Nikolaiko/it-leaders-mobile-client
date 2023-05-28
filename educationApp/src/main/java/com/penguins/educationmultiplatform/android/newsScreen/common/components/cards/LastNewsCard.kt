@@ -43,7 +43,7 @@ fun LastNewsCard(
             contentAlignment = Alignment.CenterStart,
         ) {
             NewsCardImage(
-                imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,
+                imageUrl = news.imageUrl,
                 contentScale = ContentScale.FillWidth,
                 isBackgroundVisible = true
             )

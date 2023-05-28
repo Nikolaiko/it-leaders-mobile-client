@@ -15,7 +15,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
@@ -23,9 +22,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,7 +31,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
@@ -50,13 +45,8 @@ import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScree
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
 import com.penguins.educationmultiplatform.android.data.model.consts.errorEffect
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
-import com.penguins.educationmultiplatform.android.data.remote.api.VKUsersCommand
 import com.penguins.educationmultiplatform.android.ui.educationGreenColor
 import com.penguins.educationmultiplatform.android.ui.gradientBackground
-import com.vk.api.sdk.VK
-import com.vk.api.sdk.auth.VKAuthenticationResult
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import java.io.File
 import java.util.*

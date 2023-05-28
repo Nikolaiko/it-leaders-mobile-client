@@ -60,7 +60,6 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.2.2")
     implementation("com.vanniktech:android-image-cropper:4.5.0")
 
-
     //Ktor
     val ktor_version = "1.6.3"
     implementation("io.ktor:ktor-client-core:$ktor_version")

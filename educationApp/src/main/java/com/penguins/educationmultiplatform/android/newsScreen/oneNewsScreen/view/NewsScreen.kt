@@ -12,16 +12,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.image.NewsCardImage
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.data.NewsEvents
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
+import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
+import com.penguins.educationmultiplatform.android.ui.heading1BoldTextStyle
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 import org.koin.androidx.compose.koinViewModel
 
@@ -44,7 +44,7 @@ fun NewsScreen(
                 onClick = { viewModel.onEvent(NewsEvents.BackButton) }
             )
             NewsImage(
-                image = state.value.news?.imageId ?: R.drawable.png_debug_news
+                imageUrl = state.value.news?.imageUrl
             )
             NewsText(
                 title = state.value.news?.title ?: EMPTY_STRING,
@@ -72,14 +72,14 @@ fun NewsToolbar(
 }
 
 @Composable
-fun NewsImage(image: Int) {
+fun NewsImage(imageUrl: String?) {
     Box(
         modifier = Modifier
             .padding(top = 24.dp)
             .fillMaxWidth()
     ) {
         NewsCardImage(
-            imageId = image,
+            imageUrl = imageUrl,
             isBackgroundVisible = false,
             contentScale = ContentScale.FillWidth
         )
@@ -99,13 +99,12 @@ fun NewsText(
     ) {
         Text(
             text = title,
-            fontWeight = FontWeight.Bold,
-            fontSize = 32.sp
+            style = heading1BoldTextStyle
         )
 
         Text(
             text = text,
-            fontSize = 18.sp,
+            style = body1RegularTextStyle,
             modifier = Modifier.padding(top = 16.dp)
         )
     }

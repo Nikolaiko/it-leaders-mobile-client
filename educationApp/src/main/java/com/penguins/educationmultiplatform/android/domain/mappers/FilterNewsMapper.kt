@@ -7,7 +7,7 @@ fun NewsListResponse.toFilter(
     heading: String? = null,
     text: String? = null
 ) = this.news
-    .filter { heading.isNullOrEmpty() || it.heading == heading }
+    .filter { heading.isNullOrEmpty() || it.heading?.toHeading() == heading }
     .filter { currentNews ->
         category.isNullOrEmpty() || category.any { it == currentNews.category}
     }
