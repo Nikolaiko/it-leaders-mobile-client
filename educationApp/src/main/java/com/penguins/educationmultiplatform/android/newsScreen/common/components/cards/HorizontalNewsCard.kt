@@ -30,7 +30,8 @@ import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 @Composable
 fun HorizontalNewsCard(
     news: News,
-    onClick: (News) -> Unit
+    onClick: (News) -> Unit,
+    isHeadingVisible: Boolean = false
 ) {
     Card(
         modifier = Modifier
@@ -49,7 +50,10 @@ fun HorizontalNewsCard(
                 isBackgroundVisible = true
             )
             NewsCardTexts(
-                heading = news.heading ?: EMPTY_STRING,
+                heading = when (isHeadingVisible) {
+                    true -> news.heading ?: EMPTY_STRING
+                    false -> EMPTY_STRING
+                },
                 title = news.title ?: EMPTY_STRING
             )
         }

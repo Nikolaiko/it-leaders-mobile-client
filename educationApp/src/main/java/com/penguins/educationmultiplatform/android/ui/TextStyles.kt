@@ -75,3 +75,11 @@ val body2RegularTextStyle = TextStyle(
     color = neutral700,
     fontFamily = calibri
 )
+
+val heading1BoldTextStyle = TextStyle(
+    fontSize = 32.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)
