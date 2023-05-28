@@ -6,13 +6,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.mapScreen.components.StreetCheckBox
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsEvents
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
+import com.penguins.educationmultiplatform.android.ui.heading1BoldTextStyle
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -42,8 +41,7 @@ fun FilterBottomSheet(
 fun TitleBottomSheet() {
     Text(
         text = "Направление",
-        fontWeight = FontWeight.Bold,
-        fontSize = 32.sp
+        style = heading1BoldTextStyle
     )
 }
 

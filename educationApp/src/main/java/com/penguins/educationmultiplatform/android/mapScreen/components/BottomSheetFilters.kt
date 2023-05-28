@@ -228,7 +228,11 @@ fun CheckBoxes(district: Districts) {
 }
 
 @Composable
-fun StreetCheckBox(street: String?, selected: Boolean, onClick: () -> Unit) {
+fun StreetCheckBox(
+    street: String?,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
 
     Row(
         modifier = Modifier
