@@ -11,6 +11,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
 import com.penguins.educationmultiplatform.android.ui.textInactiveBottomItem
 
 @Composable
@@ -39,7 +40,7 @@ fun SearchNewsEditText(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Search
         ),
-        textStyle = textInactiveBottomItem
+        textStyle = body1RegularTextStyle
     )
 }
 
