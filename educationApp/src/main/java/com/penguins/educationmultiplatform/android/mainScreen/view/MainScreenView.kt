@@ -161,8 +161,8 @@ fun RowScope.AddItem(
         selectedContentColor = primaryWhite,
         onClick = {
             if (currentDestination?.hierarchy?.any {
-                    it.route == MainScreenTabRoute.MapTab.route
-                } == true && screen.route == MainScreenTabRoute.MapTab.route) {
+                    it.route == screen.route
+                } == true) {
 
             } else {
                 navController.navigate(screen.route) {

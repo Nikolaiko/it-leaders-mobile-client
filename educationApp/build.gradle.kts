@@ -4,8 +4,8 @@ plugins {
 
     kotlin("plugin.serialization")
     id("com.google.devtools.ksp")  version "1.8.10-1.0.9"
+    id("com.google.gms.google-services")
 }
-
 android {
     namespace = "com.penguins.educationmultiplatform.android"
     compileSdk = 33
@@ -89,6 +89,20 @@ dependencies {
 
     //LocalStorage
     implementation("androidx.preference:preference-ktx:1.2.0")
+
+    val media3_version = "1.0.1"
+    // For media playback using ExoPlayer
+    implementation("androidx.media3:media3-exoplayer:$media3_version")
+    implementation("androidx.media3:media3-exoplayer-dash:$media3_version")
+    implementation("androidx.media3:media3-ui:$media3_version")
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:30.0.1"))
+    implementation ("com.google.firebase:firebase-analytics-ktx")
+    implementation ("com.google.firebase:firebase-database-ktx:20.0.5")
+    implementation ("com.google.firebase:firebase-messaging:23.0.5")
+    implementation ("com.google.firebase:firebase-storage-ktx")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1")
 
     //Serializaton
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")

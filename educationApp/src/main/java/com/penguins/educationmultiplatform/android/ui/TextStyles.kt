@@ -21,7 +21,7 @@ val textInactiveBottomItem = TextStyle(
     fontFamily = calibri,
 )
 val textActiveBottomItem = TextStyle(
-    fontSize = 14.sp,
+    fontSize = 12.sp,
     fontWeight = FontWeight.W700,
     fontStyle = FontStyle.Normal,
     color = primaryGreen,
@@ -44,6 +44,13 @@ val neutral700Size18Weight400Style = TextStyle(
     fontFamily = calibri,
 )
 
+val textFieldTextStyle = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.W400,
+    fontStyle = FontStyle.Normal,
+    color = textGrayColor,
+    fontFamily = calibri,
+)
 val neutral900Size12Weight400Style = TextStyle(
     fontSize = 12.sp,
     fontWeight = FontWeight.W400,
