@@ -10,6 +10,7 @@ import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
 import com.penguins.educationmultiplatform.android.mapScreen.view.YandexMapScreen
 import com.penguins.educationmultiplatform.android.navigation.routeObject.MainScreenTabRoute
 import com.penguins.educationmultiplatform.android.navigation.routeObject.mainGraph
+import com.penguins.educationmultiplatform.android.profileScreen.view.ProfileScreenView
 
 @Composable
 fun BottomFlowGraph(navController: NavHostController) {
@@ -31,7 +32,7 @@ fun BottomFlowGraph(navController: NavHostController) {
             YandexMapScreen()
         }
         composable(route = MainScreenTabRoute.ProfileTab.route) {
-
+            ProfileScreenView()
         }
     }
 

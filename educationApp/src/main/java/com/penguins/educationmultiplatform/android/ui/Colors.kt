@@ -3,6 +3,11 @@ package com.penguins.educationmultiplatform.android.ui
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
+
+val neutral900 = Color(0xFF101010)
+val neutral700 = Color(0xFF7C7C7B)
+val neutral400 = Color(0xFFEDEDED)
+
 val primaryBlue = Color(0xFF0076DE)
 val lightBlue = Color(0xFFB9D9FF)
 val primaryGray = Color(0xFF7C7C7B)

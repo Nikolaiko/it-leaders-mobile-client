@@ -11,6 +11,8 @@ import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMap
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel.CategoryViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
+import com.penguins.educationmultiplatform.android.profileScreen.view.ProfileScreenView
+import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileScreenViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.json.JsonFeature
@@ -39,6 +41,7 @@ val androidModule = module {
     viewModel { CategoryViewModel() }
     viewModel { NewsListViewModel() }
     viewModel { NewsViewModel() }
+    viewModel { ProfileScreenViewModel(get(), get()) }
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }

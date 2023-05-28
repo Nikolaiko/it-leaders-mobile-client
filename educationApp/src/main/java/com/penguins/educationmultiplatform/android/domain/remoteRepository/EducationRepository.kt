@@ -9,4 +9,5 @@ import com.penguins.educationmultiplatform.android.data.model.error.AppError
 interface EducationRepository {
     suspend fun authUser(loginData: AuthRequest): ActionResult<AuthResponse, AppError>
     suspend fun registerUser(registerData: RegisterRequest): ActionResult<AuthResponse, AppError>
+    suspend fun registerUserVK(registerData: RegisterRequest): ActionResult<AuthResponse, AppError>
 }
