@@ -1,19 +1,25 @@
 package com.penguins.educationmultiplatform.android.newsScreen.headingNews.viewModel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
+import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByParamsUseCase
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.headingNews.data.HeadingNewsEvents
 import com.penguins.educationmultiplatform.android.newsScreen.headingNews.data.HeadingNewsUiState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class HeadingNewsViewModel(
     val navigation: NewsNavigation,
+    val getNewsByFilters: GetNewsByParamsUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HeadingNewsUiState())
@@ -31,6 +37,12 @@ class HeadingNewsViewModel(
                         title = event.title
                     )
                 )
+                viewModelScope.launch {
+                    setNewsList(
+                        categories = _state.value.category?.let { listOf(it) },
+                        heading = _state.value.title
+                    )
+                }
             }
 
             is HeadingNewsEvents.OpenNews -> navigation.navigateTo(
@@ -41,6 +53,19 @@ class HeadingNewsViewModel(
 
             HeadingNewsEvents.SearchButton -> navigation.navigateTo(NewsScreens.SearchNewsScreen)
         }
+    }
+
+    private suspend fun setNewsList(categories: List<Category>?, heading: String?) {
+        when (val response = getNewsByFilters(categories = categories, heading = heading)) {
+            is ActionResult.Success -> saveNews(response.result)
+            is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+        }
+    }
+
+    private fun saveNews(list: List<News>) {
+        _state.value = _state.value.copy(
+            news = list
+        )
     }
 
 }

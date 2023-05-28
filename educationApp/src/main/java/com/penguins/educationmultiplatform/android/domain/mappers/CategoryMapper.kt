@@ -11,6 +11,12 @@ fun getCategory(category: String?) = when (category) {
     else -> null
 }
 
+fun getCategoriesParam(categories: List<Category>?): List<String> = categories?.mapNotNull {
+    getCategoryParam(
+        it.title
+    )
+} ?: CategoryParam.values().map { it.title }
+
 fun getCategoryParam(category: String?) = when (category) {
     Category.ART.title -> CategoryParam.ART.title
     Category.DANCE.title -> CategoryParam.DANCE.title

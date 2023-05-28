@@ -2,6 +2,7 @@ package com.penguins.educationmultiplatform.android.newsScreen.headingNews.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
@@ -37,6 +38,7 @@ fun HeadingNewsScreen(
     Column(
         modifier = Modifier
             .background(brush = category?.background ?: gradientBackground)
+            .fillMaxHeight()
             .statusBarsPadding()
     ) {
         Column(
@@ -55,7 +57,10 @@ fun HeadingNewsScreen(
                     onBackClick = { viewModel.onEvent(HeadingNewsEvents.BackButton) },
                     onSearchClick = { viewModel.onEvent(HeadingNewsEvents.SearchButton) }
                 )
-                HeadingList()
+                HeadingList(
+                    news = state.value.news,
+                    onClickNews = { news -> viewModel.onEvent(HeadingNewsEvents.OpenNews(news)) }
+                )
             }
         }
     }

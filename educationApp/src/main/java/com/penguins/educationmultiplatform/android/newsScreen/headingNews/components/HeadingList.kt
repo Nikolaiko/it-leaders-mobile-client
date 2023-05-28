@@ -1,6 +1,7 @@
 package com.penguins.educationmultiplatform.android.newsScreen.headingNews.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,16 +10,19 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.components.
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 
 @Composable
-fun HeadingList() {
+fun HeadingList(
+    news: List<News>,
+    onClickNews: (News) -> Unit
+) {
     Column(
         modifier = Modifier
-//            .padding(horizontal = 16.dp)
             .padding(top = 24.dp)
+            .fillMaxHeight()
     ) {
-        emptyList<News>().forEach { _ ->//(state.value.findingNews) {
+        news.forEach {
             VerticalNewsCard(
-                news = News(),//it,
-                onClick = {},//{ news -> viewModel.onEvent(SearchNewsEvents.OpenNews(news)) }
+                news = it,
+                onClick = { news -> onClickNews(news) }
             )
         }
     }
