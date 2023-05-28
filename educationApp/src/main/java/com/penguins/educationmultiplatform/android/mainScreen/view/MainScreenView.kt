@@ -29,7 +29,6 @@ import com.penguins.educationmultiplatform.android.navigation.graps.BottomFlowGr
 import com.penguins.educationmultiplatform.android.navigation.routeObject.MainScreenTabRoute
 import com.penguins.educationmultiplatform.android.ui.*
 
-
 @Composable
 fun MainScreenView(navController: NavHostController = rememberNavController()) {
 
