@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.domain.usecases
+package com.penguins.educationmultiplatform.android.domain.usecases.auth
 
 import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse

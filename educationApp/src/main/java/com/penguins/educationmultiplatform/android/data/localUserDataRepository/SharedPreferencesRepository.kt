@@ -39,6 +39,13 @@ class SharedPreferencesRepository(
             .apply()
     }
 
+    override fun logoutUser() {
+        repository
+            .edit()
+            .clear()
+            .apply()
+    }
+
     companion object {
         private const val skippedAuthFlag = "skipped_auth_property"
         private const val userTokensData = "user_tokens_property"

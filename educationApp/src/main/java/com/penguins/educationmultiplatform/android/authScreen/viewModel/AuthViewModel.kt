@@ -8,10 +8,13 @@ import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.auth.UserTokens
 import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthRequest
 import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
+import com.penguins.educationmultiplatform.android.data.model.dto.profile.VKProfile
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
-import com.penguins.educationmultiplatform.android.domain.usecases.LoginWithEmailUseCase
+import com.penguins.educationmultiplatform.android.domain.usecases.auth.LoginWithEmailUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.auth.LoginWithVKUseCase
+import com.penguins.educationmultiplatform.android.domain.validation.ValuesValidator
 import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +25,9 @@ import kotlinx.coroutines.launch
 class AuthViewModel(
     private val navigation: AppNavigation,
     private val localStorage: LocalUserDataRepository,
-    private val loginWithEmailUseCase: LoginWithEmailUseCase
+    private val loginWithEmailUseCase: LoginWithEmailUseCase,
+    private val loginWithVKUseCase: LoginWithVKUseCase,
+    private val fieldValidator: ValuesValidator
 ): ViewModel() {
 
     private val _state = MutableStateFlow(AuthScreenUiState())
@@ -33,7 +38,8 @@ class AuthViewModel(
 
     fun onEvent(event: AuthScreenEvents){
         when(event) {
-            is AuthScreenEvents.JoinWithVK -> TODO()
+            is AuthScreenEvents.JoinWithVK -> authWithVK(event.token, event.email, event.profile)
+            is AuthScreenEvents.LoginVKFailed -> _errorState.tryEmit(AppError.VKLoginFailed)
             is AuthScreenEvents.AuthWithEmail -> authWithEmail()
             is AuthScreenEvents.RegisterButton -> {
                 navigation.navigateTo(AppScreens.RegisterScreenRoute)
@@ -52,8 +58,8 @@ class AuthViewModel(
     }
 
     fun validateFields(): Boolean {
-        return _state.value.login.isNotEmpty()
-                && _state.value.password.isNotEmpty()
+        return fieldValidator.validateEmail(_state.value.login)
+                && fieldValidator.validatePassword(_state.value.password)
     }
 
     private fun authWithEmail() {
@@ -62,9 +68,17 @@ class AuthViewModel(
             val response = loginWithEmailUseCase.invoke(request)
             when(response) {
                 is ActionResult.Success -> saveTokens(response.result)
-                is ActionResult.Fail -> {
-                    _errorState.tryEmit(response.failure)
-                }
+                is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+            }
+        }
+    }
+
+    private fun authWithVK(token: String, email: String, profile: VKProfile) {
+        viewModelScope.launch {
+            val response = loginWithVKUseCase.invoke(token, email, profile)
+            when(response) {
+                is ActionResult.Success -> saveTokens(response.result)
+                is ActionResult.Fail -> _errorState.tryEmit(response.failure)
             }
         }
     }
