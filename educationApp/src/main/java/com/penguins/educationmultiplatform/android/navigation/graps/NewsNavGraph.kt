@@ -13,6 +13,7 @@ import com.penguins.educationmultiplatform.android.navigation.routeObject.HEADIN
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NEWS_ARGUMENT
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.ONE_NEWS_ROUTE
+import com.penguins.educationmultiplatform.android.navigation.routeObject.SEARCH_NEWS_ROUTE
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view.NewsListScreen
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.view.CategoryScreen
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
@@ -51,8 +52,12 @@ fun NewsNavHost(navController: NavHostController) {
             CategoryScreen(category)
         }
 
-        composable(route = NewsScreens.SearchNewsScreen.route) {
-            SearchNewsScreen()
+        composable(
+            route = SEARCH_NEWS_ROUTE,
+            arguments = listOf(navArgument(CATEGORY_ARGUMENTS) { type = NavType.StringType })
+        ) {
+            val category = it.arguments?.getString(CATEGORY_ARGUMENTS)
+            SearchNewsScreen(category)
         }
 
         composable(

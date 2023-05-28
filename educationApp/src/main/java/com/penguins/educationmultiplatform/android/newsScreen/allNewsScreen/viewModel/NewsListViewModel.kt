@@ -49,7 +49,7 @@ class NewsListViewModel(
             )
 
             is NewsListEvents.OpenSearchNews -> navigation.navigateTo(
-                NewsScreens.SearchNewsScreen
+                NewsScreens.SearchNewsScreen()
             )
         }
     }

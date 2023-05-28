@@ -52,7 +52,9 @@ class CategoryViewModel(
 
             CategoryEvents.BackButton -> navigation.back()
 
-            CategoryEvents.SearchButton -> navigation.navigateTo(NewsScreens.SearchNewsScreen)
+            CategoryEvents.SearchButton -> navigation.navigateTo(
+                NewsScreens.SearchNewsScreen(_state.value.category?.title)
+            )
         }
     }
 

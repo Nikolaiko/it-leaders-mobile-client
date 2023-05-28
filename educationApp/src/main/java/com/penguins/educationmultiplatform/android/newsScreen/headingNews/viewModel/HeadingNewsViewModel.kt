@@ -51,7 +51,9 @@ class HeadingNewsViewModel(
 
             HeadingNewsEvents.BackButton -> navigation.back()
 
-            HeadingNewsEvents.SearchButton -> navigation.navigateTo(NewsScreens.SearchNewsScreen)
+            HeadingNewsEvents.SearchButton -> navigation.navigateTo(
+                NewsScreens.SearchNewsScreen(_state.value.category?.title)
+            )
         }
     }
 

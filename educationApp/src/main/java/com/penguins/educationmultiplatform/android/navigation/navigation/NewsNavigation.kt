@@ -37,6 +37,8 @@ class NewsNavigation {
             )
         }
 
-        NewsScreens.SearchNewsScreen -> navController?.navigate(screen.route)
+        is NewsScreens.SearchNewsScreen -> {
+            navController?.navigate("${screen.route}/${screen.category}")
+        }
     }
 }

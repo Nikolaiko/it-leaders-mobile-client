@@ -1,6 +1,8 @@
 package com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetScaffold
@@ -16,10 +18,14 @@ import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButton
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.bottomSheet.FilterBottomSheet
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.list.SearchingNews
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.toolbar.SearchNewsToolbar
+import com.penguins.educationmultiplatform.android.ui.allNewsGradientBackground
+import com.penguins.educationmultiplatform.android.ui.gradientBackground
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SearchNewsScreen() {
+fun SearchNewsScreen(
+    category: String? = null
+) {
     val bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = bottomSheetState)
 
@@ -35,6 +41,8 @@ fun SearchNewsScreen() {
     ) {
         Column(
             modifier = Modifier
+                .fillMaxHeight()
+                .background(brush =/* category?.background ?:*/ allNewsGradientBackground)
                 .padding(bottom = 64.dp, top = 32.dp)
         ) {
             SearchNewsToolbar()

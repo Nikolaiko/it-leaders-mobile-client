@@ -6,7 +6,7 @@ sealed class NewsScreens (val route: String) {
     object AllNewsScreen : NewsScreens("$newsTab/$ALL_NEWS_SCREEN")
     class OneNewsScreen(val news: News) : NewsScreens("$newsTab/$ONE_NEWS_SCREEN")
     class CategoryNewsScreen(val category: String) : NewsScreens("$newsTab/$CATEGORY_NEWS_SCREEN")
-    object SearchNewsScreen : NewsScreens("$newsTab/$SEARCH_NEWS_SCREEN")
+    class SearchNewsScreen(val category: String? = null) : NewsScreens("$newsTab/$SEARCH_NEWS_SCREEN")
     class HeadingNewsScreen(
         val category: String,
         val heading: String
@@ -25,4 +25,5 @@ const val HEADING_ARGUMENT = "heading"
 
 const val CATEGORY_NEWS_ROUTE = "$newsTab/$CATEGORY_NEWS_SCREEN/{$CATEGORY_ARGUMENTS}"
 const val ONE_NEWS_ROUTE = "$newsTab/$ONE_NEWS_SCREEN/{$NEWS_ARGUMENT}"
+const val SEARCH_NEWS_ROUTE = "$newsTab/$SEARCH_NEWS_SCREEN/{$CATEGORY_ARGUMENTS}"
 const val HEADING_NEWS_ROUTE = "$newsTab/$HEADING_NEWS_SCREEN?$CATEGORY_ARGUMENTS={$CATEGORY_ARGUMENTS}&$HEADING_ARGUMENT={$HEADING_ARGUMENT}"
