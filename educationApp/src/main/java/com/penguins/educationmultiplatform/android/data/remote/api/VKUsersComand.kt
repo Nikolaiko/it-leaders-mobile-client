@@ -16,10 +16,8 @@ import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 class VKUsersCommand(private val uids: IntArray = intArrayOf()) :
-    ApiCommand<Triple<String?, String?, String?>>() {
-    override fun onExecute(manager: VKApiManager): Triple<String, String, String> {
-
-
+    ApiCommand<VKProfile?>() {
+    override fun onExecute(manager: VKApiManager): VKProfile {
         val call = VKMethodCall.Builder()
             .method("photos.get")
             .args("album_id", "profile")
@@ -31,15 +29,7 @@ class VKUsersCommand(private val uids: IntArray = intArrayOf()) :
             .method("account.getProfileInfo")
             .version(manager.config.version)
             .build()
-
-        val url =
-            manager.execute(call, ResponseApiParser()).response.items.first().sizes.last().url
-        val profile = manager.execute(callProfile, ResponseProfileParser()).response
-        val age = OffsetDateTime.now().year - LocalDate.parse(
-            profile.bdate,
-            DateTimeFormatter.ofPattern("dd.MM.yyyy")
-        ).year
-        return Triple(url, profile.first_name, age.toString())
+        return manager.execute(callProfile, ResponseProfileParser())
 
     }
 

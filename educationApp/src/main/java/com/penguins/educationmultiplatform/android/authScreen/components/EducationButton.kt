@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.MyApplicationTheme
 import com.penguins.educationmultiplatform.android.ui.educationButtonStyle
+import com.penguins.educationmultiplatform.android.ui.neutral400
 import com.penguins.educationmultiplatform.android.ui.primaryGray
 
 @Composable
@@ -37,7 +38,7 @@ fun EducationButton(
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = primaryGray,
-            disabledBackgroundColor = Color.Red
+            disabledBackgroundColor = neutral400
         ), onClick = clickCallback
     ) {
         Row(

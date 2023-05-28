@@ -129,16 +129,14 @@ fun YandexMapScreenForIntegration(
 
                     val clusterListener = ClusterListener { cluster ->
                         // We setup cluster appearance and tap handler in this method
-                        cluster.getAppearance().setIcon(
+                        cluster.appearance.setIcon(
                             TextImageProvider(
                                 context,
-                                Integer.toString(
-                                    cluster.getSize()
-                                )
+                                cluster.size.toString()
                             )
                         )
                     }
-                    var clusterCollection = mapView.getMap().getMapObjects()
+                    var clusterCollection = mapView.map.mapObjects
                         .addClusterizedPlacemarkCollection(clusterListener)
 
                     scope.launch {

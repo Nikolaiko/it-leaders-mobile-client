@@ -11,10 +11,10 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 
 @Composable
 fun HorizontalListWithTitle(
-    category: String,
+    title: String,
     news: List<News>,
-    clickCategory: (String) -> Unit,
-    clickNews: (News) -> Unit
+    onClickSeeAll: (String) -> Unit,
+    onClickNews: (News) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -22,13 +22,13 @@ fun HorizontalListWithTitle(
             .padding(top = 24.dp)
     ) {
         NewsTitleRow(
-            category,
-            clickCategory
+            title,
+            onClickSeeAll
         )
         HorizontalNewsList(
             list = news,
             modifier = Modifier.padding(top = 16.dp),
-            onItemClick = clickNews,
+            onItemClick = onClickNews,
         )
     }
 }
@@ -50,9 +50,11 @@ fun VerticalListWithTitle(
             clickCategory = onClickSeeAll
         )
         VerticalNewsList(
-            list = news,
+            list = news.take(LIMIT_VERTICAL_NEWS),
             modifier = Modifier.padding(top = 16.dp),
             onItemClick = onClickNews
         )
     }
 }
+
+const val LIMIT_VERTICAL_NEWS = 2

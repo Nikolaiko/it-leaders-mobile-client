@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class YandexMapViewModel(
-    private val locationTracker:LocationTracker,
+    private val locationTracker: LocationTracker,
     private val getSchoolsFromRepository: GetSchoolsFromRepository
 ) : ViewModel() {
 

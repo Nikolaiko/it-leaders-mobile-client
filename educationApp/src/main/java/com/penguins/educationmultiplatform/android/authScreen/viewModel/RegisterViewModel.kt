@@ -6,12 +6,14 @@ import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScree
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenUiState
 import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.auth.UserTokens
-import com.penguins.educationmultiplatform.android.data.model.dto.AuthResponse
-import com.penguins.educationmultiplatform.android.data.model.dto.RegisterRequest
+import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
+import com.penguins.educationmultiplatform.android.data.model.dto.auth.RegisterRequest
+import com.penguins.educationmultiplatform.android.data.model.consts.birthDateFormat
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
-import com.penguins.educationmultiplatform.android.domain.usecases.RegisterUserUseCase
+import com.penguins.educationmultiplatform.android.domain.usecases.auth.RegisterUserUseCase
+import com.penguins.educationmultiplatform.android.domain.validation.ValuesValidator
 import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +24,8 @@ import kotlinx.coroutines.launch
 class RegisterViewModel(
     private val navigation: AppNavigation,
     private val localStorage: LocalUserDataRepository,
-    private val registerUserUseCase: RegisterUserUseCase
+    private val registerUserUseCase: RegisterUserUseCase,
+    private val appFieldsValidator: ValuesValidator
 ): ViewModel() {
 
     private val _state = MutableStateFlow(RegisterScreenUiState())
@@ -36,8 +39,8 @@ class RegisterViewModel(
             is RegisterScreenEvents.SetPhotoUri -> {
                 _state.tryEmit(_state.value.copy(photoUri = event.uri))
             }
-            is RegisterScreenEvents.SetAgeField -> {
-                _state.tryEmit(_state.value.copy(age = event.age))
+            is RegisterScreenEvents.SetBirthField -> {
+                _state.tryEmit(_state.value.copy(age = birthDateFormat.format(event.birthDate)))
             }
             is RegisterScreenEvents.SetNameField -> {
                 _state.tryEmit(_state.value.copy(name = event.text))
@@ -60,10 +63,10 @@ class RegisterViewModel(
     }
 
     fun validateFields(): Boolean {
-        return _state.value.age != null
+        return _state.value.age.isNotEmpty()
                 && _state.value.name.isNotEmpty()
-                && _state.value.email.isNotEmpty()
-                && _state.value.password.isNotEmpty()
+                && appFieldsValidator.validateEmail(_state.value.email)
+                && appFieldsValidator.validatePassword(_state.value.password)
     }
 
     private fun sendUserRegisterRequest() {
@@ -72,7 +75,7 @@ class RegisterViewModel(
             password = _state.value.password,
             name = _state.value.name,
             vkToken = null,
-            birthDate = _state.value.age?.toString() ?: "0"
+            birthDate = _state.value.age
         )
 
         viewModelScope.launch {

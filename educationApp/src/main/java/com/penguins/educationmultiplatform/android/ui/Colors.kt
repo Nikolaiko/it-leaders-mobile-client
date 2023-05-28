@@ -3,6 +3,11 @@ package com.penguins.educationmultiplatform.android.ui
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
+
+val neutral900 = Color(0xFF101010)
+val neutral700 = Color(0xFF7C7C7B)
+val neutral400 = Color(0xFFEDEDED)
+
 val primaryBlue = Color(0xFF0076DE)
 val lightBlue = Color(0xFFB9D9FF)
 val primaryGray = Color(0xFF7C7C7B)
@@ -23,6 +28,7 @@ val gradientBackground = Brush.linearGradient(
     0.5f to Color(0xFFFFFFFF)
 )
 
+val allNewsBackgroundColor = Color(0xFFAED7F1)
 val gradientCoursesBackground = Brush.verticalGradient(
     0.0f to Color(0xFFAED7F1),
     0.13f to Color(0xFFFFFFFF)
@@ -32,6 +38,11 @@ val artBackgroundColor = Color(0xFFBA768F)
 val danceBackgroundColor = Color(0xFF81AE7B)
 val musicBackgroundColor = Color(0xFFB4C95E)
 val theatreBackgroundColor = Color(0xFF8E74A8)
+
+val allNewsGradientBackground = Brush.linearGradient(
+    0.0f to allNewsBackgroundColor,
+    0.5f to Color(0xFFFFFFFF)
+)
 val backGroundCard = Color(0xFFEDEDED)
 val fontPlaceholderColor = Color(0xFF404040)
 val artGradientBackground = Brush.linearGradient(

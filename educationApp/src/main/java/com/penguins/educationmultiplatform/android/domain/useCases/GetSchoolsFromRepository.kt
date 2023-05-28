@@ -7,8 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlin.random.Random
 
-class GetSchoolsFromRepository() {
-
+class GetSchoolsFromRepository {
 
     fun invoke(): Flow<List<SchoolDataUi>> {
         return flow {

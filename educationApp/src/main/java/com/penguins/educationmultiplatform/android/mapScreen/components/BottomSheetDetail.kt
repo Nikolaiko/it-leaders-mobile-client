@@ -175,7 +175,7 @@ fun BottomSheetDetail(detail: SchoolDataUi, bottomSheetHeight:Float = 0.6f, onCl
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.icon_arrows__1_),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_arrow),
                     contentDescription = null,
                     tint = theatricalSchoolColor
                 )
