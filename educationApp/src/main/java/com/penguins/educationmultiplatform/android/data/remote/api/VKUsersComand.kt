@@ -57,7 +57,6 @@ class VKUsersCommand(private val uids: IntArray = intArrayOf()) :
                 val json = Json {
                     ignoreUnknownKeys = true
                 }
-                println("VK! $responseJson")
                 val obj = json.decodeFromString<VKProfile>(responseJson.toString())
                 return obj
             } catch (ex: JSONException) {
