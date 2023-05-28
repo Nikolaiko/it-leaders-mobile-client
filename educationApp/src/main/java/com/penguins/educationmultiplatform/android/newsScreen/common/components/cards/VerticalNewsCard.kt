@@ -47,7 +47,7 @@ fun VerticalNewsCard(
                 .clip(RoundedCornerShape(15.dp))
         ) {
             NewsCardImage(
-                imageId = news.imageId ?: DEFAULT_IMAGE_NEWS,
+                imageUrl = news.imageUrl,
                 contentScale = ContentScale.Crop,
                 isBackgroundVisible = false
             )

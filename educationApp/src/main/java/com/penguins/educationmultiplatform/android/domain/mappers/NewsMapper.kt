@@ -17,7 +17,8 @@ fun NewsResponse.toNews() = News(
     title = title,
     text = info,
     category = getCategoryFromCategoryParam(category),
-    heading = heading?.toHeading()
+    heading = heading?.toHeading(),
+    imageUrl = imageUrl
 )
 
 fun String.toHeading(): String = when (this) {

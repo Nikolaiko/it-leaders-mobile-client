@@ -44,7 +44,7 @@ fun NewsScreen(
                 onClick = { viewModel.onEvent(NewsEvents.BackButton) }
             )
             NewsImage(
-                image = state.value.news?.imageId ?: R.drawable.png_debug_news
+                imageUrl = state.value.news?.imageUrl
             )
             NewsText(
                 title = state.value.news?.title ?: EMPTY_STRING,
@@ -72,14 +72,14 @@ fun NewsToolbar(
 }
 
 @Composable
-fun NewsImage(image: Int) {
+fun NewsImage(imageUrl: String?) {
     Box(
         modifier = Modifier
             .padding(top = 24.dp)
             .fillMaxWidth()
     ) {
         NewsCardImage(
-            imageId = image,
+            imageUrl = imageUrl,
             isBackgroundVisible = false,
             contentScale = ContentScale.FillWidth
         )
