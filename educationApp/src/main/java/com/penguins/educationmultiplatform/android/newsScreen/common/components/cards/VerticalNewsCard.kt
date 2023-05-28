@@ -16,12 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.image.NewsCardImage
-import com.penguins.educationmultiplatform.android.ui.textGrayColor
+import com.penguins.educationmultiplatform.android.ui.body2RegularTextStyle
+import com.penguins.educationmultiplatform.android.ui.headingTextStyle
+import com.penguins.educationmultiplatform.android.ui.neutral900
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @Composable
@@ -59,7 +60,8 @@ fun VerticalNewsCard(
         ) {
             Text(
                 text = news.title ?: EMPTY_STRING,
-                fontWeight = FontWeight.Bold
+                style = headingTextStyle,
+                color = neutral900
             )
             Text(
                 text = news.text ?: EMPTY_STRING,
@@ -67,7 +69,7 @@ fun VerticalNewsCard(
                     .padding(top = 8.dp)
                     .fillMaxHeight(),
                 overflow = TextOverflow.Ellipsis,
-                color = textGrayColor
+                style = body2RegularTextStyle
             )
         }
     }

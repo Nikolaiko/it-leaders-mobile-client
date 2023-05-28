@@ -18,12 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.image.NewsCardImage
+import com.penguins.educationmultiplatform.android.ui.headingTextStyle
+import com.penguins.educationmultiplatform.android.ui.neutral900Size12Weight400Style
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -76,10 +76,8 @@ fun NewsCardTexts(
            }
             Text(
                 text = title,
-                color = Color.White,
                 modifier = Modifier.padding(top = 8.dp),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold
+                style = headingTextStyle
             )
         }
     }
@@ -98,8 +96,7 @@ fun HeadingText(heading: String) {
     ) {
         Text(
             text = heading,
-            color = Color.DarkGray,
-            fontSize = 12.sp
+            style = neutral900Size12Weight400Style
         )
     }
 }

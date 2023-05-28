@@ -7,9 +7,11 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.penguins.educationmultiplatform.android.ui.textInactiveBottomItem
 
 @Composable
 fun SearchNewsEditText(
@@ -36,7 +38,8 @@ fun SearchNewsEditText(
             autoCorrect = true,
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Search
-        )
+        ),
+        textStyle = textInactiveBottomItem
     )
 }
 
