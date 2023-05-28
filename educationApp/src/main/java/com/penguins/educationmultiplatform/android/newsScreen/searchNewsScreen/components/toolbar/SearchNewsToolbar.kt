@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.BottomSheetState
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -27,7 +28,10 @@ import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SearchNewsToolbar(viewModel: SearchNewsViewModel = koinViewModel()) {
+fun SearchNewsToolbar(
+    viewModel: SearchNewsViewModel = koinViewModel(),
+    openBottomSheet: () -> Unit = {}
+) {
     val state = viewModel.state.collectAsState()
 
     Row (
@@ -48,7 +52,7 @@ fun SearchNewsToolbar(viewModel: SearchNewsViewModel = koinViewModel()) {
             onSearch = { viewModel.onEvent(SearchNewsEvents.SearchButton) }
         )
         FilterButton(
-            onClick = { viewModel.onEvent(SearchNewsEvents.FilterButton) }
+            onClick = openBottomSheet
         )
     }
 }
