@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetScaffold
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.BottomSheetState
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -42,6 +40,10 @@ fun SearchNewsScreen(
     val bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = bottomSheetState)
     val scope = rememberCoroutineScope()
+
+    if (!bottomSheetState.isExpanded) {
+        viewModel.onEvent(SearchNewsEvents.SearchButton)
+    }
 
     BottomSheetScaffold(
         scaffoldState = scaffoldState,

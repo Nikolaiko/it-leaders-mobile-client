@@ -47,7 +47,7 @@ class SearchNewsViewModel(
 
             is SearchNewsEvents.SearchButton -> {
                 viewModelScope.launch { setNewsByFilter() }
-            }//findNewsUseCase
+            }
 
             is SearchNewsEvents.SetCategory -> {
                 getCategory(event.category)?.let {
