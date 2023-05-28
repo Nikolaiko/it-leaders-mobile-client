@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenUiState
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.authScreen.data.UserTokens
+import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.consts.birthDateFormat
-import com.penguins.educationmultiplatform.android.data.model.dto.AuthResponse
-import com.penguins.educationmultiplatform.android.data.model.dto.RegisterRequest
+import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
+import com.penguins.educationmultiplatform.android.data.model.dto.auth.RegisterRequest
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation

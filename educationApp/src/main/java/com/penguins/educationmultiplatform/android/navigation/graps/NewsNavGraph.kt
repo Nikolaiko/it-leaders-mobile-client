@@ -8,12 +8,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_ARGUMENTS
 import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_NEWS_ROUTE
+import com.penguins.educationmultiplatform.android.navigation.routeObject.HEADING_ARGUMENT
+import com.penguins.educationmultiplatform.android.navigation.routeObject.HEADING_NEWS_ROUTE
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NEWS_ARGUMENT
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.ONE_NEWS_ROUTE
+import com.penguins.educationmultiplatform.android.navigation.routeObject.SEARCH_NEWS_ROUTE
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view.NewsListScreen
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.view.CategoryScreen
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News
+import com.penguins.educationmultiplatform.android.newsScreen.headingNews.view.HeadingNewsScreen
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.view.NewsScreen
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.view.SearchNewsScreen
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
@@ -30,6 +34,7 @@ fun NewsNavHost(navController: NavHostController) {
         composable(route = NewsScreens.AllNewsScreen.route) {
             NewsListScreen()
         }
+
         composable(
             route = ONE_NEWS_ROUTE,
             arguments = listOf(navArgument(NEWS_ARGUMENT) { type = NavType.StringType })
@@ -38,6 +43,7 @@ fun NewsNavHost(navController: NavHostController) {
             val news = Json.decodeFromString<News>(json)
             NewsScreen(news)
         }
+
         composable(
             route = CATEGORY_NEWS_ROUTE,
             arguments = listOf(navArgument(CATEGORY_ARGUMENTS) { type = NavType.StringType })
@@ -46,8 +52,27 @@ fun NewsNavHost(navController: NavHostController) {
             CategoryScreen(category)
         }
 
-        composable(route = NewsScreens.SearchNewsScreen.route) {
-            SearchNewsScreen()
+        composable(
+            route = SEARCH_NEWS_ROUTE,
+            arguments = listOf(navArgument(CATEGORY_ARGUMENTS) { type = NavType.StringType })
+        ) {
+            val category = it.arguments?.getString(CATEGORY_ARGUMENTS)
+            SearchNewsScreen(category)
+        }
+
+        composable(
+            route = HEADING_NEWS_ROUTE,
+            arguments = listOf(
+                navArgument(CATEGORY_ARGUMENTS) { type = NavType.StringType },
+                navArgument(HEADING_ARGUMENT) { type = NavType.StringType }
+            )
+        ) {
+            val category = it.arguments?.getString(CATEGORY_ARGUMENTS)
+            val heading = it.arguments?.getString(HEADING_ARGUMENT)
+            HeadingNewsScreen(
+                categoryTitle = category,
+                heading = heading
+            )
         }
 
     }

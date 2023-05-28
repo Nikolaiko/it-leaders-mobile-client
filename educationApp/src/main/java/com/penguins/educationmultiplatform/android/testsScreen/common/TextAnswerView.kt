@@ -21,7 +21,7 @@ fun TextAnswerView(
 ) {
     Button(
         modifier = modifier
-            .clip(RoundedCornerShape(16.dp)),
+            .clip(RoundedCornerShape(8.dp)),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = secondary400,
         ),

@@ -14,42 +14,36 @@ fun listOfCategories() = listOf<Pair<String, List<News>>>(
 fun listOfNews() = listOf<News>(
     News(
         title = "Название новости номер 1",
-        imageId = R.drawable.png_debug_news,
         text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
         category = Category.MUSIC,
         heading = "Рубрика 1"
     ),
     News(
         title = "Название новости номер 2",
-        imageId = R.drawable.png_debug_news,
         text = "Текст новости текст новости текст новости текст новости текст новости текст новости текст новости текст",
         category = null,
         heading = "Рубрика 2"
     ),
     News(
         title = "Название новости номер 3",
-        imageId = R.drawable.png_debug_news,
         text = null,
         category = null,
         heading = "Рубрика 3"
     ),
     News(
         title = "Название новости номер 4",
-        imageId = R.drawable.png_debug_news,
         text = null,
         category = null,
         heading = "Рубрика 4"
     ),
     News(
         title = "Название новости номер 3",
-        imageId = R.drawable.png_debug_news,
         text = null,
         category = null,
         heading = "Рубрика 3"
     ),
     News(
         title = "Название новости номер 4",
-        imageId = R.drawable.png_debug_news,
         text = null,
         category = null,
         heading = "Рубрика 4"

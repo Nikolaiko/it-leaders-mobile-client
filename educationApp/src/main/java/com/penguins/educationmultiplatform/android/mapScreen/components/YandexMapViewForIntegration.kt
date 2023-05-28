@@ -8,6 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolDataUi
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
 import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButtonColor
@@ -28,18 +29,22 @@ import org.koin.androidx.compose.koinViewModel
 fun YandexMapScreenForIntegration(
     modifier: Modifier = Modifier,
     viewModel: YandexMapViewModel = koinViewModel(),
-    type: SchoolType
+    type: SchoolType,
+    bottomSheetHeight:Float = 0.6f
 ) {
+
+
     val scope = rememberCoroutineScope()
     val detailBottomSheetDataState: MutableState<SchoolDataUi?> = remember { mutableStateOf(null) }
     val sheetDetailState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldDetailState = rememberBottomSheetScaffoldState(bottomSheetState = sheetDetailState)
 
+
     BottomSheetScaffold(
         modifier = modifier,
         sheetContent = {
             if (detailBottomSheetDataState.value != null) {
-                BottomSheetDetail(detail = detailBottomSheetDataState.value!!) {
+                BottomSheetDetail(detail = detailBottomSheetDataState.value!!, bottomSheetHeight = bottomSheetHeight) {
                     scope.launch {
                         sheetDetailState.collapse()
                         detailBottomSheetDataState.value = null
@@ -142,14 +147,7 @@ fun YandexMapScreenForIntegration(
                             mapObjects.clear()
                             selectedMapObject = null
                             it.schools.filter { school ->
-                                when (type) {
-                                    SchoolType.DANCING -> {
-                                        it.filters.dancingFilter
-                                    }
-                                    SchoolType.MUSICAL -> it.filters.musicalFilter
-                                    SchoolType.ARTISTIC -> it.filters.artistFilter
-                                    SchoolType.THEATRICAL -> it.filters.theatricalFilter
-                                }
+                                school.type == type
                             }.forEach { school ->
                                 createTappableCircle(
                                     school,

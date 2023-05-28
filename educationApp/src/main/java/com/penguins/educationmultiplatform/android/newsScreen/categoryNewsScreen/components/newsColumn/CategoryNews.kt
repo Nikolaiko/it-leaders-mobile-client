@@ -29,6 +29,7 @@ fun CategoryNews(
     HorizontalListWithTitle(
         title = news.lastOrNull()?.first ?: EMPTY_STRING,
         news = news.lastOrNull()?.second ?: emptyList(),
+        isHeadingVisible = false,
         onClickSeeAll = onClickSeeAll,
         onClickNews = onClickNews
     )

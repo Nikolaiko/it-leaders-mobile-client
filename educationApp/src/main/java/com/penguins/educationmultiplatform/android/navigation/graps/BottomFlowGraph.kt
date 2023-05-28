@@ -23,6 +23,7 @@ fun BottomFlowGraph(navController: NavHostController) {
             MainNewsScreen()
         }
         composable(route = MainScreenTabRoute.CoursesTab.route) {
+            CoursesScreens()
         }
         composable(route = MainScreenTabRoute.TestsTab.route) {
             TestCategoriesView()

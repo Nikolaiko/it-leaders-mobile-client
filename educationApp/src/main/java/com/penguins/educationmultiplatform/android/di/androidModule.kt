@@ -1,14 +1,27 @@
 package com.penguins.educationmultiplatform.android.di
 
+import androidx.media3.common.Player
+import androidx.media3.exoplayer.ExoPlayer
 import com.google.android.gms.location.LocationServices
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.CoursesViewModel
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.DetailCourseViewModel
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.SharedViewModel
+import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.VideoItemViewModel
 import com.penguins.educationmultiplatform.android.data.location.DefaultLocationTracker
 import com.penguins.educationmultiplatform.android.data.navigation.DestinationController
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
 import com.penguins.educationmultiplatform.android.domain.usecases.tests.GetTestCaseUseCase
+
+import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByCategoryUseCase
+import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByParamsUseCase
+import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.GetVideoCoursesUseCase
+
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
+import com.penguins.educationmultiplatform.android.newsScreen.headingNews.viewModel.HeadingNewsViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel.CategoryViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
@@ -39,24 +52,38 @@ val androidModule = module {
         }
     }
 
+    single { GetVideoCoursesUseCase() }
+    single<Player> { ExoPlayer.Builder(androidContext()).build() }
+
     //viewModels
     viewModel { YandexMapViewModel(get(), get()) }
+    viewModel { CategoryViewModel(get(), get()) }
+    viewModel { NewsListViewModel(get(), get()) }
     viewModel { ProfileScreenViewModel(get(), get()) }
-    viewModel { CategoryViewModel(get()) }
-    viewModel { NewsListViewModel(get()) }
     viewModel { NewsViewModel(get()) }
-    viewModel { SearchNewsViewModel(get()) }
+    viewModel { SearchNewsViewModel(get(), get()) }
     viewModel { TestCategoriesViewModel(get()) }
     viewModel { TestCaseViewModel(get(), get()) }
+    viewModel { HeadingNewsViewModel(get(), get()) }
+    viewModel { CoursesViewModel(get()) }
+
+
+    single { SharedViewModel() }
+    viewModel { DetailCourseViewModel(get(), get()) }
+    viewModel { VideoItemViewModel(get(),get(), get()) }
 
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
-    single <LocationTracker>{ DefaultLocationTracker(get(),androidContext()) }
+    single <LocationTracker> { DefaultLocationTracker(get(),androidContext()) }
 
     //useCases
     single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }
     single { NewsNavigation() }
     single { GetTestCaseUseCase() }
+
+    single { GetNewsListUseCase(get()) }
+    single { GetNewsByCategoryUseCase(get()) }
+    single { GetNewsByParamsUseCase(get()) }
 }

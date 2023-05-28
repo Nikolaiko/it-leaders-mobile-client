@@ -29,7 +29,6 @@ import com.penguins.educationmultiplatform.android.navigation.graps.BottomFlowGr
 import com.penguins.educationmultiplatform.android.navigation.routeObject.MainScreenTabRoute
 import com.penguins.educationmultiplatform.android.ui.*
 
-
 @Composable
 fun MainScreenView(navController: NavHostController = rememberNavController()) {
 
@@ -162,8 +161,8 @@ fun RowScope.AddItem(
         selectedContentColor = primaryWhite,
         onClick = {
             if (currentDestination?.hierarchy?.any {
-                    it.route == MainScreenTabRoute.MapTab.route
-                } == true && screen.route == MainScreenTabRoute.MapTab.route) {
+                    it.route == screen.route
+                } == true) {
 
             } else {
                 navController.navigate(screen.route) {

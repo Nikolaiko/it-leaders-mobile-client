@@ -1,8 +1,8 @@
 package com.penguins.educationmultiplatform.android.mapScreen.data
 
-enum class SchoolType(val nameSchool:String) {
-    MUSICAL("Музыкальная\nшкола искусств"),
-    ARTISTIC("Художественная\nшкола искусств"),
-    DANCING("Танцевальная\nшкола искусств"),
-    THEATRICAL("Театральная\nшкола искусств")
+enum class SchoolType(val nameSchool:String, val idType:Int) {
+    MUSICAL("Музыкальная\nшкола искусств", 1),
+    ARTISTIC("Художественная\nшкола искусств", 2),
+    DANCING("Танцевальная\nшкола искусств", 3),
+    THEATRICAL("Театральная\nшкола искусств", 4)
 }

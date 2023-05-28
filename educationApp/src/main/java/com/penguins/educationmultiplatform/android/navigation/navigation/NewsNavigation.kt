@@ -2,9 +2,13 @@ package com.penguins.educationmultiplatform.android.navigation.navigation
 
 import android.annotation.SuppressLint
 import androidx.navigation.NavHostController
+import com.penguins.educationmultiplatform.android.navigation.routeObject.CATEGORY_ARGUMENTS
+import com.penguins.educationmultiplatform.android.navigation.routeObject.HEADING_ARGUMENT
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 class NewsNavigation {
     @SuppressLint("StaticFieldLeak")
@@ -25,10 +29,19 @@ class NewsNavigation {
         }
 
         is NewsScreens.OneNewsScreen -> {
-            val json = Json.encodeToString(screen.news)
+            val encodedUrl = URLEncoder.encode(screen.news.imageUrl, StandardCharsets.UTF_8.toString())
+            val json = Json.encodeToString(screen.news.copy(imageUrl = encodedUrl))
             navController?.navigate("${screen.route}/$json")
         }
 
-        NewsScreens.SearchNewsScreen -> navController?.navigate(screen.route)
+        is NewsScreens.HeadingNewsScreen -> {
+            navController?.navigate(
+                "${screen.route}?$CATEGORY_ARGUMENTS=${screen.category}&$HEADING_ARGUMENT=${screen.heading}"
+            )
+        }
+
+        is NewsScreens.SearchNewsScreen -> {
+            navController?.navigate("${screen.route}/${screen.category}")
+        }
     }
 }

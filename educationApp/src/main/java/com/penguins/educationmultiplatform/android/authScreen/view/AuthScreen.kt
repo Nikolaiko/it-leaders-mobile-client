@@ -1,6 +1,5 @@
 package com.penguins.educationmultiplatform.android.authScreen.view
 
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.background
@@ -13,13 +12,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
+import androidx.compose.ui.text.input.ImeAction
 import com.penguins.educationmultiplatform.android.authScreen.components.EducationButton
 import com.penguins.educationmultiplatform.android.authScreen.components.FormField
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenEvents
-import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
 import com.penguins.educationmultiplatform.android.data.model.consts.errorEffect
 import com.penguins.educationmultiplatform.android.data.model.consts.vkFields

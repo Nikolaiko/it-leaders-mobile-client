@@ -36,7 +36,7 @@ import com.penguins.educationmultiplatform.android.mapScreen.ui.*
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun BottomSheetDetail(detail: SchoolDataUi, onClickClose: () -> Unit) {
+fun BottomSheetDetail(detail: SchoolDataUi, bottomSheetHeight:Float = 0.6f, onClickClose: () -> Unit) {
 
     val context = LocalContext.current
     val permission = rememberPermissionState(
@@ -52,7 +52,7 @@ fun BottomSheetDetail(detail: SchoolDataUi, onClickClose: () -> Unit) {
     }
     Column(
         modifier = Modifier
-            .fillMaxHeight(0.6f)
+            .fillMaxHeight(bottomSheetHeight)
             .fillMaxWidth()
             .background(
                 brush = gradientBackground,

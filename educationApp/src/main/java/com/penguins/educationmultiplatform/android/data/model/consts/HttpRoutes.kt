@@ -6,4 +6,5 @@ object HttpRoutes {
     const val REGISTER = "$BASE_URL/auth/register"
     const val REGISTERVK = "$BASE_URL/auth/register/vk"
     const val LOGIN_EMAIL = "$BASE_URL/auth/login/email"
+    const val GET_NEWS = "$BASE_URL/news"
 }

@@ -8,13 +8,11 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,7 +25,10 @@ import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SearchNewsToolbar(viewModel: SearchNewsViewModel = koinViewModel()) {
+fun SearchNewsToolbar(
+    viewModel: SearchNewsViewModel = koinViewModel(),
+    openBottomSheet: () -> Unit = {}
+) {
     val state = viewModel.state.collectAsState()
 
     Row (
@@ -48,7 +49,7 @@ fun SearchNewsToolbar(viewModel: SearchNewsViewModel = koinViewModel()) {
             onSearch = { viewModel.onEvent(SearchNewsEvents.SearchButton) }
         )
         FilterButton(
-            onClick = { viewModel.onEvent(SearchNewsEvents.FilterButton) }
+            onClick = openBottomSheet
         )
     }
 }
@@ -84,9 +85,6 @@ private fun SearchEditText(
 
 @Composable
 fun FilterButton(onClick: () -> Unit) {
-    val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp
-    val width = screenWidth * 0.1
 
     Box (
         modifier = Modifier
@@ -98,7 +96,6 @@ fun FilterButton(onClick: () -> Unit) {
             onClick = { onClick() },
             imageId = R.drawable.ic_filter,
             modifier = Modifier
-                .size(width.dp)
         )
     }
 }

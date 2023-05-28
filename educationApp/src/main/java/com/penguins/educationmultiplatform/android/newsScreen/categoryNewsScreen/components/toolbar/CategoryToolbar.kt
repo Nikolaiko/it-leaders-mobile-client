@@ -11,12 +11,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.newsScreen.common.components.buttons.BackButton
 import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
+import com.penguins.educationmultiplatform.android.ui.heading1BoldTextStyle
 
 @Composable
 fun CategoryToolbar(
@@ -56,8 +55,7 @@ fun TitleToolbar(
     ){
         Text(
             text = title,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold
+            style = heading1BoldTextStyle
         )
     }
 }
