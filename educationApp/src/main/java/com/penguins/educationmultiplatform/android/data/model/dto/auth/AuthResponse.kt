@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.data.model.dto
+package com.penguins.educationmultiplatform.android.data.model.dto.auth
 
 import kotlinx.serialization.Serializable
 @Serializable

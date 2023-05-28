@@ -27,7 +27,10 @@ import com.penguins.educationmultiplatform.android.ui.buttons.ImageButton
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SearchNewsToolbar(viewModel: SearchNewsViewModel = koinViewModel()) {
+fun SearchNewsToolbar(
+    viewModel: SearchNewsViewModel = koinViewModel(),
+    openBottomSheet: () -> Unit = {}
+) {
     val state = viewModel.state.collectAsState()
 
     Row (
@@ -48,7 +51,7 @@ fun SearchNewsToolbar(viewModel: SearchNewsViewModel = koinViewModel()) {
             onSearch = { viewModel.onEvent(SearchNewsEvents.SearchButton) }
         )
         FilterButton(
-            onClick = { viewModel.onEvent(SearchNewsEvents.FilterButton) }
+            onClick = openBottomSheet
         )
     }
 }

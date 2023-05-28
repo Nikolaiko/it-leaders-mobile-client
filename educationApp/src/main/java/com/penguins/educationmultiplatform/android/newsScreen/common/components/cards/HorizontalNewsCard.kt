@@ -89,7 +89,7 @@ fun NewsCardTexts(
 fun HeadingText(heading: String) {
     Box(
         modifier = Modifier
-            .alpha(0.7f)
+            .alpha(0.8f)
             .background(
                 Color.White,
                 RoundedCornerShape(15.dp)
@@ -98,7 +98,8 @@ fun HeadingText(heading: String) {
     ) {
         Text(
             text = heading,
-            color = Color.DarkGray
+            color = Color.DarkGray,
+            fontSize = 12.sp
         )
     }
 }

@@ -6,8 +6,12 @@ import com.penguins.educationmultiplatform.android.data.navigation.DestinationCo
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
+import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByCategoryUseCase
+import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByParamsUseCase
+import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
+import com.penguins.educationmultiplatform.android.newsScreen.headingNews.viewModel.HeadingNewsViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.viewModel.NewsListViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel.CategoryViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
@@ -38,18 +42,23 @@ val androidModule = module {
 
     //viewModels
     viewModel { YandexMapViewModel(get(), get()) }
+    viewModel { CategoryViewModel(get(), get()) }
+    viewModel { NewsListViewModel(get(), get()) }
     viewModel { ProfileScreenViewModel(get(), get()) }
-    viewModel { CategoryViewModel(get()) }
-    viewModel { NewsListViewModel(get()) }
     viewModel { NewsViewModel(get()) }
-    viewModel { SearchNewsViewModel(get()) }
+    viewModel { SearchNewsViewModel(get(), get()) }
+    viewModel { HeadingNewsViewModel(get(), get()) }
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
-    single <LocationTracker>{ DefaultLocationTracker(get(),androidContext()) }
+    single <LocationTracker> { DefaultLocationTracker(get(),androidContext()) }
 
     //useCases
     single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }
+
     single { NewsNavigation() }
+    single { GetNewsListUseCase(get()) }
+    single { GetNewsByCategoryUseCase(get()) }
+    single { GetNewsByParamsUseCase(get()) }
 }

@@ -6,9 +6,9 @@ import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScree
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenUiState
 import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.auth.UserTokens
+import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
+import com.penguins.educationmultiplatform.android.data.model.dto.auth.RegisterRequest
 import com.penguins.educationmultiplatform.android.data.model.consts.birthDateFormat
-import com.penguins.educationmultiplatform.android.data.model.dto.AuthResponse
-import com.penguins.educationmultiplatform.android.data.model.dto.RegisterRequest
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
@@ -20,8 +20,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 
 class RegisterViewModel(
     private val navigation: AppNavigation,

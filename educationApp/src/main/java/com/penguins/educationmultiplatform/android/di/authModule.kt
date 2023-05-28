@@ -5,7 +5,7 @@ import com.penguins.educationmultiplatform.android.authScreen.viewModel.Register
 import com.penguins.educationmultiplatform.android.data.validation.AppValuesValidator
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.CheckAuthStateUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.LoginWithEmailUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.auth.LoginWithVKUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.auth.LoginWithVKUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.LogoutUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.RegisterUserUseCase
 import com.penguins.educationmultiplatform.android.domain.validation.ValuesValidator
