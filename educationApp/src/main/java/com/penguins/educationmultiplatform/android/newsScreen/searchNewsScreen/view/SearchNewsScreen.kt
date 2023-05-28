@@ -11,12 +11,12 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.mapScreen.ui.clickedMapButtonColor
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.getCategory
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.bottomSheet.FilterBottomSheet
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.list.SearchingNews
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.components.toolbar.SearchNewsToolbar
@@ -33,9 +33,6 @@ fun SearchNewsScreen(
     viewModel: SearchNewsViewModel = koinViewModel()
 ) {
     viewModel.onEvent(SearchNewsEvents.SetCategory(category))
-
-    val state = viewModel.state.collectAsState()
-    val categories = state.value.categories
 
     val bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = bottomSheetState)
@@ -58,10 +55,7 @@ fun SearchNewsScreen(
             modifier = Modifier
                 .fillMaxHeight()
                 .background(
-                    brush = when {
-                        categories.isEmpty() || categories.size > 1 -> allNewsGradientBackground
-                        else -> categories.first().background
-                    }
+                    brush = getCategory(category)?.background ?: allNewsGradientBackground
                 )
                 .padding(bottom = 64.dp, top = 32.dp)
         ) {

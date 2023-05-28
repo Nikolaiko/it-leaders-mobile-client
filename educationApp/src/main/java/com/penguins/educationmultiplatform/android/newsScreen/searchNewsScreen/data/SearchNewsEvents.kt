@@ -7,12 +7,10 @@ sealed class SearchNewsEvents {
     class SetSearchingText(val text: String) : SearchNewsEvents()
     class SetSearchingNews(val news: List<News>) : SearchNewsEvents()
     class SetCategory(val category: String?) : SearchNewsEvents()
-    class SetCategories(val categories: List<Category>) : SearchNewsEvents()//???
     class CategoryChecked(val category: Category) : SearchNewsEvents()
     class AllCategoriesChecked(val isChecked: Boolean) : SearchNewsEvents()
     object ClearSearch : SearchNewsEvents()
     object BackButton : SearchNewsEvents()
     object SearchButton : SearchNewsEvents()
-    object FilterButton: SearchNewsEvents()
     class OpenNews(val news: News) : SearchNewsEvents()
 }

@@ -7,7 +7,6 @@ import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByParamsUseCase
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
-import com.penguins.educationmultiplatform.android.newsScreen.common.data.getCategory
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsEvents
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsUiState
 import com.penguins.educationmultiplatform.android.utils.constants.EMPTY_STRING
@@ -50,17 +49,16 @@ class SearchNewsViewModel(
             }
 
             is SearchNewsEvents.SetCategory -> {
-                getCategory(event.category)?.let {
-                    _state.tryEmit(
-                        _state.value.copy(
-                            categories = _state.value.categories.plus(it)
-                        )
-                    )
+                val newMap = _state.value.mapCategories.mapValues {
+                    if (event.category == it.key.title) {
+                        true
+                    } else {
+                        it.value
+                    }
                 }
-            }
-
-            is SearchNewsEvents.SetCategories -> {
-                _state.tryEmit(_state.value.copy(categories = event.categories))
+                _state.tryEmit(
+                    _state.value.copy(mapCategories = newMap)
+                )
             }
 
             is SearchNewsEvents.CategoryChecked -> {
@@ -80,8 +78,6 @@ class SearchNewsViewModel(
                 val newMap = _state.value.mapCategories.mapValues { event.isChecked }
                 _state.tryEmit(_state.value.copy(mapCategories = newMap))
             }
-
-            is SearchNewsEvents.FilterButton -> Unit//open BottomSheet
 
             is SearchNewsEvents.BackButton -> navigation.back()
 
