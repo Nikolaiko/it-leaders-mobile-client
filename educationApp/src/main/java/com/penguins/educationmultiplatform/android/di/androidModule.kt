@@ -44,7 +44,7 @@ val androidModule = module {
     viewModel { CategoryViewModel(get(), get()) }
     viewModel { NewsListViewModel(get(), get()) }
     viewModel { NewsViewModel(get()) }
-    viewModel { SearchNewsViewModel(get()) }
+    viewModel { SearchNewsViewModel(get(), get()) }
     viewModel { HeadingNewsViewModel(get(), get()) }
 
     //location
