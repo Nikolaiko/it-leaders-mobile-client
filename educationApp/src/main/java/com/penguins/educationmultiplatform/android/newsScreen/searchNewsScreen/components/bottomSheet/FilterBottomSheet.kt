@@ -4,23 +4,34 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.penguins.educationmultiplatform.android.mapScreen.components.StreetCheckBox
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
+import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.data.SearchNewsEvents
+import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun FilterBottomSheet() {
+fun FilterBottomSheet(
+    viewModel: SearchNewsViewModel = koinViewModel()
+) {
+    val state = viewModel.state.collectAsState()
+
     Column (
         modifier = Modifier
             .padding(horizontal = 24.dp, vertical = 16.dp)
     ) {
         TitleBottomSheet()
         FiltersCheckboxBottomSheet(
+            categories = state.value.mapCategories,
             onAllCategoriesChecked = {},
-            onCategoryChecked = {}
+            onCategoryChecked = { category ->
+                viewModel.onEvent(SearchNewsEvents.CategoryChecked(category))
+            }
         )
     }
 }
@@ -36,6 +47,7 @@ fun TitleBottomSheet() {
 
 @Composable
 fun FiltersCheckboxBottomSheet(
+    categories: Map<Category, Boolean>,
     onAllCategoriesChecked: () -> Unit,
     onCategoryChecked: (Category) -> Unit
 ) {
@@ -43,13 +55,13 @@ fun FiltersCheckboxBottomSheet(
         modifier = Modifier
             .padding(top = 16.dp, bottom = 64.dp)
     ) {
-        StreetCheckBox(street = "Все", selected = false) {
+        StreetCheckBox(street = "Все", selected = categories.values.all { it }) {
             onAllCategoriesChecked()
         }
 
-        Category.values().forEach {
-            StreetCheckBox(street = it.title, selected = false) {
-                onCategoryChecked(it)
+        categories.forEach {
+            StreetCheckBox(street = it.key.title, selected = it.value) {
+                onCategoryChecked(it.key)
             }
         }
     }

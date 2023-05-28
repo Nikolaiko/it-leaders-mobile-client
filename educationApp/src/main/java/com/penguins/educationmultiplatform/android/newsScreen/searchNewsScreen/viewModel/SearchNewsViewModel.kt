@@ -59,6 +59,27 @@ class SearchNewsViewModel(
                 }
             }
 
+            is SearchNewsEvents.SetCategories -> {
+                _state.tryEmit(_state.value.copy(categories = event.categories))
+            }
+
+            is SearchNewsEvents.CategoryChecked -> {
+                val newMap = _state.value.mapCategories.mapValues {
+                    if (it.key == event.category) {
+                        !it.value
+                    } else {
+                        it.value
+                    }
+                }
+                _state.tryEmit(
+                    _state.value.copy(mapCategories = newMap)
+                )
+            }
+
+            is SearchNewsEvents.AllCategoriesChecked -> {
+//                _state.tryEmit(_state.value.copy(mapCategories = ))
+            }
+
             is SearchNewsEvents.FilterButton -> Unit//open BottomSheet
 
             is SearchNewsEvents.BackButton -> navigation.back()
