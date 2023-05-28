@@ -8,4 +8,6 @@ interface LocalUserDataRepository {
 
     fun getTokens(): UserTokens?
     fun setTokens(tokens: UserTokens)
+
+    fun logoutUser()
 }

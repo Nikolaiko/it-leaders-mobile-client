@@ -63,6 +63,28 @@ class EducationRepositoryImpl(private val client: HttpClient) : EducationReposit
         }
     }
 
+    override suspend fun registerUserVK(registerData: RegisterRequest): ActionResult<AuthResponse, AppError> {
+        return try {
+            val response = client.post<AuthResponse> {
+                url(HttpRoutes.REGISTERVK)
+                contentType(ContentType.Application.Json)
+                body = registerData
+            }
+            ActionResult.Success<AuthResponse>(response)
+        } catch (e: RedirectResponseException) {
+            ActionResult.Fail(AppError.UnknownResponse)
+        } catch (e: ClientRequestException) {
+            when(e.response.status) {
+                HttpStatusCode.Conflict -> ActionResult.Fail(AppError.UserAlreadyExist)
+                else -> ActionResult.Fail(AppError.UnknownResponse)
+            }
+        } catch (e: ServerResponseException) {
+            processInternalError(e.response)
+        } catch (e: Exception) {
+            ActionResult.Fail(AppError.UnknownResponse)
+        }
+    }
+
     private fun processInternalError(response: HttpResponse): ActionResult<AuthResponse, AppError> {
         return when(response.status) {
             HttpStatusCode.InternalServerError -> ActionResult.Fail(AppError.InternalServerError)

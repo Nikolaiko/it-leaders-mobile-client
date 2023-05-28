@@ -1,9 +1,11 @@
 package com.penguins.educationmultiplatform.android.authScreen.view
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -13,12 +15,16 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +46,7 @@ import com.canhub.cropper.CropImageView
 import com.penguins.educationmultiplatform.android.authScreen.components.EducationButton
 import com.penguins.educationmultiplatform.android.authScreen.components.FormField
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
+import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenUiState
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
 import com.penguins.educationmultiplatform.android.data.model.consts.errorEffect
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
@@ -58,34 +65,10 @@ import java.util.*
 fun RegisterScreen(
     viewModel: RegisterViewModel = koinViewModel()
 ){
-
-    val scope = rememberCoroutineScope()
-    val launcher = rememberLauncherForActivityResult(
-        contract = VK.getVKAuthActivityResultContract(),
-        onResult = { result: VKAuthenticationResult ->
-            when (result) {
-                is VKAuthenticationResult.Success -> {
-                    scope.launch(context = Dispatchers.IO) {
-                        val obj = VK.executeSync(VKUsersCommand())
-                        viewModel.onEvent(RegisterScreenEvents.SetPhotoUri(obj.first?.toUri()))
-                        obj.second?.let {
-                            viewModel.onEvent(RegisterScreenEvents.SetNameField(it))
-                        }
-                        obj.third?.let {
-                            viewModel.onEvent(RegisterScreenEvents.SetAgeField(it.toInt()))
-                        }
-                    }
-                }
-                is VKAuthenticationResult.Failed -> {
-                    Log.e("TAG", ":${result.exception.authError} ")
-                }
-            }
-        })
-
 //    val screenIsBusy = uiState.screenBusy.observeAsState(false)
     val state = viewModel.state.collectAsState()
 
-    val context = LocalContext.current.applicationContext
+    val context = LocalContext.current
     val cropImage = rememberLauncherForActivityResult(contract = CropImageContract()) { result ->
         when (result.isSuccessful) {
             true -> {
@@ -115,13 +98,6 @@ fun RegisterScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
-//        ChangeProfilePhoto(
-//            isPhotoBusy = false,
-//            photoUri = state.value.photoUri,
-//            context,
-//            cropImage
-//        )
         FormField(
             text = state.value.email,
             placeHolder = "Email",
@@ -159,17 +135,7 @@ fun RegisterScreen(
             }
         )
         Spacer(modifier = Modifier.height(20.dp))
-        FormField(
-            text = state.value.age?.toString() ?: "",
-            keyBoardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Done
-            ),
-            placeHolder = "Возраст",
-            valueCallback = {
-                viewModel.onEvent(RegisterScreenEvents.SetAgeField(it.toInt()))
-            }
-        )
+        ShowDatePicker(context = context, viewModel, state.value)
         Spacer(modifier = Modifier.height(20.dp))
         EducationButton(
             modifier = Modifier
@@ -187,6 +153,46 @@ fun RegisterScreen(
                 .padding(horizontal = 24.dp), text = "Войти позже"
         ) {
             viewModel.onEvent(RegisterScreenEvents.AuthLater)
+        }
+    }
+}
+
+@Composable
+fun ShowDatePicker(context: Context, viewModel: RegisterViewModel, state: RegisterScreenUiState) {
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    calendar.time = Date()
+
+    val datePickerDialog = DatePickerDialog(
+        context,
+        { _: DatePicker, selectedYear: Int, selectedMonth: Int, dayOfMonth: Int ->
+            val resultCalendar = Calendar.getInstance()
+            resultCalendar.set(Calendar.YEAR, selectedYear)
+            resultCalendar.set(Calendar.MONTH, selectedMonth)
+            resultCalendar.set(Calendar.DATE, dayOfMonth)
+            viewModel.onEvent(
+                RegisterScreenEvents.SetBirthField(resultCalendar.time)
+            )
+        }, year, month, day
+    )
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        if (state.age.isNotEmpty()) {
+            Text(text = "Дата рождения: ${ state.age }")
+        }
+        Spacer(modifier = Modifier.size(16.dp))
+        EducationButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp), text = "Дата рождения"
+        ) {
+            datePickerDialog.show()
         }
     }
 }

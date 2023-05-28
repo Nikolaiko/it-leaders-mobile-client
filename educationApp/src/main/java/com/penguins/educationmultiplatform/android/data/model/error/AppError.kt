@@ -6,5 +6,5 @@ sealed class AppError {
     object UserNotFound: AppError()
     object InternalServerError: AppError()
     object UnknownResponse: AppError()
-
+    object VKLoginFailed: AppError()
 }
