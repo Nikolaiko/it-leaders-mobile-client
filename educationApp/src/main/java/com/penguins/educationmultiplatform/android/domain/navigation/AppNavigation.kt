@@ -9,4 +9,5 @@ interface AppNavigation {
     fun navigateTo(route: String, options:NavOptions? = null)
     fun navigateTo(destination:AppScreens)
     fun popBackStack()
+    fun popBackStack(route: String, inclusive: Boolean = false, saveState: Boolean = false)
 }

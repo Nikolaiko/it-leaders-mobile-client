@@ -2,8 +2,10 @@ package com.penguins.educationmultiplatform.android.authScreen.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.penguins.educationmultiplatform.android.authScreen.data.AuthDisplayMode
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenUiState
+import com.penguins.educationmultiplatform.android.authScreen.data.AuthUpdatedBus
 import com.penguins.educationmultiplatform.android.authScreen.data.UserTokens
 import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthRequest
@@ -16,6 +18,7 @@ import com.penguins.educationmultiplatform.android.domain.useCases.auth.LoginWit
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.LoginWithEmailUseCase
 import com.penguins.educationmultiplatform.android.domain.validation.ValuesValidator
 import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
+import com.penguins.educationmultiplatform.android.navigation.routeObject.mainScreenRoute
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -24,6 +27,7 @@ import kotlinx.coroutines.launch
 
 class AuthViewModel(
     private val navigation: AppNavigation,
+    private val authUpdatedBus: AuthUpdatedBus,
     private val localStorage: LocalUserDataRepository,
     private val loginWithEmailUseCase: LoginWithEmailUseCase,
     private val loginWithVKUseCase: LoginWithVKUseCase,
@@ -35,6 +39,12 @@ class AuthViewModel(
 
     private val _errorState = MutableSharedFlow<AppError>(replay = 2)
     val errorState = _errorState.asSharedFlow()
+
+    private var authMode = AuthDisplayMode.independent
+
+    fun setAuthMode(newValue: AuthDisplayMode) {
+        authMode = newValue
+    }
 
     fun onEvent(event: AuthScreenEvents){
         when(event) {
@@ -50,10 +60,7 @@ class AuthViewModel(
             is AuthScreenEvents.SetPassword -> {
                 _state.tryEmit(_state.value.copy(password = event.text))
             }
-            is AuthScreenEvents.AuthLater -> {
-                localStorage.setSkippedAuthorization(true)
-                navigation.navigateTo(AppScreens.MainAppScreen)
-            }
+            is AuthScreenEvents.AuthLater -> authLater()
         }
     }
 
@@ -85,6 +92,17 @@ class AuthViewModel(
 
     private fun saveTokens(auth: AuthResponse) {
         localStorage.setTokens(UserTokens(accessToken = auth.accessToken))
-        navigation.navigateTo(AppScreens.MainAppScreen)
+        when(authMode) {
+            AuthDisplayMode.independent -> navigation.navigateTo(AppScreens.MainAppScreen)
+            AuthDisplayMode.asChild -> navigation.popBackStack(route = mainScreenRoute)
+        }
+    }
+
+    private fun authLater() {
+        localStorage.setSkippedAuthorization(true)
+        when(authMode) {
+            AuthDisplayMode.independent -> navigation.navigateTo(AppScreens.MainAppScreen)
+            AuthDisplayMode.asChild -> navigation.popBackStack(route = mainScreenRoute)
+        }
     }
 }

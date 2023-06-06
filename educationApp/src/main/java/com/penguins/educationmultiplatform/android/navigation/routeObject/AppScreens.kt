@@ -1,7 +1,9 @@
 package com.penguins.educationmultiplatform.android.navigation.routeObject
 
 import androidx.navigation.NavOptions
+import com.penguins.educationmultiplatform.android.authScreen.data.AuthDisplayMode
 
+const val authDisplayModeParameterName = "authDisplayMode"
 
 const val mainScreenRoute = "mainScreen"
 
@@ -10,6 +12,8 @@ const val popRouteName = "popRoute"
 const val loggedUserGraph = "loggedGraph"
 
 const val nonLoggedUserGraph = "nonLoggedUserGraph"
+val nonLoggedIndependentUserGraph = "$nonLoggedUserGraph/${AuthDisplayMode.independent.name}"
+val nonLoggedAsChildUserGraph = "$nonLoggedUserGraph/${AuthDisplayMode.asChild.name}"
 
 const val authSignUpRoute = "authScreen"
 
