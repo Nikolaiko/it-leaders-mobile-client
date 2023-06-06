@@ -55,7 +55,7 @@ fun SearchNewsScreen(
             modifier = Modifier
                 .fillMaxHeight()
                 .background(
-                    brush = getCategory(category)?.background ?: allNewsGradientBackground
+                    brush = getCategory(category)?.gradientBackground ?: allNewsGradientBackground
                 )
                 .padding(bottom = 64.dp, top = 32.dp)
         ) {
