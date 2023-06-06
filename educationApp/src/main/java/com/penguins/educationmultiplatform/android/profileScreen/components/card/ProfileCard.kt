@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.lazy.staggeredgrid.LazyHorizontalStaggeredGrid
@@ -22,11 +23,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.profileScreen.components.mapper.toChipsText
+import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
+import com.penguins.educationmultiplatform.android.ui.heading2TextStyle
 import com.penguins.educationmultiplatform.android.ui.images.UserImage
+import com.penguins.educationmultiplatform.android.ui.linksBoldTextStyle
 
 @Composable
 fun ProfileCard() {
@@ -40,14 +45,19 @@ fun ProfileCard() {
                 .height(IntrinsicSize.Min),
         ) {
             UserInfo(modifier = Modifier.weight(1f))
-            UserImage()
+            UserImage(modifier = Modifier.size(96.dp))
         }
         ProfileChips()
     }
 }
 
 @Composable
-fun UserInfo(modifier: Modifier) {
+fun UserInfo(
+    modifier: Modifier,
+    fullName: String = "Владимир Кузнецов",
+    age: String = "22 года",
+    score: String = "165 баллов"
+) {
     Box(
         modifier = modifier
     ) {
@@ -58,15 +68,25 @@ fun UserInfo(modifier: Modifier) {
             Column(
                 modifier = Modifier.wrapContentSize()
             ) {
-                Text(text = "Владимир Кузнецов")
-                Text(text = "22 года")
+                Text(
+                    text = fullName,
+                    style = heading2TextStyle
+                )
+                Text(
+                    text = age,
+                    style = body1RegularTextStyle
+                )
             }
         }
         Box(
             modifier = Modifier.fillMaxHeight(),
             contentAlignment = Alignment.BottomStart
         ) {
-            Text(text = "165 баллов")
+            Text(
+                modifier = Modifier,
+                text = score,
+                style = heading2TextStyle
+            )
         }
     }
 }
@@ -100,7 +120,9 @@ fun ProfileChips(
                 ) {
                     Text(
                         text = it.toChipsText(),
-                        maxLines = 1
+                        maxLines = 1,
+                        style = linksBoldTextStyle,
+                        color = Color.White
                     )
                 }
             }

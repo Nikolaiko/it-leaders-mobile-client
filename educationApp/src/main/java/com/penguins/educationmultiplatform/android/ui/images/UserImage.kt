@@ -20,7 +20,7 @@ fun UserImage(
     imageUrl: String? = null
 ) {
     Card(
-        modifier = modifier.size(72.dp),
+        modifier = modifier,
         shape = CircleShape
     ) {
         Image(

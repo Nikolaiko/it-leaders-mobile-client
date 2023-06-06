@@ -225,7 +225,7 @@ fun VideoItemScreen(
                                     verticalAlignment = Alignment.CenterVertically,
                                     horizontalArrangement = Arrangement.Center
                                 ) {
-                                    UserImage()
+                                    UserImage(modifier = Modifier.size(72.dp))
 
                                     Spacer(modifier = Modifier.width(12.dp))
 

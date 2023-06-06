@@ -82,6 +82,14 @@ val headingTextStyle = TextStyle(
     fontFamily = calibri
 )
 
+val heading2TextStyle = TextStyle(
+    fontSize = 20.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)
+
 val linksBoldTextStyle = TextStyle(
     fontSize = 16.sp,
     fontWeight = FontWeight.W700,
