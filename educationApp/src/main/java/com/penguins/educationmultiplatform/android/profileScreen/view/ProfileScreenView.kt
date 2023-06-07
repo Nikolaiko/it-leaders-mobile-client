@@ -16,10 +16,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.authScreen.components.EducationButton
 import com.penguins.educationmultiplatform.android.profileScreen.components.card.ProfileCard
+import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.ProfileTabs
 import com.penguins.educationmultiplatform.android.profileScreen.components.toolbar.ProfileToolbar
 import com.penguins.educationmultiplatform.android.profileScreen.subViews.UserNameAgeView
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileScreenViewModel
+import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
 import com.penguins.educationmultiplatform.android.ui.danceVerticalGradientBackground
+import com.penguins.educationmultiplatform.android.ui.primary600
+import com.penguins.educationmultiplatform.android.ui.primary700
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -34,32 +38,6 @@ fun ProfileScreenView() {
         ProfileCard()
         ProfileTabs()
     }
-}
-
-@Composable
-fun ProfileTabs() {
-    TabRow(
-        modifier = Modifier
-            .padding(top = 36.dp),
-        selectedTabIndex = 0,
-        backgroundColor = Color.Transparent
-    ) {
-        Tab(selected = true, onClick = { /*TODO*/ }) {
-            Text(
-                modifier = Modifier.padding(bottom = 4.dp),
-                text = "Мои курсы"
-            )
-        }
-        Tab(selected = false, onClick = { /*TODO*/ }) {
-            Text(text = "Рейтинг")
-        }
-    }
-    ProfileTabsScreen()
-}
-
-@Composable
-fun ProfileTabsScreen() {
-
 }
 
 @Composable
