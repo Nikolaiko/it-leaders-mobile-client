@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.profileScreen.components.tabs
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -17,7 +18,7 @@ fun ProfileTabs(
 ) {
     TabRow(
         modifier = Modifier
-            .padding(top = 36.dp),
+            .padding(top = 32.dp),
         selectedTabIndex = selectedTabIndex,
         backgroundColor = Color.Transparent
     ) {
@@ -37,7 +38,7 @@ fun ProfileTabs(
 @Composable
 fun TabTitle(text: String) {
     Text(
-        modifier = Modifier.padding(bottom = 4.dp),
+        modifier = Modifier.padding(bottom = 8.dp),
         text = text,
         style = body1RegularTextStyle,
         color = primary700
@@ -46,8 +47,14 @@ fun TabTitle(text: String) {
 
 @Composable
 fun ProfileTabsScreen(selectedTabIndex: Int) {
-    when (selectedTabIndex) {
-        0 -> MyCourses()
-        1 -> Rating()
+    Box(
+        modifier = Modifier
+            .padding(top = 24.dp)
+            .padding(horizontal = 16.dp)
+    ) {
+        when (selectedTabIndex) {
+            0 -> MyCourses()
+            else -> Rating()
+        }
     }
 }

@@ -39,6 +39,7 @@ fun ProfileCard() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
+            .padding(top = 32.dp)
     ) {
         Row(
             modifier = Modifier
