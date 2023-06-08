@@ -26,6 +26,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel.CategoryViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
+import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.viewModel.ProfileTabsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileScreenViewModel
 import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCaseViewModel
 import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCategoriesViewModel
@@ -66,6 +67,7 @@ val androidModule = module {
     viewModel { TestCaseViewModel(get(), get()) }
     viewModel { HeadingNewsViewModel(get(), get()) }
     viewModel { CoursesViewModel(get()) }
+    viewModel { ProfileTabsViewModel() }
 
 
     single { SharedViewModel() }

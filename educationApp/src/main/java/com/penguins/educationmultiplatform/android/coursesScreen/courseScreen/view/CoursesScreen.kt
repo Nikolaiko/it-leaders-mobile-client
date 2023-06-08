@@ -29,8 +29,6 @@ import org.koin.androidx.compose.koinViewModel
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CoursesScreen(viewModel: CoursesViewModel = koinViewModel(), navController: NavHostController) {
-
-
     val state = viewModel.state.collectAsState()
 
     val sheetFilterState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
