@@ -90,6 +90,22 @@ val heading2TextStyle = TextStyle(
     fontFamily = calibri
 )
 
+val heading1BoldTextStyle = TextStyle(
+    fontSize = 32.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)
+
+val heading3BoldTextStyle = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)
+
 val linksBoldTextStyle = TextStyle(
     fontSize = 16.sp,
     fontWeight = FontWeight.W700,
@@ -111,13 +127,5 @@ val body2RegularTextStyle = TextStyle(
     fontWeight = FontWeight.W400,
     fontStyle = FontStyle.Normal,
     color = neutral700,
-    fontFamily = calibri
-)
-
-val heading1BoldTextStyle = TextStyle(
-    fontSize = 32.sp,
-    fontWeight = FontWeight.W700,
-    fontStyle = FontStyle.Normal,
-    color = neutral900,
     fontFamily = calibri
 )

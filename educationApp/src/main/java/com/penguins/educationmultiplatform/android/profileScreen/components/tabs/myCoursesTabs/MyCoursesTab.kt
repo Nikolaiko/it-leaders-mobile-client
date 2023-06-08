@@ -1,8 +1,9 @@
-package com.penguins.educationmultiplatform.android.profileScreen.components.tabs
+package com.penguins.educationmultiplatform.android.profileScreen.components.tabs.myCoursesTabs
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,7 +19,12 @@ fun MyCourses(viewModel: CoursesViewModel = koinViewModel()) {
     val state = viewModel.state.collectAsState()
     val courses = state.value.courses
 
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 24.dp)
+            .padding(horizontal = 16.dp)
+    ) {
         items(courses.size) {
             courses[it].apply {
                 VideoCourseItem(
