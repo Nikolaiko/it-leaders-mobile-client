@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs
+package com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -35,12 +35,11 @@ fun ProfileTabs(viewModel: ProfileTabsViewModel = koinViewModel()) {
            isSelected = state.value.selectedTab == MY_COURSES,
            onClick = { viewModel.onEvent(ProfileTabsEvents.ClickTab(MY_COURSES)) }
        )
-        Tab(
-            selected = state.value.selectedTab == FRIENDS,
+        ProfileTab(
+            title = FRIENDS.title,
+            isSelected = state.value.selectedTab == FRIENDS,
             onClick = { viewModel.onEvent(ProfileTabsEvents.ClickTab(FRIENDS)) }
-        ) {
-            TabTitle(text = FRIENDS.title)
-        }
+        )
     }
     ProfileTabsScreen(state.value.selectedTab.code)
 }
