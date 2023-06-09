@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.profileScreen.components.chips.ProfileChips
+import com.penguins.educationmultiplatform.android.profileScreen.data.model.ProfileEvent
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileViewModel
 import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
 import com.penguins.educationmultiplatform.android.ui.heading2TextStyle
@@ -49,7 +50,10 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
                 imageUrl = state.value.imageUrl
             )
         }
-        ProfileChips(categories = state.value.selectedCategories)
+        ProfileChips(
+            categories = state.value.selectedCategories,
+            onClick = { viewModel.onEvent(ProfileEvent.ClickCategory(it)) }
+        )
     }
 }
 
@@ -96,5 +100,5 @@ fun UserInfo(
 @Preview(showBackground = true, widthDp = 320, heightDp = 640, backgroundColor = 0xffffff)
 @Composable
 fun ProfilePreview() {
-    ProfileChips()
+    ProfileCard()
 }

@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.mapScreen.ui.dancingSchoolColor
-import com.penguins.educationmultiplatform.android.profileScreen.data.User
+import com.penguins.educationmultiplatform.android.profileScreen.data.model.User
 import com.penguins.educationmultiplatform.android.profileScreen.data.debug.getRatingUsers
 import com.penguins.educationmultiplatform.android.ui.body2RegularTextStyle
 import com.penguins.educationmultiplatform.android.ui.heading3BoldTextStyle

@@ -1,6 +1,6 @@
 package com.penguins.educationmultiplatform.android.profileScreen.data.debug
 
-import com.penguins.educationmultiplatform.android.profileScreen.data.User
+import com.penguins.educationmultiplatform.android.profileScreen.data.model.User
 
 fun getRatingUsers() = listOf(
     User(

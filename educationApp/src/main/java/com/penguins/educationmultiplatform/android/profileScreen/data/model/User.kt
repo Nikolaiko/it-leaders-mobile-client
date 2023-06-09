@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.profileScreen.data
+package com.penguins.educationmultiplatform.android.profileScreen.data.model
 
 data class User(
     val fullName: String? = null,

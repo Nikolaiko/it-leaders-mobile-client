@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.profileScreen.data
+package com.penguins.educationmultiplatform.android.profileScreen.data.model
 
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 
