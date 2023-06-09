@@ -22,6 +22,7 @@ import com.penguins.educationmultiplatform.android.profileScreen.data.model.Prof
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileViewModel
 import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
 import com.penguins.educationmultiplatform.android.ui.heading2TextStyle
+import com.penguins.educationmultiplatform.android.ui.images.ProfileUserImage
 import com.penguins.educationmultiplatform.android.ui.images.UserImage
 import org.koin.androidx.compose.koinViewModel
 
@@ -45,7 +46,7 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
                 age = state.value.age,
                 score = state.value.rating
             )
-            UserImage(
+            ProfileUserImage(
                 modifier = Modifier.size(96.dp),
                 imageUrl = state.value.imageUrl
             )
