@@ -5,6 +5,7 @@ import com.penguins.educationmultiplatform.android.data.model.consts.HttpRoutes
 import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthRequest
 import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
 import com.penguins.educationmultiplatform.android.data.model.dto.auth.RegisterRequest
+import com.penguins.educationmultiplatform.android.data.model.dto.profile.InterestCategoriesList
 import com.penguins.educationmultiplatform.android.data.model.dto.profile.LocalUserData
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
@@ -87,6 +88,33 @@ class EducationRepositoryImpl(private val client: HttpClient) : EducationReposit
                 url(HttpRoutes.GET_USER_DATA)
                 contentType(ContentType.Application.Json)
                 header(HttpRoutes.authHeaderName, "Bearer $token")
+            }
+            ActionResult.Success<LocalUserData>(response)
+        } catch (e: RedirectResponseException) {
+            ActionResult.Fail(AppError.UnknownResponse)
+        } catch (e: ClientRequestException) {
+            when(e.response.status) {
+                HttpStatusCode.NotFound -> ActionResult.Fail(AppError.UserNotFound)
+                HttpStatusCode.UnprocessableEntity -> ActionResult.Fail(AppError.WrongToken)
+                else -> ActionResult.Fail(AppError.UnknownResponse)
+            }
+        } catch (e: ServerResponseException) {
+            processInternalError(e.response)
+        } catch (e: Exception) {
+            ActionResult.Fail(AppError.UnknownResponse)
+        }
+    }
+
+    override suspend fun updateUserInterests(
+        token: String,
+        interests: InterestCategoriesList
+    ): ActionResult<LocalUserData, AppError> {
+        return try {
+            val response = client.post<LocalUserData> {
+                url(HttpRoutes.UPDATE_USER_INTERESTS)
+                contentType(ContentType.Application.Json)
+                header(HttpRoutes.authHeaderName, "Bearer $token")
+                body = interests
             }
             ActionResult.Success<LocalUserData>(response)
         } catch (e: RedirectResponseException) {

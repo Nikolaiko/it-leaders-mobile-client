@@ -10,5 +10,5 @@ data class LocalUserData(
     val name: String,
     val birthDate: String?,
     val avatarUrl: String?,
-    val interests: List<Category>
+    val interests: List<InterestCategory>
 )

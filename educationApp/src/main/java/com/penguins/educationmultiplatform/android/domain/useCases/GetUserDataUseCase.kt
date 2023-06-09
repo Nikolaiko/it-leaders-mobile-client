@@ -11,6 +11,13 @@ class GetUserDataUseCase constructor(
     private val networkLayer: EducationRepository
 ) {
     suspend fun invoke(): ActionResult<LocalUserData, AppError> {
+        return when (val savedUserData = localUserDataRepository.getUserData()) {
+            null -> loadUserDataFromServer()
+            else -> ActionResult.Success(savedUserData)
+        }
+    }
+
+    private suspend fun loadUserDataFromServer(): ActionResult<LocalUserData, AppError> {
         return when(val tokens = localUserDataRepository.getTokens()) {
             null -> ActionResult.Fail(AppError.UnauthorizedAccess)
             else -> networkLayer.getUserData(tokens.accessToken)

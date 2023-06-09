@@ -13,7 +13,10 @@ val primary700 = Color(0xFF778567)
 val primary600 = Color(0xFF81AE7B)
 val primary500 = Color(0xFF9AAE4F)
 
+val secondary200 = Color(0xFFD9D9D9)
 val secondary400 = Color(0xFF8E74A8)
+
+val gradientBlue = Color(0xFFAED7F1)
 
 val primaryBlue = Color(0xFF0076DE)
 val lightBlue = Color(0xFFB9D9FF)
@@ -30,21 +33,27 @@ val gradientSplashScreen = Brush.verticalGradient(
     0.0f to primaryBlue,
     0.5f to lightBlue
 )
+
+val gradientTestCategoriesScreen = Brush.verticalGradient(
+    0.0f to gradientBlue,
+    0.5f to neutral0
+)
+
 val gradientBackground = Brush.linearGradient(
     0.0f to Color(0xFFB4C95E),
     0.5f to Color(0xFFFFFFFF)
 )
 
-val allNewsBackgroundColor = Color(0xFFAED7F1)
+val allNewsBackgroundColor = gradientBlue
 val gradientCoursesBackground = Brush.verticalGradient(
-    0.0f to Color(0xFFAED7F1),
+    0.0f to gradientBlue,
     0.13f to Color(0xFFFFFFFF)
 )
 
 val artBackgroundColor = Color(0xFFBA768F)
 val danceBackgroundColor = Color(0xFF81AE7B)
 val musicBackgroundColor = Color(0xFFB4C95E)
-val theatreBackgroundColor = Color(0xFF8E74A8)
+val theatreBackgroundColor = secondary400
 
 val allNewsGradientBackground = Brush.linearGradient(
     0.0f to allNewsBackgroundColor,

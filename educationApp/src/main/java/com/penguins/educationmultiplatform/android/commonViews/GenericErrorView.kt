@@ -13,7 +13,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.penguins.educationmultiplatform.android.MyApplicationTheme
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.authScreen.components.EducationButton
 import com.penguins.educationmultiplatform.android.data.model.VoidCallback
 import com.penguins.educationmultiplatform.android.ui.neutral0
 import com.penguins.educationmultiplatform.android.ui.neutral900Size32Weight700Style
