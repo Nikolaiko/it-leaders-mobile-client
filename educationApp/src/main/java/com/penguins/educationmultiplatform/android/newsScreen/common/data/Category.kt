@@ -1,29 +1,39 @@
 package com.penguins.educationmultiplatform.android.newsScreen.common.data
 
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import com.penguins.educationmultiplatform.android.ui.artBackgroundColor
 import com.penguins.educationmultiplatform.android.ui.artGradientBackground
+import com.penguins.educationmultiplatform.android.ui.danceBackgroundColor
 import com.penguins.educationmultiplatform.android.ui.danceGradientBackground
+import com.penguins.educationmultiplatform.android.ui.musicBackgroundColor
 import com.penguins.educationmultiplatform.android.ui.musicGradientBackground
+import com.penguins.educationmultiplatform.android.ui.theatreBackgroundColor
 import com.penguins.educationmultiplatform.android.ui.theatreGradientBackground
 
 enum class Category(
     val title: String,
-    val background: Brush
+    val gradientBackground: Brush,
+    val color: Color
 ) {
     ART(
         title = "Художественная школа",
-        background = artGradientBackground
+        gradientBackground = artGradientBackground,
+        color = artBackgroundColor
     ),
     DANCE(
         title = "Танцевальная школа",
-        background = danceGradientBackground
+        gradientBackground = danceGradientBackground,
+        color = danceBackgroundColor
     ),
     MUSIC(
         title = "Музыкальная школа",
-        background = musicGradientBackground
+        gradientBackground = musicGradientBackground,
+        color = musicBackgroundColor
     ),
     THEATRE(
         title = "Театральная школа",
-        background = theatreGradientBackground
+        gradientBackground = theatreGradientBackground,
+        color = theatreBackgroundColor
     )
 }

@@ -1,9 +1,7 @@
 package com.penguins.educationmultiplatform.android.domain.useCases
 
-import com.google.firebase.storage.FirebaseStorage
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.data.model.VideoCourse
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.data.model.VideoLesson
-import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.viewModel.FIREBASE_STORAGE
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

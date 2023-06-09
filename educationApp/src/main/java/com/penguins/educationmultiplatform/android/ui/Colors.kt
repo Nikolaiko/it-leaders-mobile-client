@@ -9,7 +9,7 @@ val neutral700 = Color(0xFF7C7C7B)
 val neutral400 = Color(0xFFEDEDED)
 val neutral0 = Color(0xFFFFFFFF)
 
-
+val primary700 = Color(0xFF778567)
 val primary600 = Color(0xFF81AE7B)
 val primary500 = Color(0xFF9AAE4F)
 

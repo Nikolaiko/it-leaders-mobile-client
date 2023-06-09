@@ -4,8 +4,6 @@ import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.media3.common.MediaItem
-import androidx.media3.common.Player
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.data.CoursesUiEvents
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.data.CoursesUiState
 import com.penguins.educationmultiplatform.android.domain.useCases.GetVideoCoursesUseCase

@@ -37,7 +37,7 @@ fun HeadingNewsScreen(
 
     Column(
         modifier = Modifier
-            .background(brush = category?.background ?: gradientBackground)
+            .background(brush = category?.gradientBackground ?: gradientBackground)
             .fillMaxHeight()
             .statusBarsPadding()
     ) {

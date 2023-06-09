@@ -1,10 +1,8 @@
 package com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.view
 
-import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -31,6 +29,7 @@ import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.vi
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
 import com.penguins.educationmultiplatform.android.mapScreen.ui.fontCardColor
 import com.penguins.educationmultiplatform.android.ui.*
+import com.penguins.educationmultiplatform.android.ui.images.UserImage
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -73,7 +72,8 @@ fun VideoItemScreen(
                         if (index == 0)
                             Spacer(modifier = Modifier.width(16.dp))
                         Card(
-                            modifier = Modifier.size(height = 72.dp, width = 72.dp)
+                            modifier = Modifier
+                                .size(height = 72.dp, width = 72.dp)
                                 .clickable { viewModel.selectVideoLesson(videoLesson.id) },
                             shape = RoundedCornerShape(8.dp)
                         ) {
@@ -225,21 +225,7 @@ fun VideoItemScreen(
                                     verticalAlignment = Alignment.CenterVertically,
                                     horizontalArrangement = Arrangement.Center
                                 ) {
-                                    Card(
-                                        modifier = Modifier.size(72.dp),
-                                        shape = CircleShape
-                                    ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.photo_teacher),
-                                            modifier = Modifier
-                                                .background(
-                                                    color = primaryGray,
-                                                    shape = RoundedCornerShape(8.dp)
-                                                ),
-                                            contentDescription = null,
-                                            contentScale = ContentScale.Crop
-                                        )
-                                    }
+                                    UserImage(modifier = Modifier.size(72.dp))
 
                                     Spacer(modifier = Modifier.width(12.dp))
 
