@@ -26,8 +26,7 @@ class ProfileViewModel(
             _state.value.copy(
                 userName = "Владимир Кузнецов",
                 age = "22 года",
-                rating = "165 баллов",
-                selectedCategories = Category.values().toList()
+                rating = "165 баллов"
             )
         )
     }
@@ -40,19 +39,16 @@ class ProfileViewModel(
     }
 
     private fun clickCategory(category: Category) {
-        val list = mutableListOf<Category>()
-        var isSelect = true
-        _state.value.selectedCategories.forEach { item ->
-            when (category != item) {
-                true -> list.add(item)
-                false -> isSelect = false
+        val map = mutableMapOf<Category, Boolean>()
+        _state.value.categories.forEach { (currentCategory, isSelected) ->
+            when (currentCategory == category) {
+                true -> map[category] = !isSelected
+                false -> map[category] = isSelected
             }
         }
-        if (isSelect) {
-            list.add(category)
-        }
+
         _state.tryEmit(
-            _state.value.copy(selectedCategories = list)
+            _state.value.copy(categories = map)
         )
     }
 

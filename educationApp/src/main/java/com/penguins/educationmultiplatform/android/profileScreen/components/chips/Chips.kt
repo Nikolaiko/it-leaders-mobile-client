@@ -20,11 +20,12 @@ import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.profileScreen.components.mapper.toChipsText
 import com.penguins.educationmultiplatform.android.ui.linksBoldTextStyle
+import com.penguins.educationmultiplatform.android.ui.textGrayColor
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ProfileChips(
-    categories: List<Category>,
+    categories: Map<Category, Boolean>,
     onClick: (Category) -> Unit
 ) {
     Column(
@@ -39,24 +40,46 @@ fun ProfileChips(
             verticalArrangement = Arrangement.spacedBy(0.dp),
             horizontalItemSpacing = 0.dp
         ) {
-            items(categories) {
-                Chip(
-                    colors = ChipDefaults.chipColors(
-                        backgroundColor = it.color
-                    ),
-                    onClick = { onClick(it) },
-                    modifier = Modifier
-                        .wrapContentSize()
-                        .padding(end = 10.dp)
-                ) {
-                    Text(
-                        text = it.toChipsText(),
-                        maxLines = 1,
-                        style = linksBoldTextStyle,
-                        color = Color.White
-                    )
-                }
+            items(categories.toList()) {
+                CategoryChip(
+                    isSelected = it.second,
+                    categoryColor = it.first.color,
+                    text = it.first.toChipsText(),
+                    onClick = { onClick(it.first) }
+                )
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun CategoryChip(
+    isSelected: Boolean,
+    categoryColor: Color,
+    text: String,
+    onClick: () -> Unit
+) {
+    Chip(
+        colors = ChipDefaults.chipColors(
+            backgroundColor = when (isSelected) {
+                true -> categoryColor
+                false -> textGrayColor//fixed
+            }
+        ),
+        onClick = onClick,
+        modifier = Modifier
+            .wrapContentSize()
+            .padding(end = 10.dp)
+    ) {
+        Text(
+            text = text,
+            maxLines = 1,
+            style = linksBoldTextStyle,
+            color = when (isSelected) {
+                true -> Color.White
+                false -> categoryColor
+            }
+        )
     }
 }

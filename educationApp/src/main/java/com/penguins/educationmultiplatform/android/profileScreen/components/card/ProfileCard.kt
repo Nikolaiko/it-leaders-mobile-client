@@ -51,7 +51,7 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
             )
         }
         ProfileChips(
-            categories = state.value.selectedCategories,
+            categories = state.value.categories,
             onClick = { viewModel.onEvent(ProfileEvent.ClickCategory(it)) }
         )
     }

@@ -7,5 +7,5 @@ data class ProfileScreenState(
     val age: String = "",
     val rating: String = "",
     val imageUrl: String? = null,
-    val selectedCategories: List<Category> = emptyList()
+    val categories: Map<Category, Boolean> = Category.values().associateWith { false }
 )
