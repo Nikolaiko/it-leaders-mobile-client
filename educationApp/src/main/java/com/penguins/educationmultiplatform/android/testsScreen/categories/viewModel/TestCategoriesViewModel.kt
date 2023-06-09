@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.testsScreen.viewModel
+package com.penguins.educationmultiplatform.android.testsScreen.categories.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation

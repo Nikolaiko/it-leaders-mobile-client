@@ -8,6 +8,11 @@
     <string name="theatere_category_label">Театр</string>
     <string name="art_category_label">Изобразительное\nискусство</string>
 
+    <string name="retry_text">Повторить</string>
+    <string name="authorize_text">Авторизоваться</string>
 
     <string name="test_categories_title">Выберите интересные вам направления</string>
+
+    <string name="generic_error_text">Неизвестная ошибка</string>
+
 </resources>

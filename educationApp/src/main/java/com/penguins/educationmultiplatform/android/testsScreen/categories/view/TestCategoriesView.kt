@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.testsScreen.view
+package com.penguins.educationmultiplatform.android.testsScreen.categories.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,18 +12,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.MyApplicationTheme
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.testsScreen.common.CategoryItem
-import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCategoriesViewModel
+import com.penguins.educationmultiplatform.android.testsScreen.categories.viewModel.TestCategoriesViewModel
 import com.penguins.educationmultiplatform.android.ui.neutral0
 import com.penguins.educationmultiplatform.android.ui.neutral900Size32Weight700Style
 import com.penguins.educationmultiplatform.android.ui.primary500

@@ -12,6 +12,7 @@ import com.penguins.educationmultiplatform.android.data.navigation.DestinationCo
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
+import com.penguins.educationmultiplatform.android.domain.useCases.GetUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.tests.GetTestCaseUseCase
 
 import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByCategoryUseCase
@@ -28,7 +29,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.view
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileScreenViewModel
 import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCaseViewModel
-import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCategoriesViewModel
+import com.penguins.educationmultiplatform.android.testsScreen.categories.viewModel.TestCategoriesViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.json.JsonFeature
@@ -62,8 +63,6 @@ val androidModule = module {
     viewModel { ProfileScreenViewModel(get(), get()) }
     viewModel { NewsViewModel(get()) }
     viewModel { SearchNewsViewModel(get(), get()) }
-    viewModel { TestCategoriesViewModel(get()) }
-    viewModel { TestCaseViewModel(get(), get()) }
     viewModel { HeadingNewsViewModel(get(), get()) }
     viewModel { CoursesViewModel(get()) }
 
@@ -78,6 +77,7 @@ val androidModule = module {
     single <LocationTracker> { DefaultLocationTracker(get(),androidContext()) }
 
     //useCases
+    single { GetUserDataUseCase(get(), get()) }
     single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }
     single { NewsNavigation() }
