@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.profileScreen.components.chips.ProfileChips
+import com.penguins.educationmultiplatform.android.profileScreen.components.menu.DropDownMenu
 import com.penguins.educationmultiplatform.android.profileScreen.data.model.ProfileEvent
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileViewModel
 import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
@@ -45,11 +46,18 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
                 age = state.value.age,
                 score = state.value.rating
             )
-            ProfileUserImage(
-                modifier = Modifier.size(96.dp),
-                imageUrl = state.value.imageUrl,
-                onClick = { viewModel.onEvent(ProfileEvent.Menu) }
-            )
+            Box {
+                ProfileUserImage(
+                    modifier = Modifier.size(96.dp),
+                    imageUrl = state.value.imageUrl
+                )
+                DropDownMenu(
+                    isExpanded = false,
+                    onClick = { viewModel.onEvent(ProfileEvent.Menu) },
+                    onDismissRequest = { /*TODO*/ },
+                    onClickItem = {}
+                )
+            }
         }
         ProfileChips(
             categories = state.value.categories,

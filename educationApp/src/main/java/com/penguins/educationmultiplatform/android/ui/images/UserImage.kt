@@ -3,16 +3,11 @@ package com.penguins.educationmultiplatform.android.ui.images
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -47,10 +42,8 @@ fun UserImage(
 @Composable
 fun ProfileUserImage(
     modifier: Modifier = Modifier,
-    imageUrl: String? = null,
-    onClick: () -> Unit
+    imageUrl: String? = null
 ) {
-    Box {
         Card(
             modifier = modifier,
             shape = CircleShape,
@@ -67,29 +60,12 @@ fun ProfileUserImage(
                 contentScale = ContentScale.Crop
             )
         }
-
-        Box(
-            modifier = modifier,
-            contentAlignment = Alignment.BottomEnd
-        ) {
-            Button(onClick = { onClick() }) {
-                Icon(
-                    modifier = Modifier.size(24.dp)
-                        .padding(end = 4.dp, bottom = 4.dp),//fixed
-                    painter = painterResource(id = R.drawable.ic_search),//fixed
-                    contentDescription = "Profile settings"
-                )
-            }
-        }
-    }
-
 }
 
 @Preview(showBackground = true, widthDp = 320, heightDp = 640, backgroundColor = 0xffffff)
 @Composable
 fun ImagePreview() {
     ProfileUserImage(
-        modifier = Modifier.size(96.dp),
-        onClick = {}
+        modifier = Modifier.size(96.dp)
     )
 }
