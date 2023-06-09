@@ -11,7 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.data.ProfileTabsEnum
+import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.data.ProfileTabsEnum.*
 import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.data.ProfileTabsEvents
 import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.viewModel.ProfileTabsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.myCoursesTabs.MyCourses
@@ -21,9 +21,7 @@ import com.penguins.educationmultiplatform.android.ui.primary700
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ProfileTabs(
-    viewModel: ProfileTabsViewModel = koinViewModel()
-) {
+fun ProfileTabs(viewModel: ProfileTabsViewModel = koinViewModel()) {
     val state = viewModel.state.collectAsState()
 
     TabRow(
@@ -32,20 +30,33 @@ fun ProfileTabs(
         selectedTabIndex = state.value.selectedTab.code,
         backgroundColor = Color.Transparent
     ) {
+       ProfileTab(
+           title = MY_COURSES.title,
+           isSelected = state.value.selectedTab == MY_COURSES,
+           onClick = { viewModel.onEvent(ProfileTabsEvents.ClickTab(MY_COURSES)) }
+       )
         Tab(
-            selected = state.value.selectedTab == ProfileTabsEnum.MY_COURSES,
-            onClick = { viewModel.onEvent(ProfileTabsEvents.ClickTab(ProfileTabsEnum.MY_COURSES)) }
+            selected = state.value.selectedTab == FRIENDS,
+            onClick = { viewModel.onEvent(ProfileTabsEvents.ClickTab(FRIENDS)) }
         ) {
-            TabTitle(text = "Мои курсы")
-        }
-        Tab(
-            selected = state.value.selectedTab == ProfileTabsEnum.FRIENDS,
-            onClick = { viewModel.onEvent(ProfileTabsEvents.ClickTab(ProfileTabsEnum.FRIENDS)) }
-        ) {
-            TabTitle(text = "Рейтинг")
+            TabTitle(text = FRIENDS.title)
         }
     }
     ProfileTabsScreen(state.value.selectedTab.code)
+}
+
+@Composable
+fun ProfileTab(
+    title: String,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    Tab(
+        selected = isSelected,
+        onClick = onClick
+    ) {
+        TabTitle(text = title)
+    }
 }
 
 @Composable
@@ -66,7 +77,7 @@ fun ProfileTabsScreen(selectedTabIndex: Int) {
             .padding(bottom = 64.dp)
     ) {
         when (selectedTabIndex) {
-            ProfileTabsEnum.MY_COURSES.code -> MyCourses()
+            MY_COURSES.code -> MyCourses()
             else -> Rating()
         }
     }
