@@ -4,5 +4,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.data.Catego
 
 sealed class ProfileEvent {
     object LogOut : ProfileEvent()
+    object Menu : ProfileEvent()
+    object ChangeImage : ProfileEvent()
     class ClickCategory(val category: Category) : ProfileEvent()
 }

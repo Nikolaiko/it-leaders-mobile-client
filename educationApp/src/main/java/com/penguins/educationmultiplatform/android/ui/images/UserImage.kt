@@ -3,19 +3,14 @@ package com.penguins.educationmultiplatform.android.ui.images
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,7 +47,8 @@ fun UserImage(
 @Composable
 fun ProfileUserImage(
     modifier: Modifier = Modifier,
-    imageUrl: String? = null
+    imageUrl: String? = null,
+    onClick: () -> Unit
 ) {
     Box {
         Card(
@@ -76,12 +72,14 @@ fun ProfileUserImage(
             modifier = modifier,
             contentAlignment = Alignment.BottomEnd
         ) {
-            Icon(
-                modifier = Modifier.size(24.dp)
-                    .padding(end = 4.dp, bottom = 4.dp),//fixed
-                painter = painterResource(id = R.drawable.ic_search),//fixed
-                contentDescription = "Profile settings"
-            )
+            Button(onClick = { onClick() }) {
+                Icon(
+                    modifier = Modifier.size(24.dp)
+                        .padding(end = 4.dp, bottom = 4.dp),//fixed
+                    painter = painterResource(id = R.drawable.ic_search),//fixed
+                    contentDescription = "Profile settings"
+                )
+            }
         }
     }
 
@@ -91,6 +89,7 @@ fun ProfileUserImage(
 @Composable
 fun ImagePreview() {
     ProfileUserImage(
-        modifier = Modifier.size(96.dp)
+        modifier = Modifier.size(96.dp),
+        onClick = {}
     )
 }

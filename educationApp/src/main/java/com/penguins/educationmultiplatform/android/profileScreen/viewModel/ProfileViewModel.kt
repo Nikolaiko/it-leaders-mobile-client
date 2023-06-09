@@ -35,6 +35,8 @@ class ProfileViewModel(
         when (event) {
             ProfileEvent.LogOut -> logout()
             is ProfileEvent.ClickCategory -> clickCategory(event.category)
+            ProfileEvent.Menu -> Unit
+            ProfileEvent.ChangeImage -> Unit
         }
     }
 

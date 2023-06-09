@@ -23,7 +23,6 @@ import com.penguins.educationmultiplatform.android.profileScreen.viewModel.Profi
 import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
 import com.penguins.educationmultiplatform.android.ui.heading2TextStyle
 import com.penguins.educationmultiplatform.android.ui.images.ProfileUserImage
-import com.penguins.educationmultiplatform.android.ui.images.UserImage
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -48,7 +47,8 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
             )
             ProfileUserImage(
                 modifier = Modifier.size(96.dp),
-                imageUrl = state.value.imageUrl
+                imageUrl = state.value.imageUrl,
+                onClick = { viewModel.onEvent(ProfileEvent.Menu) }
             )
         }
         ProfileChips(
