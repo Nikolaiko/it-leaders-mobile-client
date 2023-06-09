@@ -1,7 +1,11 @@
 package com.penguins.educationmultiplatform.android.profileScreen.data
 
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
+
 data class ProfileScreenState(
     val userName: String = "",
-    val age: Int = 0,
-    val rating: String = ""
+    val age: String = "",
+    val rating: String = "",
+    val imageUrl: String? = null,
+    val selectedCategories: List<Category> = emptyList()
 )

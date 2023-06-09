@@ -8,16 +8,28 @@ import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigati
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.LogoutUseCase
 import com.penguins.educationmultiplatform.android.navigation.routeObject.nonLoggedUserGraph
 import com.penguins.educationmultiplatform.android.navigation.routeObject.rootGraph
+import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ProfileScreenViewModel(
+class ProfileViewModel(
     private val logoutUseCase: LogoutUseCase,
     private val navigation: AppNavigation
 ): ViewModel() {
     private val _state = MutableStateFlow(ProfileScreenState())
     val state = _state.asStateFlow()
+
+    init {
+        _state.tryEmit(
+            _state.value.copy(
+                userName = "Владимир Кузнецов",
+                age = "22 года",
+                rating = "165 баллов",
+                selectedCategories = Category.values().toList()
+            )
+        )
+    }
 
     fun logout() {
         viewModelScope.launch {
