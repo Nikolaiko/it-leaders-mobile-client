@@ -1,12 +1,14 @@
 package com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.data.model
 
+import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolTypeFilter
 
 data class VideoCourse(
-    val name:String,
-    val type:SchoolType,
-    val listVideo:List<VideoLesson>
+    val name: String,
+    val type: SchoolType,
+    val listVideo: List<VideoLesson>,
+    val img: Int = R.drawable.course_cover
 ){
     fun doesMatchSearchQuery(query:String):Boolean{
         val matchingCombinations = listOf(

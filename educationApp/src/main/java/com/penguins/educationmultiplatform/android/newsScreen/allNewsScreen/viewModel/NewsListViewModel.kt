@@ -63,7 +63,7 @@ class NewsListViewModel(
 
     private fun saveNews(list: List<CategoryNewsList>) {
         _state.value = _state.value.copy(
-            lastNews = list.last().news.firstOrNull(),
+            lastNews = list.last().news.lastOrNull(),
             list = list.toPairList()
         )
     }

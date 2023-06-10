@@ -82,7 +82,7 @@ fun VideoItemScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.course_cover),
+                                    painter = painterResource(id = videoLesson.pictureId),
                                     modifier = Modifier
                                         .background(
                                             color = primaryGray,

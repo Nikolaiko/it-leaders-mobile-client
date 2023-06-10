@@ -180,7 +180,7 @@ fun DetailCourseScreen(
                             }
                             VideoLessonItem(
                                 name = this.name,
-                                img = R.drawable.course_cover,
+                                img = this.pictureId,
                                 count = it
                             ) {
                                 viewModel.setSelectedLesson(it)

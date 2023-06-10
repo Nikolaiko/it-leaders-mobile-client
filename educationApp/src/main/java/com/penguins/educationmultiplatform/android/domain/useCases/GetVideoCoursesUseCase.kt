@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.domain.useCases
 
+import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.data.model.VideoCourse
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.data.model.VideoLesson
 import com.penguins.educationmultiplatform.android.mapScreen.data.SchoolType
@@ -27,7 +28,8 @@ class GetVideoCoursesUseCase {
                                     videoName = "music ${j + 1}.mp4",
 //                                    uriRef.reference.child("music ${i + 1}.mp4").downloadUrl.await(),
                                     nameSchool = SchoolType.MUSICAL.nameSchool,
-                                    id = j
+                                    id = j,
+                                    pictureId = R.drawable.img_music_1
                                 )
                             )
                             j++
@@ -36,7 +38,8 @@ class GetVideoCoursesUseCase {
                             VideoCourse(
                                 name = "Курс №${i + 1} от ${SchoolType.MUSICAL.nameSchool}",
                                 SchoolType.MUSICAL,
-                                listVideo
+                                listVideo,
+                                img = R.drawable.img_music_1
                             )
                         )
                     }
@@ -51,7 +54,8 @@ class GetVideoCoursesUseCase {
                                     graduation = "Заведующий кафедой хорового искусства",
                                     videoName = "dance ${j + 1}.mp4",
                                     nameSchool = SchoolType.DANCING.nameSchool,
-                                    id = j
+                                    id = j,
+                                    pictureId = R.drawable.img_dance_1
                                 )
                             )
                             j++
@@ -60,7 +64,8 @@ class GetVideoCoursesUseCase {
                             VideoCourse(
                                 name = "Курс №${i + 1} от ${SchoolType.DANCING.nameSchool}",
                                 SchoolType.DANCING,
-                                listVideo
+                                listVideo,
+                                img = R.drawable.img_dance_1
                             )
                         )
                     }
@@ -76,7 +81,8 @@ class GetVideoCoursesUseCase {
                                     graduation = "Заведующий кафедой хорового искусства",
                                     videoName = "artist ${j + 1}.mp4",
                                     nameSchool = SchoolType.ARTISTIC.nameSchool,
-                                    id = j
+                                    id = j,
+                                    pictureId = R.drawable.img_art_1
                                 )
                             )
                             j++
@@ -85,7 +91,8 @@ class GetVideoCoursesUseCase {
                             VideoCourse(
                                 name = "Курс №${i + 1} от ${SchoolType.ARTISTIC.nameSchool}",
                                 SchoolType.ARTISTIC,
-                                listVideo
+                                listVideo,
+                                img = R.drawable.img_art_1
                             )
                         )
 
@@ -102,7 +109,8 @@ class GetVideoCoursesUseCase {
                                     graduation = "Заведующий кафедой хорового искусства",
                                     videoName = "theater ${j + 1}.mp4",
                                     nameSchool = SchoolType.THEATRICAL.nameSchool,
-                                    id = j
+                                    id = j,
+                                    pictureId = R.drawable.img_theatre_1
                                 )
                             )
                             j++
@@ -111,7 +119,8 @@ class GetVideoCoursesUseCase {
                             VideoCourse(
                                 name = "Курс №${i + 1} от ${SchoolType.THEATRICAL.nameSchool}",
                                 SchoolType.THEATRICAL,
-                                listVideo
+                                listVideo,
+                                img = R.drawable.img_theatre_1
                             )
                         )
 

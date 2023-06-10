@@ -30,7 +30,7 @@ fun MyCourses(viewModel: CoursesViewModel = koinViewModel()) {
                 VideoCourseItem(
                     name = this.name,
                     type = this.type,
-                    img = R.drawable.course_cover,
+                    img = this.img,
                     count = this.listVideo.size
                 ) {
 //                   navController.navigate(CoursesTapScreens.DetailCourseScreenRoute.createRoute(it))
