@@ -1,12 +1,9 @@
-package com.penguins.educationmultiplatform.android.testsScreen.tests.view
+package com.penguins.educationmultiplatform.android.testsScreen.tests.subViews
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,11 +23,7 @@ import com.penguins.educationmultiplatform.android.data.model.VoidCallback
 import com.penguins.educationmultiplatform.android.data.model.textQuestion1
 import com.penguins.educationmultiplatform.android.testsScreen.common.TextAnswerView
 import com.penguins.educationmultiplatform.android.testsScreen.data.EducationTest
-import com.penguins.educationmultiplatform.android.testsScreen.tests.data.AnswerButtonState
 import com.penguins.educationmultiplatform.android.testsScreen.tests.data.TestState
-import com.penguins.educationmultiplatform.android.ui.allNewsGradientBackground
-import com.penguins.educationmultiplatform.android.ui.gradientSplashScreen
-import com.penguins.educationmultiplatform.android.ui.neutral0
 import com.penguins.educationmultiplatform.android.ui.neutral900Size32Weight700Style
 
 @Composable
@@ -104,7 +97,7 @@ fun TextTestView(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = test.correctMessage,
+                            text = test.fact,
                             textAlign = TextAlign.Center
                         )
                     }

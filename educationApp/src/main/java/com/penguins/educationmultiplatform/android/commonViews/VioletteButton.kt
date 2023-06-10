@@ -18,12 +18,13 @@ import com.penguins.educationmultiplatform.android.ui.secondary400
 
 @Composable
 fun VioletteButton(
+    modifier: Modifier = Modifier,
     text: String,
     enabled: Boolean,
     onClick: VoidCallback
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
     ) {

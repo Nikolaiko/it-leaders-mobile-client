@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.testsScreen.tests.subViews
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,9 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.MyApplicationTheme
+import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.data.model.dto.profile.InterestCategory
 import com.penguins.educationmultiplatform.android.testsScreen.tests.data.TestDifficulty
 import com.penguins.educationmultiplatform.android.ui.neutral0
@@ -38,10 +41,10 @@ fun TestCaseTopView(
         Text(
             modifier = Modifier
                 .drawBehind {
-                            drawRoundRect(
-                                cornerRadius = CornerRadius(30f,30f),
-                                color = primary500
-                            )
+                    drawRoundRect(
+                        cornerRadius = CornerRadius(30f, 30f),
+                        color = primary500
+                    )
                 }
                 .padding(horizontal = 10.dp)
                 .padding(vertical = 4.dp),
@@ -52,10 +55,18 @@ fun TestCaseTopView(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = score.toString(),
-                style = neutral800Size20Weight700Style
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = score.toString(),
+                    style = neutral800Size20Weight700Style
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.png_money),
+                    contentDescription = ""
+                )
+            }
             Text(
                 modifier = Modifier
                     .drawBehind {

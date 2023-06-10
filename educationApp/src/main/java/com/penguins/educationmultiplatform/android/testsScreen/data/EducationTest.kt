@@ -8,26 +8,26 @@ sealed class EducationTest(
     val difficulty: TestDifficulty,
     val question: String,
     val score: Int,
-    val correctMessage: String,
-    val wrongMessage: String
+    val fact: String,
+    val correctAnswer: String
 ) {
     class TextTest(
         category: InterestCategory,
         difficulty: TestDifficulty,
         question: String,
         score: Int,
-        correctMessage: String,
-        wrongMessage: String,
+        fact: String,
+        correctAnswer: String,
         val answers: List<TextAnswerVariant>
-    ): EducationTest(category, difficulty, question, score, correctMessage, wrongMessage)
+    ): EducationTest(category, difficulty, question, score, fact, correctAnswer)
 
     class MusicTest(
         category: InterestCategory,
         difficulty: TestDifficulty,
         question: String,
         score: Int,
-        correctMessage: String,
-        wrongMessage: String,
+        fact: String,
+        correctAnswer: String,
         val answers: List<TextAnswerVariant>
-    ): EducationTest(category, difficulty, question, score, correctMessage, wrongMessage)
+    ): EducationTest(category, difficulty, question, score, fact, correctAnswer)
 }

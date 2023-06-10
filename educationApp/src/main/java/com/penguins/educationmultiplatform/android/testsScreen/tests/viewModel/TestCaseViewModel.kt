@@ -91,9 +91,8 @@ class TestCaseViewModel(
     }
 
     fun checkCallback() {
-        when(currentState.currentTestState.confirmedAnswer) {
-            true -> moveToNextTest()
-            false -> checkCorrectAnswer()
+        if (!currentState.currentTestState.confirmedAnswer) {
+            checkCorrectAnswer()
         }
     }
 
@@ -127,7 +126,7 @@ class TestCaseViewModel(
         _state.tryEmit(currentState)
     }
 
-    private fun moveToNextTest() {
+    fun moveToNextTest() {
         selectedTestIndex += 1
         if (selectedTestIndex >= tests.size) {
             selectedTestIndex = 0
