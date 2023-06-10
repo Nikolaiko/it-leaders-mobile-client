@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.profileScreen.components.card.ProfileCard
-import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.ProfileTabs
+import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.view.ProfileTabs
 import com.penguins.educationmultiplatform.android.profileScreen.components.toolbar.ProfileToolbar
 import com.penguins.educationmultiplatform.android.ui.danceVerticalGradientBackground
 

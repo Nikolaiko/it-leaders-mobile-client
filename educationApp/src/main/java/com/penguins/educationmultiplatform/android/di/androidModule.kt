@@ -27,7 +27,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.viewModel.ProfileTabsViewModel
-import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileScreenViewModel
+import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileViewModel
 import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCaseViewModel
 import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCategoriesViewModel
 import io.ktor.client.HttpClient
@@ -58,22 +58,24 @@ val androidModule = module {
 
     //viewModels
     viewModel { YandexMapViewModel(get(), get()) }
+
     viewModel { CategoryViewModel(get(), get()) }
     viewModel { NewsListViewModel(get(), get()) }
-    viewModel { ProfileScreenViewModel(get(), get()) }
     viewModel { NewsViewModel(get()) }
     viewModel { SearchNewsViewModel(get(), get()) }
-    viewModel { TestCategoriesViewModel(get()) }
-    viewModel { TestCaseViewModel(get(), get()) }
-    viewModel { HeadingNewsViewModel(get(), get()) }
-    viewModel { CoursesViewModel(get()) }
+
+    viewModel { ProfileViewModel(get(), get()) }
     viewModel { ProfileTabsViewModel() }
 
-
-    single { SharedViewModel() }
+    viewModel { CoursesViewModel(get()) }
     viewModel { DetailCourseViewModel(get(), get()) }
     viewModel { VideoItemViewModel(get(),get(), get()) }
 
+    viewModel { TestCategoriesViewModel(get()) }
+    viewModel { TestCaseViewModel(get(), get()) }
+    viewModel { HeadingNewsViewModel(get(), get()) }
+
+    single { SharedViewModel() }
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
