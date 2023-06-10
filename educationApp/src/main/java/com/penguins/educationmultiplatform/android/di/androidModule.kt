@@ -14,9 +14,9 @@ import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigati
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
 import com.penguins.educationmultiplatform.android.domain.usecases.tests.GetTestCaseUseCase
 
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByCategoryUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByParamsUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByCategoryUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByParamsUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.GetVideoCoursesUseCase
 
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
