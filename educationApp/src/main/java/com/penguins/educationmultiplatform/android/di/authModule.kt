@@ -1,9 +1,10 @@
 package com.penguins.educationmultiplatform.android.di
 
+import com.penguins.educationmultiplatform.android.authScreen.data.AuthUpdatedBus
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthViewModel
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
 import com.penguins.educationmultiplatform.android.data.validation.AppValuesValidator
-import com.penguins.educationmultiplatform.android.domain.usecases.auth.CheckAuthStateUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.auth.CheckAuthStateUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.LoginWithEmailUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.auth.LoginWithVKUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.auth.LogoutUseCase
@@ -21,8 +22,9 @@ val authModule = module {
     single { LoginWithVKUseCase( get()) }
 
     viewModel { SplashScreenViewModel(get(), get()) }
-    viewModel { AuthViewModel( get(), get(), get(), get(), get() ) }
-    viewModel { RegisterViewModel( get(), get(), get(), get() ) }
+    viewModel { AuthViewModel( get(), get(), get(), get(), get(), get() ) }
+    viewModel { RegisterViewModel( get(), get(), get(), get(), get() ) }
 
     single<ValuesValidator> { AppValuesValidator() }
+    single<AuthUpdatedBus> { AuthUpdatedBus() }
 }
