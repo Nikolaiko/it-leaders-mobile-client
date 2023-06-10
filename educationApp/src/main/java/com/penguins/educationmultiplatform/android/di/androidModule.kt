@@ -12,12 +12,17 @@ import com.penguins.educationmultiplatform.android.data.navigation.DestinationCo
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
+import com.penguins.educationmultiplatform.android.domain.useCases.GetUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.tests.GetTestCaseUseCase
 
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByCategoryUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByParamsUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByCategoryUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByParamsUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.GetVideoCoursesUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.SaveUserDataUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.UpdateUserInterestsUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.tests.GetUserScoreUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.tests.UpdateUserScoreUseCase
 
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
@@ -26,9 +31,8 @@ import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.view
 import com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScreen.viewModel.CategoryViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.viewModel.NewsViewModel
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
-import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileScreenViewModel
-import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCaseViewModel
-import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCategoriesViewModel
+import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.viewModel.ProfileTabsViewModel
+import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.json.JsonFeature
@@ -57,27 +61,39 @@ val androidModule = module {
 
     //viewModels
     viewModel { YandexMapViewModel(get(), get()) }
+
     viewModel { CategoryViewModel(get(), get()) }
     viewModel { NewsListViewModel(get(), get()) }
-    viewModel { ProfileScreenViewModel(get(), get()) }
     viewModel { NewsViewModel(get()) }
     viewModel { SearchNewsViewModel(get(), get()) }
-    viewModel { TestCategoriesViewModel(get()) }
-    viewModel { TestCaseViewModel(get(), get()) }
+
     viewModel { HeadingNewsViewModel(get(), get()) }
     viewModel { CoursesViewModel(get()) }
 
 
-    single { SharedViewModel() }
+    viewModel { ProfileViewModel(get(), get(), get()) }
+
+    viewModel { ProfileTabsViewModel() }
+
+    viewModel { CoursesViewModel(get()) }
     viewModel { DetailCourseViewModel(get(), get()) }
     viewModel { VideoItemViewModel(get(),get(), get()) }
 
+    viewModel { HeadingNewsViewModel(get(), get()) }
+
+    single { SharedViewModel() }
 
     //location
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
     single <LocationTracker> { DefaultLocationTracker(get(),androidContext()) }
 
     //useCases
+    single { GetUserDataUseCase(get(), get()) }
+    single { SaveUserDataUseCase(get()) }
+    single { UpdateUserInterestsUseCase(get(), get()) }
+    single { GetUserScoreUseCase(get()) }
+    single { UpdateUserScoreUseCase(get()) }
+
     single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }
     single { NewsNavigation() }

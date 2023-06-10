@@ -28,6 +28,22 @@ val textActiveBottomItem = TextStyle(
     fontFamily = calibri,
 )
 
+val secondary400Size20Weight700Style = TextStyle(
+    fontSize = 20.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = secondary400,
+    fontFamily = calibri,
+)
+
+val neutral800Size20Weight700Style = TextStyle(
+    fontSize = 20.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral800,
+    fontFamily = calibri,
+)
+
 val neutral900Size20Weight700Style = TextStyle(
     fontSize = 20.sp,
     fontWeight = FontWeight.W700,
@@ -39,6 +55,14 @@ val neutral900Size20Weight700Style = TextStyle(
 val neutral900Size32Weight700Style = TextStyle(
     fontSize = 32.sp,
     fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri,
+)
+
+val neutral900Size12Weight400Style = TextStyle(
+    fontSize = 12.sp,
+    fontWeight = FontWeight.W400,
     fontStyle = FontStyle.Normal,
     color = neutral900,
     fontFamily = calibri,
@@ -59,18 +83,37 @@ val neutral0Size17Weight700Style = TextStyle(
     color = neutral0,
     fontFamily = calibri,
 )
+
+val neutral0Size16Weight700Style = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral0,
+    fontFamily = calibri,
+)
+
+
+val neutral400Size20Weight700Style = TextStyle(
+    fontSize = 20.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral400,
+    fontFamily = calibri,
+)
+
+val neutral0Size20Weight700Style = TextStyle(
+    fontSize = 20.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral0,
+    fontFamily = calibri,
+)
+
 val textFieldTextStyle = TextStyle(
     fontSize = 18.sp,
     fontWeight = FontWeight.W400,
     fontStyle = FontStyle.Normal,
     color = textGrayColor,
-    fontFamily = calibri,
-)
-val neutral900Size12Weight400Style = TextStyle(
-    fontSize = 12.sp,
-    fontWeight = FontWeight.W400,
-    fontStyle = FontStyle.Normal,
-    color = neutral900,
     fontFamily = calibri,
 )
 
@@ -79,6 +122,30 @@ val headingTextStyle = TextStyle(
     fontWeight = FontWeight.W700,
     fontStyle = FontStyle.Normal,
     color = Color.White,
+    fontFamily = calibri
+)
+
+val heading2TextStyle = TextStyle(
+    fontSize = 20.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)
+
+val heading1BoldTextStyle = TextStyle(
+    fontSize = 32.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
+    fontFamily = calibri
+)
+
+val heading3BoldTextStyle = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral900,
     fontFamily = calibri
 )
 
@@ -103,13 +170,5 @@ val body2RegularTextStyle = TextStyle(
     fontWeight = FontWeight.W400,
     fontStyle = FontStyle.Normal,
     color = neutral700,
-    fontFamily = calibri
-)
-
-val heading1BoldTextStyle = TextStyle(
-    fontSize = 32.sp,
-    fontWeight = FontWeight.W700,
-    fontStyle = FontStyle.Normal,
-    color = neutral900,
     fontFamily = calibri
 )

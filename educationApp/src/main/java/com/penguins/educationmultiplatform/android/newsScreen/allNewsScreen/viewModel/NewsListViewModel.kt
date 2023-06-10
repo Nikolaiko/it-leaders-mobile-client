@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
 import com.penguins.educationmultiplatform.android.navigation.routeObject.NewsScreens
 import com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.data.NewsListEvents
@@ -63,7 +63,7 @@ class NewsListViewModel(
 
     private fun saveNews(list: List<CategoryNewsList>) {
         _state.value = _state.value.copy(
-            lastNews = list.last().news.firstOrNull(),
+            lastNews = list.last().news.lastOrNull(),
             list = list.toPairList()
         )
     }

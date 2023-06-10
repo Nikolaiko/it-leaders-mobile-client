@@ -29,8 +29,6 @@ import org.koin.androidx.compose.koinViewModel
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CoursesScreen(viewModel: CoursesViewModel = koinViewModel(), navController: NavHostController) {
-
-
     val state = viewModel.state.collectAsState()
 
     val sheetFilterState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
@@ -90,7 +88,7 @@ fun CoursesScreen(viewModel: CoursesViewModel = koinViewModel(), navController: 
                             VideoCourseItem(
                                 name = this.name,
                                 type = this.type,
-                                img = R.drawable.course_cover,
+                                img = this.img,
                                 count = this.listVideo.size
                             ) {
                                 navController.navigate(CoursesTapScreens.DetailCourseScreenRoute.createRoute(it))

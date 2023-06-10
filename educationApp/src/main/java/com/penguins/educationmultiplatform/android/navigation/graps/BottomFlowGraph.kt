@@ -10,7 +10,7 @@ import com.penguins.educationmultiplatform.android.navigation.routeObject.MainSc
 import com.penguins.educationmultiplatform.android.navigation.routeObject.mainGraph
 import com.penguins.educationmultiplatform.android.profileScreen.view.ProfileScreenView
 import com.penguins.educationmultiplatform.android.newsScreen.main.view.MainNewsScreen
-import com.penguins.educationmultiplatform.android.testsScreen.view.TestCategoriesView
+import com.penguins.educationmultiplatform.android.testsScreen.main.view.MainTestsScreen
 
 @Composable
 fun BottomFlowGraph(navController: NavHostController) {
@@ -26,7 +26,7 @@ fun BottomFlowGraph(navController: NavHostController) {
             CoursesScreens()
         }
         composable(route = MainScreenTabRoute.TestsTab.route) {
-            TestCategoriesView()
+            MainTestsScreen()
         }
         composable(route = MainScreenTabRoute.MapTab.route) {
             YandexMapScreen()
