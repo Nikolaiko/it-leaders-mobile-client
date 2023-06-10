@@ -2,6 +2,8 @@ package com.penguins.educationmultiplatform.android.testsScreen.tests.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
+import com.penguins.educationmultiplatform.android.domain.useCases.tests.GetUserScoreUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.tests.UpdateUserScoreUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.tests.GetTestCaseUseCase
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.testsScreen.data.EducationTest
@@ -12,13 +14,19 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class TestCaseViewModel(
-    private val loadTestCaseUseCase: GetTestCaseUseCase
+    private val loadTestCaseUseCase: GetTestCaseUseCase,
+    private val getUserScoreUseCase: GetUserScoreUseCase,
+    private val updateUserScoreUseCase: UpdateUserScoreUseCase
 ): ViewModel() {
     private var tests = emptyList<EducationTest>()
     private var selectedAnswerIndex = -1
     private var selectedTestIndex = -1
 
-    private var currentState = TestCaseState(null, TestState.default())
+    private var currentState = TestCaseState(
+        null,
+        TestState.default(),
+        getUserScoreUseCase.invoke()
+    )
 
     private val _state = MutableStateFlow(currentState)
     val state = _state.asStateFlow()
@@ -110,6 +118,10 @@ class TestCaseViewModel(
                 3 -> newTestState.copy(fourthButtonState = AnswerButtonState.Wrong)
                 else -> newTestState
             }
+        } else {
+            currentState = currentState.copy(
+                userScore = updateUserScoreUseCase.invoke(1)
+            )
         }
         currentState = currentState.copy(currentTestState = newTestState)
         _state.tryEmit(currentState)

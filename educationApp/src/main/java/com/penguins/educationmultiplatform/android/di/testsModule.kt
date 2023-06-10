@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val testsModule = module {
     viewModel { InitialTestsScreenViewModel(get(), get(), get(), get(), get()) }
     viewModel { TestCategoriesViewModel(get(), get(), get(), get()) }
-    viewModel { TestCaseViewModel(get()) }
+    viewModel { TestCaseViewModel(get(), get(), get()) }
 
     single<TestsNavigation> { TestsNavigation() }
 }

@@ -21,6 +21,8 @@ import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUs
 import com.penguins.educationmultiplatform.android.domain.useCases.GetVideoCoursesUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.SaveUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.UpdateUserInterestsUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.tests.GetUserScoreUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.tests.UpdateUserScoreUseCase
 
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
@@ -89,6 +91,8 @@ val androidModule = module {
     single { GetUserDataUseCase(get(), get()) }
     single { SaveUserDataUseCase(get()) }
     single { UpdateUserInterestsUseCase(get(), get()) }
+    single { GetUserScoreUseCase(get()) }
+    single { UpdateUserScoreUseCase(get()) }
 
     single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }

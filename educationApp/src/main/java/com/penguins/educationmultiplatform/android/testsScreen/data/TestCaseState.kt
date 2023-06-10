@@ -4,5 +4,6 @@ import com.penguins.educationmultiplatform.android.testsScreen.tests.data.TestSt
 
 data class TestCaseState(
     val currentTest: EducationTest?,
-    val currentTestState: TestState
+    val currentTestState: TestState,
+    val userScore: Int
 )

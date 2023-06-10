@@ -13,5 +13,9 @@ interface LocalUserDataRepository {
     fun saveUserData(inputUserData: LocalUserData)
     fun getUserData(): LocalUserData?
 
+    fun saveUserScore(newScore: Int)
+    fun getUserScore(): Int
+
+
     fun logoutUser()
 }

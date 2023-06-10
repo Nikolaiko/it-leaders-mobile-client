@@ -1,7 +1,9 @@
 package com.penguins.educationmultiplatform.android.data.model
 
+import com.penguins.educationmultiplatform.android.data.model.dto.profile.InterestCategory
 import com.penguins.educationmultiplatform.android.testsScreen.data.EducationTest
 import com.penguins.educationmultiplatform.android.testsScreen.data.TextAnswerVariant
+import com.penguins.educationmultiplatform.android.testsScreen.tests.data.TestDifficulty
 
 val text1Answer1 = TextAnswerVariant(
     text = "Танцуют",
@@ -20,6 +22,8 @@ val text1Answer4 = TextAnswerVariant(
     correct = false
 )
 val textQuestion1 = EducationTest.TextTest(
+    InterestCategory.music,
+    TestDifficulty.Lite,
     "Чем занимаются участники хора?",
     1,
     "Поют. Хор – певческий коллектив, исполняющий вокальную музыку",
@@ -44,6 +48,8 @@ val text1Answer14 = TextAnswerVariant(
     correct = false
 )
 val textQuestion2 = EducationTest.TextTest(
+    InterestCategory.music,
+    TestDifficulty.Lite,
     "Кто сочиняет музыку?",
     1,
     "Правильный ответ: композитор. Композитор – автор, создатель музыкальных произведений.",

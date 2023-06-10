@@ -28,6 +28,22 @@ val textActiveBottomItem = TextStyle(
     fontFamily = calibri,
 )
 
+val secondary400Size20Weight700Style = TextStyle(
+    fontSize = 20.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = secondary400,
+    fontFamily = calibri,
+)
+
+val neutral800Size20Weight700Style = TextStyle(
+    fontSize = 20.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral800,
+    fontFamily = calibri,
+)
+
 val neutral900Size20Weight700Style = TextStyle(
     fontSize = 20.sp,
     fontWeight = FontWeight.W700,
@@ -67,6 +83,15 @@ val neutral0Size17Weight700Style = TextStyle(
     color = neutral0,
     fontFamily = calibri,
 )
+
+val neutral0Size16Weight700Style = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight.W700,
+    fontStyle = FontStyle.Normal,
+    color = neutral0,
+    fontFamily = calibri,
+)
+
 
 val neutral400Size20Weight700Style = TextStyle(
     fontSize = 20.sp,

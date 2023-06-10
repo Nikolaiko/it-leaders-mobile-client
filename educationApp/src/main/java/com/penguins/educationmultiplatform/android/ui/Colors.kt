@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 
 
 val neutral900 = Color(0xFF101010)
+val neutral800 = Color(0xFF262626)
 val neutral700 = Color(0xFF7C7C7B)
 val neutral400 = Color(0xFFEDEDED)
 val neutral0 = Color(0xFFFFFFFF)

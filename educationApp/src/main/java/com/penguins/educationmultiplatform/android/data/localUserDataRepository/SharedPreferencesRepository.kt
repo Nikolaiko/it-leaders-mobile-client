@@ -53,6 +53,18 @@ class SharedPreferencesRepository(
         else -> { Json.decodeFromString<LocalUserData>(userDataString) }
     }
 
+    override fun saveUserScore(newScore: Int) {
+        repository
+            .edit()
+            .putInt(userScore, newScore)
+            .apply()
+    }
+
+    override fun getUserScore(): Int {
+        return repository
+            .getInt(userScore, 0)
+    }
+
     override fun logoutUser() {
         repository
             .edit()
@@ -64,5 +76,6 @@ class SharedPreferencesRepository(
         private const val skippedAuthFlag = "skipped_auth_property"
         private const val userTokensData = "user_tokens_property"
         private const val userData = "user_data_property"
+        private const val userScore = "user_score"
     }
 }
