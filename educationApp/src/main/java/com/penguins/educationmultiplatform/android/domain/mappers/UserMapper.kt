@@ -38,8 +38,14 @@ fun getAge(birthday: String?): String {
     }
 }
 
-fun List<InterestCategory>.toUserCategories() = this.associate {
-    it.toCategory() to true
+fun List<InterestCategory>.toUserCategories(): Map<Category, Boolean> {
+    val map = mutableMapOf<Category, Boolean>()
+    val userCategories = this.map { it.toCategory() }
+    for (category in Category.values().toList()) {
+        val c = userCategories.find { category == it }
+        map[category] = c != null
+    }
+    return map.toMap()
 }
 
 fun InterestCategory.toCategory() = when (this) {

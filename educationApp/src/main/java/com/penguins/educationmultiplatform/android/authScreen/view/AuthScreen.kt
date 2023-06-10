@@ -79,7 +79,7 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
     LaunchedEffect(key1 = errorEffect) {
         viewModel.errorState.collect {
             if (it !is AppError.NoError) {
-                Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Извините! Что-то пошло не так.", Toast.LENGTH_LONG).show()
             }
         }
     }
