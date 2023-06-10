@@ -11,7 +11,7 @@ android {
     compileSdk = 33
     defaultConfig {
         applicationId = "com.penguins.educationmultiplatform.android"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"

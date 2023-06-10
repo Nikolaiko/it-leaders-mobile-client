@@ -55,7 +55,7 @@ class AuthViewModel(
                 navigation.navigateTo(AppScreens.RegisterScreenRoute)
             }
             is AuthScreenEvents.SetLogin -> {
-                _state.tryEmit(_state.value.copy(login = event.text))
+                _state.tryEmit(_state.value.copy(login = event.text.trim()))
             }
             is AuthScreenEvents.SetPassword -> {
                 _state.tryEmit(_state.value.copy(password = event.text))

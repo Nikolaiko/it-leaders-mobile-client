@@ -56,7 +56,7 @@ class RegisterViewModel(
                 _state.tryEmit(_state.value.copy(name = event.text))
             }
             is RegisterScreenEvents.SetEmailField -> {
-                _state.tryEmit(_state.value.copy(email = event.email))
+                _state.tryEmit(_state.value.copy(email = event.email.trim()))
             }
             is RegisterScreenEvents.SetPasswordField -> {
                 _state.tryEmit(_state.value.copy(password = event.password))

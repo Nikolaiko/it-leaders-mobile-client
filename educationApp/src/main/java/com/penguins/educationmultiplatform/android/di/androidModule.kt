@@ -15,9 +15,9 @@ import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFro
 import com.penguins.educationmultiplatform.android.domain.useCases.GetUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.tests.GetTestCaseUseCase
 
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByCategoryUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsByParamsUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.GetNewsListUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByCategoryUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByParamsUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.GetVideoCoursesUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.SaveUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.UpdateUserInterestsUseCase
@@ -71,7 +71,7 @@ val androidModule = module {
     viewModel { CoursesViewModel(get()) }
 
 
-    viewModel { ProfileViewModel(get(), get()) }
+    viewModel { ProfileViewModel(get(), get(), get()) }
 
     viewModel { ProfileTabsViewModel() }
 

@@ -1,7 +1,6 @@
 package com.penguins.educationmultiplatform.android.profileScreen.components.menu
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,19 +9,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.DropdownMenu
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.R
+import com.penguins.educationmultiplatform.android.profileScreen.data.model.ProfileEvent
+import com.penguins.educationmultiplatform.android.ui.neutral400
 
 @Composable
 fun DropDownMenu(
@@ -30,7 +28,7 @@ fun DropDownMenu(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     onDismissRequest: () -> Unit,
-    onClickItem: () -> Unit
+    onClickItem: (ProfileEvent) -> Unit
 ) {
     Box(modifier = modifier) {
         DropDownItem(
@@ -67,17 +65,17 @@ fun DropDownItem(
 }
 
 @Composable
-private fun DropDownMenuItems(onClick: () -> Unit) = Column {
+private fun DropDownMenuItems(onClick: (ProfileEvent) -> Unit) = Column {
     DropdownMenuItem(
         text = "Изменить фотографию",
-        iconId = R.drawable.ic_search,//fixed
-        onClick = onClick
+        iconId = R.drawable.png_camera,
+        onClick = { onClick(ProfileEvent.ChangeImage) }
     )
-    Divider(color = White)//fixed
+    Divider(color = neutral400)
     DropdownMenuItem(
         text = "Выйти из аккаунта",
-        iconId = R.drawable.ic_search,//fixed
-        onClick
+        iconId = R.drawable.ic_logout,
+        onClick = { onClick(ProfileEvent.LogOut) }
     )
 }
 
@@ -90,8 +88,14 @@ private fun DropdownMenuItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() }
+            .clickable { onClick() },
+        verticalAlignment = Alignment.CenterVertically
     ) {
+        Image(
+            modifier = Modifier.padding(start = 16.dp),
+            painter = painterResource(id = iconId),
+            contentDescription = text
+        )
         Text(
             text = text,
             modifier = Modifier.padding(

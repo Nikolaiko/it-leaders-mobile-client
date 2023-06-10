@@ -34,18 +34,18 @@ fun createTappableCircle(
         }
     }
     val circle = clusterCollection.addPlacemark(school.coords, imageProvider)
-    circle.setText(
-        school.name,
-        TextStyle(
-            12f,
-            Color(0xFF000000).toArgb(),
-            null,
-            TextStyle.Placement.TOP_RIGHT,
-            4f,
-            true,
-            true
-        )
-    )
+//    circle.setText(
+//        school.name,
+//        TextStyle(
+//            12f,
+//            Color(0xFF000000).toArgb(),
+//            null,
+//            TextStyle.Placement.TOP_RIGHT,
+//            4f,
+//            true,
+//            true
+//        )
+//    )
     circle.zIndex = 100.0f
     circle.userData = school
     // Client code must retain strong reference to the listener.

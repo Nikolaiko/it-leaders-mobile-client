@@ -51,16 +51,22 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
                 age = state.value.age,
                 score = state.value.rating.toString()
             )
-            Box {
+            Box(
+                modifier = Modifier.fillMaxHeight(),
+                contentAlignment = Alignment.CenterEnd
+            ) {
                 ProfileUserImage(
-                    modifier = Modifier.size(96.dp),
-                    imageUrl = state.value.imageUrl
+                    modifier = Modifier
+                        .padding(end = 16.dp)
+                        .size(96.dp),
+                    imageUrl = state.value.imageUrl,
+                    imageId = state.value.imageId ?: R.drawable.debug_user
                 )
                 DropDownMenu(
-                    isExpanded = false,
-                    onClick = { viewModel.onEvent(ProfileEvent.Menu) },
-                    onDismissRequest = { /*TODO*/ },
-                    onClickItem = {}
+                    isExpanded = state.value.isMenuVisible,
+                    onClick = { viewModel.onEvent(ProfileEvent.OpenMenu) },
+                    onDismissRequest = { viewModel.onEvent(ProfileEvent.CloseMenu) },
+                    onClickItem = { event -> viewModel.onEvent(event) }
                 )
             }
         }
