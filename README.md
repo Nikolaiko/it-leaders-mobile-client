@@ -37,4 +37,4 @@
 
 Ссылка на [.apk](https://drive.google.com/drive/folders/1QhJzgx7kzJH4OyfIp-qyKfAD5QX_AWPc)
 
-Ссылка на публичную группу в [AppCenter](install.appcenter.ms/users/nikbakland-h8nz/apps/education-app/distribution_groups/public%20testers)
+Ссылка на публичную группу в [AppCenter](https://install.appcenter.ms/users/nikbakland-h8nz/apps/education-app/distribution_groups/public%20testers)
