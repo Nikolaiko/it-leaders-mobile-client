@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavOptions
 import com.penguins.educationmultiplatform.android.profileScreen.data.model.ProfileScreenState
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
-import com.penguins.educationmultiplatform.android.domain.usecases.auth.LogoutUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.auth.LogoutUseCase
 import com.penguins.educationmultiplatform.android.navigation.routeObject.nonLoggedUserGraph
 import com.penguins.educationmultiplatform.android.navigation.routeObject.rootGraph
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
@@ -26,7 +26,7 @@ class ProfileViewModel(
             _state.value.copy(
                 userName = "Владимир Кузнецов",
                 age = "22 года",
-                rating = "165 баллов"
+                rating = 165
             )
         )
     }
@@ -42,10 +42,10 @@ class ProfileViewModel(
 
     private fun clickCategory(category: Category) {
         val map = mutableMapOf<Category, Boolean>()
-        _state.value.categories.forEach { (currentCategory, isSelected) ->
+        for ((currentCategory, isSelected) in _state.value.categories) {
             when (currentCategory == category) {
-                true -> map[category] = !isSelected
-                false -> map[category] = isSelected
+                true -> map[currentCategory] = !isSelected
+                false -> map[currentCategory] = isSelected
             }
         }
 
