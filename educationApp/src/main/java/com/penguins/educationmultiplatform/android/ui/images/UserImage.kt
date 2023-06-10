@@ -20,14 +20,15 @@ import com.penguins.educationmultiplatform.android.ui.primaryGray
 @Composable
 fun UserImage(
     modifier: Modifier = Modifier,
-    imageUrl: String? = null
+    imageUrl: String? = null,
+    imageId: Int = R.drawable.photo_teacher
 ) {
     Card(
         modifier = modifier,
         shape = CircleShape
     ) {
         Image(
-            painter = painterResource(id = R.drawable.photo_teacher),
+            painter = painterResource(id = imageId),
             modifier = Modifier
                 .background(
                     color = primaryGray,
@@ -47,7 +48,7 @@ fun ProfileUserImage(
         Card(
             modifier = modifier,
             shape = CircleShape,
-            border = BorderStroke(2.dp, Color.White)
+            border = BorderStroke(3.dp, Color.White)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.photo_teacher),

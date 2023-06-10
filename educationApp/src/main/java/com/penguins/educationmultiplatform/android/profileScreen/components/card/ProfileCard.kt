@@ -49,7 +49,7 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
                     .padding(end = 16.dp),
                 fullName = state.value.userName,
                 age = state.value.age,
-                score = state.value.rating
+                score = state.value.rating.toString()
             )
             Box {
                 ProfileUserImage(
@@ -109,7 +109,9 @@ fun UserInfo(
                     Image(
                         painter = painterResource(id = R.drawable.png_money),
                         contentDescription = "Баллы",
-                        modifier = Modifier.padding(start = 12.dp)
+                        modifier = Modifier
+                            .padding(start = 12.dp)
+                            .size(20.dp)
                     )
                 }
             }

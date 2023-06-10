@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.profileScreen.components.list
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.profileScreen.data.model.User
 import com.penguins.educationmultiplatform.android.profileScreen.data.debug.getRatingUsers
 import com.penguins.educationmultiplatform.android.ui.body2RegularTextStyle
@@ -49,7 +52,10 @@ fun FriendCard(
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        UserImage(modifier = Modifier.size(48.dp))
+        UserImage(
+            modifier = Modifier.size(48.dp),
+            imageId = user.imageId
+        )
         UserNameText(user.fullName)
     }
     UserRatingText(rating = user.rating)
@@ -66,10 +72,23 @@ fun UserNameText(fullName: String?) {
 }
 
 @Composable
-fun UserRatingText(rating: String?) {
-    Text(
-        text = rating ?: "",
+fun UserRatingText(rating: Int?) {
+    Row(
         modifier = Modifier.padding(end = 16.dp),
-        style = heading3BoldTextStyle
-    )
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = "${rating ?: 0}",
+            modifier = Modifier,
+            style = heading3BoldTextStyle
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.png_money),
+            contentDescription = "Баллы",
+            modifier = Modifier
+                .padding(start = 16.dp)
+                .size(26.dp)
+        )
+    }
 }

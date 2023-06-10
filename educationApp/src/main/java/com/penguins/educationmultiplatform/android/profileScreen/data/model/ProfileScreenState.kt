@@ -5,7 +5,7 @@ import com.penguins.educationmultiplatform.android.newsScreen.common.data.Catego
 data class ProfileScreenState(
     val userName: String = "",
     val age: String = "",
-    val rating: String = "",
+    val rating: Int = 0,
     val imageUrl: String? = null,
     val categories: Map<Category, Boolean> = Category.values().associateWith { false }
 )
