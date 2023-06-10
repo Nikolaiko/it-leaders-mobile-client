@@ -15,6 +15,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
@@ -64,13 +65,14 @@ fun CategoryChip(
         colors = ChipDefaults.chipColors(
             backgroundColor = when (isSelected) {
                 true -> categoryColor
-                false -> textGrayColor//fixed
+                false -> Color.White
             }
         ),
         onClick = onClick,
         modifier = Modifier
             .wrapContentSize()
             .padding(end = 10.dp)
+            .alpha(0.6f)
     ) {
         Text(
             text = text,

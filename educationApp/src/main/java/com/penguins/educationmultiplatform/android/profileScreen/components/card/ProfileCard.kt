@@ -1,5 +1,6 @@
 package com.penguins.educationmultiplatform.android.profileScreen.components.card
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -15,14 +16,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.profileScreen.components.chips.ProfileChips
 import com.penguins.educationmultiplatform.android.profileScreen.components.menu.DropDownMenu
 import com.penguins.educationmultiplatform.android.profileScreen.data.model.ProfileEvent
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileViewModel
 import com.penguins.educationmultiplatform.android.ui.body1RegularTextStyle
-import com.penguins.educationmultiplatform.android.ui.heading2TextStyle
+import com.penguins.educationmultiplatform.android.ui.heading1BoldTextStyle
 import com.penguins.educationmultiplatform.android.ui.images.ProfileUserImage
 import org.koin.androidx.compose.koinViewModel
 
@@ -41,7 +44,9 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
                 .height(IntrinsicSize.Min),
         ) {
             UserInfo(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 16.dp),
                 fullName = state.value.userName,
                 age = state.value.age,
                 score = state.value.rating
@@ -85,23 +90,29 @@ fun UserInfo(
             ) {
                 Text(
                     text = fullName,
-                    style = heading2TextStyle
+                    style = heading1BoldTextStyle
                 )
                 Text(
                     text = age,
-                    style = body1RegularTextStyle
+                    style = body1RegularTextStyle,
+                    modifier = Modifier.padding(top = 4.dp)
                 )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(top = 16.dp)
+                ) {
+                    Text(
+                        modifier = Modifier,
+                        text = score,
+                        style = heading1BoldTextStyle,
+                    )
+                    Image(
+                        painter = painterResource(id = R.drawable.png_money),
+                        contentDescription = "Баллы",
+                        modifier = Modifier.padding(start = 12.dp)
+                    )
+                }
             }
-        }
-        Box(
-            modifier = Modifier.fillMaxHeight(),
-            contentAlignment = Alignment.BottomStart
-        ) {
-            Text(
-                modifier = Modifier,
-                text = score,
-                style = heading2TextStyle
-            )
         }
     }
 }
@@ -109,5 +120,5 @@ fun UserInfo(
 @Preview(showBackground = true, widthDp = 320, heightDp = 640, backgroundColor = 0xffffff)
 @Composable
 fun ProfilePreview() {
-    ProfileCard()
+//    ProfileCard()
 }
