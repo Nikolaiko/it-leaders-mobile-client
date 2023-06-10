@@ -9,6 +9,7 @@
     <string name="art_category_label">Изобразительное\nискусство</string>
 
     <string name="continue_text">Продолжить</string>
+    <string name="check_answer_text">Проверить</string>
     <string name="retry_text">Повторить</string>
     <string name="authorize_text">Авторизоваться</string>
 

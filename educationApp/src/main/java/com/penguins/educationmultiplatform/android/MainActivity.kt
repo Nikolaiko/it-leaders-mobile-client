@@ -16,7 +16,7 @@ import com.penguins.educationmultiplatform.android.navigation.graps.authGraph
 import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.rootGraph
 import com.penguins.educationmultiplatform.android.splashScreen.view.SplashScreenView
-import com.penguins.educationmultiplatform.android.testsScreen.view.TestCaseView
+import com.penguins.educationmultiplatform.android.testsScreen.tests.view.TestCaseView
 
 
 class MainActivity : ComponentActivity() {

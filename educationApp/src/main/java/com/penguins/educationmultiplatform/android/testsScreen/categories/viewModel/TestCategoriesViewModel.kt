@@ -2,6 +2,7 @@ package com.penguins.educationmultiplatform.android.testsScreen.categories.viewM
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavOptions
 import com.penguins.educationmultiplatform.android.data.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.model.dto.profile.InterestCategory
 import com.penguins.educationmultiplatform.android.data.model.dto.profile.LocalUserData
@@ -10,7 +11,9 @@ import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigati
 import com.penguins.educationmultiplatform.android.domain.useCases.GetUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.SaveUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.UpdateUserInterestsUseCase
+import com.penguins.educationmultiplatform.android.navigation.navigation.TestsNavigation
 import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
+import com.penguins.educationmultiplatform.android.navigation.routeObject.TestsScreens
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.testsScreen.data.CategoriesScreenState
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,7 +23,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class TestCategoriesViewModel(
-    private val appNavigation: AppNavigation,
+    private val testsNavigation: TestsNavigation,
     private val getUserDataUseCase: GetUserDataUseCase,
     private val saveUserDataUseCase: SaveUserDataUseCase,
     private val updateUserInterestsUseCase: UpdateUserInterestsUseCase
@@ -56,6 +59,12 @@ class TestCategoriesViewModel(
 
     fun proceedToTests() {
         userData?.apply(::updateUserInterests)
+
+        val options = NavOptions
+            .Builder()
+            .setPopUpTo(TestsScreens.TestsCategoriesScreen.route, true)
+            .build()
+        testsNavigation.navigateTo(TestsScreens.UserTestsScreen, options)
     }
 
     fun toggleMusic() {

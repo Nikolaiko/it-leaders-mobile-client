@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.MyApplicationTheme
 import com.penguins.educationmultiplatform.android.R
+import com.penguins.educationmultiplatform.android.commonViews.VioletteButton
 import com.penguins.educationmultiplatform.android.data.localUserDataRepository.SharedPreferencesRepository
 import com.penguins.educationmultiplatform.android.data.model.consts.errorEffect
 import com.penguins.educationmultiplatform.android.data.model.consts.testCategoriesScreenEffect
@@ -135,28 +136,11 @@ fun TestCategoriesView(
                 )
             }
             Spacer(modifier = Modifier.weight(1.0f))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                TextButton(
-                    onClick = { viewModel.proceedToTests() },
-                    enabled = state.value.canContinue,
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = secondary400,
-                        disabledBackgroundColor = secondary200
-                    )
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.continue_text),
-                        style = when(state.value.canContinue) {
-                            true -> neutral0Size20Weight700Style
-                            false -> neutral400Size20Weight700Style
-                        }
-                    )
-                }
-            }
+            VioletteButton(
+                text = stringResource(id = R.string.continue_text),
+                enabled = state.value.canContinue,
+                onClick = { viewModel.proceedToTests() }
+            )
             Spacer(modifier = Modifier.weight(1.0f))
         }
     }

@@ -16,6 +16,7 @@ val primary500 = Color(0xFF9AAE4F)
 val secondary200 = Color(0xFFD9D9D9)
 val secondary400 = Color(0xFF8E74A8)
 
+val wrongColor = Color(0xFFB84452)
 val gradientBlue = Color(0xFFAED7F1)
 
 val primaryBlue = Color(0xFF0076DE)

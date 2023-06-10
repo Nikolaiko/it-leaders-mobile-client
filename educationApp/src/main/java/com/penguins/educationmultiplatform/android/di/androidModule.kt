@@ -31,8 +31,6 @@ import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.view
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.viewModel.ProfileTabsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileScreenViewModel
-import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCaseViewModel
-import com.penguins.educationmultiplatform.android.testsScreen.categories.viewModel.TestCategoriesViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.json.JsonFeature
