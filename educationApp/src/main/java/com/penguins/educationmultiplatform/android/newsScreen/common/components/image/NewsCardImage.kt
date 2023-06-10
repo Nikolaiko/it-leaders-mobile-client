@@ -2,6 +2,7 @@ package com.penguins.educationmultiplatform.android.newsScreen.common.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,7 +22,9 @@ fun NewsCardImage(
         contentDescription = IMAGE_CARD_DESCRIPTION,
         contentScale = contentScale,
         loading = {
-            CircularProgressIndicator()
+            CircularProgressIndicator(
+                modifier = Modifier.wrapContentSize()
+            )
         },
         modifier = Modifier
             .fillMaxWidth(),
