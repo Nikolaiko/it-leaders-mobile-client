@@ -3,6 +3,7 @@ package com.penguins.educationmultiplatform.android.profileScreen.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavOptions
+import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.profileScreen.data.model.ProfileScreenState
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.auth.LogoutUseCase
@@ -26,7 +27,8 @@ class ProfileViewModel(
             _state.value.copy(
                 userName = "Владимир Кузнецов",
                 age = "22 года",
-                rating = 165
+                rating = 165,
+                imageId = R.drawable.debug_user
             )
         )
     }
