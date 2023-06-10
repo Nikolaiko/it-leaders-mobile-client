@@ -33,7 +33,7 @@ val text1Answer11 = TextAnswerVariant(
 )
 val text1Answer12 = TextAnswerVariant(
     text = "Композитор",
-    correct = false
+    correct = true
 )
 val text1Answer13 = TextAnswerVariant(
     text = "Концертмейстер",

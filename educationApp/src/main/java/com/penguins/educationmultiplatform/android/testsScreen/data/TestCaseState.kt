@@ -1,6 +1,8 @@
 package com.penguins.educationmultiplatform.android.testsScreen.data
 
+import com.penguins.educationmultiplatform.android.testsScreen.tests.data.TestState
+
 data class TestCaseState(
-    val tests: List<EducationTest>,
-    val currentIndex: Int
+    val currentTest: EducationTest?,
+    val currentTestState: TestState
 )

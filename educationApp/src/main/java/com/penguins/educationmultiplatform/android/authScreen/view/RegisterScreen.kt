@@ -38,7 +38,7 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
-import com.penguins.educationmultiplatform.android.authScreen.components.EducationButton
+import com.penguins.educationmultiplatform.android.commonViews.EducationButton
 import com.penguins.educationmultiplatform.android.authScreen.components.FormField
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenUiState

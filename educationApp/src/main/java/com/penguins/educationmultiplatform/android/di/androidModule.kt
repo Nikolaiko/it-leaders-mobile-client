@@ -12,12 +12,15 @@ import com.penguins.educationmultiplatform.android.data.navigation.DestinationCo
 import com.penguins.educationmultiplatform.android.domain.location.LocationTracker
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetSchoolsFromRepository
+import com.penguins.educationmultiplatform.android.domain.useCases.GetUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.usecases.tests.GetTestCaseUseCase
 
 import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByCategoryUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByParamsUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.GetVideoCoursesUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.SaveUserDataUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.UpdateUserInterestsUseCase
 
 import com.penguins.educationmultiplatform.android.mapScreen.viewModel.YandexMapViewModel
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
@@ -28,8 +31,6 @@ import com.penguins.educationmultiplatform.android.newsScreen.oneNewsScreen.view
 import com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.viewModel.SearchNewsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.viewModel.ProfileTabsViewModel
 import com.penguins.educationmultiplatform.android.profileScreen.viewModel.ProfileViewModel
-import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCaseViewModel
-import com.penguins.educationmultiplatform.android.testsScreen.viewModel.TestCategoriesViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.json.JsonFeature
@@ -64,15 +65,18 @@ val androidModule = module {
     viewModel { NewsViewModel(get()) }
     viewModel { SearchNewsViewModel(get(), get()) }
 
+    viewModel { HeadingNewsViewModel(get(), get()) }
+    viewModel { CoursesViewModel(get()) }
+
+
     viewModel { ProfileViewModel(get(), get()) }
+
     viewModel { ProfileTabsViewModel() }
 
     viewModel { CoursesViewModel(get()) }
     viewModel { DetailCourseViewModel(get(), get()) }
     viewModel { VideoItemViewModel(get(),get(), get()) }
 
-    viewModel { TestCategoriesViewModel(get()) }
-    viewModel { TestCaseViewModel(get(), get()) }
     viewModel { HeadingNewsViewModel(get(), get()) }
 
     single { SharedViewModel() }
@@ -82,6 +86,10 @@ val androidModule = module {
     single <LocationTracker> { DefaultLocationTracker(get(),androidContext()) }
 
     //useCases
+    single { GetUserDataUseCase(get(), get()) }
+    single { SaveUserDataUseCase(get()) }
+    single { UpdateUserInterestsUseCase(get(), get()) }
+
     single { GetSchoolsFromRepository() }
     single <AppNavigation> { DestinationController() }
     single { NewsNavigation() }

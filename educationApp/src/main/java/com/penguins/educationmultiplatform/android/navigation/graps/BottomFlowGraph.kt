@@ -11,7 +11,6 @@ import com.penguins.educationmultiplatform.android.navigation.routeObject.mainGr
 import com.penguins.educationmultiplatform.android.profileScreen.view.ProfileScreenView
 import com.penguins.educationmultiplatform.android.newsScreen.main.view.MainNewsScreen
 import com.penguins.educationmultiplatform.android.testsScreen.main.view.MainTestsScreen
-import com.penguins.educationmultiplatform.android.testsScreen.view.TestCategoriesView
 
 @Composable
 fun BottomFlowGraph(navController: NavHostController) {
