@@ -69,7 +69,7 @@ val androidModule = module {
     viewModel { CoursesViewModel(get()) }
 
 
-    viewModel { ProfileViewModel(get(), get()) }
+    viewModel { ProfileViewModel(get(), get(), get()) }
 
     viewModel { ProfileTabsViewModel() }
 
