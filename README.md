@@ -35,6 +35,6 @@
 
 При регистрации длинна пароля должна быть не меньше трех.
 
-Ссылка на [.apk](https://drive.google.com/drive/folders/1QhJzgx7kzJH4OyfIp-qyKfAD5QX_AWPc)
+Ссылка на [.apk](https://drive.google.com/file/d/1IW7KBLNeRdaf9HB5mJsgP4INDSlEDKti/view?usp=sharing)
 
 Ссылка на публичную группу в [AppCenter](https://install.appcenter.ms/users/nikbakland-h8nz/apps/education-app/distribution_groups/public%20testers)
