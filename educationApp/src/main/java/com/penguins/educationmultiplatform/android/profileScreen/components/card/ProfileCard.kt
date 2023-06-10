@@ -63,10 +63,10 @@ fun ProfileCard(viewModel: ProfileViewModel = koinViewModel()) {
                     imageId = state.value.imageId ?: R.drawable.debug_user
                 )
                 DropDownMenu(
-                    isExpanded = false,
-                    onClick = { viewModel.onEvent(ProfileEvent.Menu) },
-                    onDismissRequest = { /*TODO*/ },
-                    onClickItem = {}
+                    isExpanded = state.value.isMenuVisible,
+                    onClick = { viewModel.onEvent(ProfileEvent.OpenMenu) },
+                    onDismissRequest = { viewModel.onEvent(ProfileEvent.CloseMenu) },
+                    onClickItem = { event -> viewModel.onEvent(event) }
                 )
             }
         }

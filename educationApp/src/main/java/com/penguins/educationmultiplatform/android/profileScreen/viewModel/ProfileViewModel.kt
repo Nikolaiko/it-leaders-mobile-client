@@ -10,6 +10,7 @@ import com.penguins.educationmultiplatform.android.profileScreen.data.model.Prof
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.auth.LogoutUseCase
+import com.penguins.educationmultiplatform.android.navigation.routeObject.nonLoggedIndependentUserGraph
 import com.penguins.educationmultiplatform.android.navigation.routeObject.nonLoggedUserGraph
 import com.penguins.educationmultiplatform.android.navigation.routeObject.rootGraph
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
@@ -42,9 +43,22 @@ class ProfileViewModel(
         when (event) {
             ProfileEvent.LogOut -> logout()
             is ProfileEvent.ClickCategory -> clickCategory(event.category)
-            ProfileEvent.Menu -> Unit
-            ProfileEvent.ChangeImage -> Unit
+            ProfileEvent.OpenMenu -> _state.tryEmit(
+                _state.value.copy(
+                    isMenuVisible = true
+                )
+            )
+            ProfileEvent.CloseMenu -> _state.tryEmit(
+                _state.value.copy(
+                    isMenuVisible = false
+                )
+            )
+            ProfileEvent.ChangeImage -> changeImage()
         }
+    }
+
+    private fun changeImage() {
+
     }
 
     private suspend fun getUser() {
@@ -74,7 +88,7 @@ class ProfileViewModel(
         viewModelScope.launch {
             logoutUseCase.invoke()
             navigation.navigateTo(
-                nonLoggedUserGraph,
+                nonLoggedIndependentUserGraph,
                 NavOptions.Builder().setPopUpTo(rootGraph, true).build()
             )
         }
