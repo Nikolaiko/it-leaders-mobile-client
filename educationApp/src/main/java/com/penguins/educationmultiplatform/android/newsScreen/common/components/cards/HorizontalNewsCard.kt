@@ -104,6 +104,3 @@ fun HeadingText(heading: String) {
         )
     }
 }
-
-@SuppressLint("NonConstantResourceId")
-const val DEFAULT_IMAGE_NEWS = R.drawable.png_debug_news

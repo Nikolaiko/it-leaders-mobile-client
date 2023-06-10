@@ -1,7 +1,7 @@
 package com.penguins.educationmultiplatform.android.profileScreen.components.tabs.mainTabs.data
 
 import com.penguins.educationmultiplatform.android.coursesScreen.courseScreen.data.model.VideoCourse
-import com.penguins.educationmultiplatform.android.profileScreen.data.User
+import com.penguins.educationmultiplatform.android.profileScreen.data.model.User
 
 data class ProfileTabsState(
     val selectedTab: ProfileTabsEnum = ProfileTabsEnum.MY_COURSES,
