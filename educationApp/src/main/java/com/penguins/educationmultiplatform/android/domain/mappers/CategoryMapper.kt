@@ -1,6 +1,6 @@
 package com.penguins.educationmultiplatform.android.domain.mappers
 
-import com.penguins.educationmultiplatform.android.data.model.dto.news.CategoryParam
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.news.CategoryParam
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 
 fun getCategoryFromCategoryParam(category: String?) = when (category) {

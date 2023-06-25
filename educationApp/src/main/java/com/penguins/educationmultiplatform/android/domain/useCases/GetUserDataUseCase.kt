@@ -1,25 +1,25 @@
 package com.penguins.educationmultiplatform.android.domain.useCases
 
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.LocalUserData
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.LocalUserData
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
-import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
+import com.penguins.educationmultiplatform.android.domain.network.EducationRepository
 
 class GetUserDataUseCase constructor(
     private val localUserDataRepository: LocalUserDataRepository,
     private val networkLayer: EducationRepository
 ) {
-    suspend fun invoke(): ActionResult<LocalUserData, AppError> {
+    suspend fun invoke(): AppActionResult<LocalUserData, AppError> {
         return when (val savedUserData = localUserDataRepository.getUserData()) {
             null -> loadUserDataFromServer()
-            else -> ActionResult.Success(savedUserData)
+            else -> AppActionResult.Success(savedUserData)
         }
     }
 
-    private suspend fun loadUserDataFromServer(): ActionResult<LocalUserData, AppError> {
+    private suspend fun loadUserDataFromServer(): AppActionResult<LocalUserData, AppError> {
         return when(val tokens = localUserDataRepository.getTokens()) {
-            null -> ActionResult.Fail(AppError.UnauthorizedAccess)
+            null -> AppActionResult.Fail(AppError.UnauthorizedAccess)
             else -> networkLayer.getUserData(tokens.accessToken)
         }
     }

@@ -1,21 +1,84 @@
 package com.services.network
 
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.HttpTimeout
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.json.Json
+import com.model.ActionResult
+import com.model.dto.auth.AuthRequestDTO
+import com.model.dto.auth.AuthResponseDTO
+import com.model.dto.auth.RegisterRequestDTO
+import com.model.dto.interests.InterestsListDTO
+import com.model.dto.news.NewsResponseListDTO
+import com.model.dto.user.UserDataDTO
+import com.model.network.NetworkError
+import com.services.network.api.AuthApi
+import com.services.network.api.NewsApi
+import com.services.network.api.UserApi
+import com.services.storage.TokenStorage
 
-class KtorNetworkLayer {
-    private val client = HttpClient {
-        install(ContentNegotiation) {
-            json(
-                Json {
-                    prettyPrint = true
-                    ignoreUnknownKeys = true
-                }
-            )
+class KtorNetworkLayer(
+    private val baseAddress: String,
+    private val tokenStorage: TokenStorage
+) {
+    private val authApi = AuthApi(baseAddress)
+    private val userApi = UserApi(baseAddress, tokenStorage)
+    private val newsApi = NewsApi(baseAddress)
+
+    suspend fun authUser(
+        authRequestDTO: AuthRequestDTO
+    ): ActionResult<AuthResponseDTO, NetworkError> {
+        return when(val result = authApi.loginUser(authRequestDTO)) {
+            is ActionResult.Success -> {
+                tokenStorage.updateTokens(
+                    accessToken = result.result.accessToken,
+                    refreshToken = result.result.refreshToken
+                )
+                result
+            }
+            else -> result
         }
-        install(HttpTimeout)
+    }
+
+    suspend fun registerUserViaVK(
+        registerRequestDTO: RegisterRequestDTO
+    ): ActionResult<AuthResponseDTO, NetworkError> {
+        return when(val result = authApi.registerUserVK(registerRequestDTO)) {
+            is ActionResult.Success -> {
+                tokenStorage.updateTokens(
+                    accessToken = result.result.accessToken,
+                    refreshToken = result.result.refreshToken
+                )
+                result
+            }
+            else -> result
+        }
+    }
+
+    suspend fun registerUserViaEmail(
+        registerRequestDTO: RegisterRequestDTO
+    ): ActionResult<AuthResponseDTO, NetworkError> {
+        return when(val result = authApi.registerUserByEmail(registerRequestDTO)) {
+            is ActionResult.Success -> {
+                tokenStorage.updateTokens(
+                    accessToken = result.result.accessToken,
+                    refreshToken = result.result.refreshToken
+                )
+                result
+            }
+            else -> result
+        }
+    }
+
+    suspend fun getUserData(): ActionResult<UserDataDTO, NetworkError> {
+        return userApi.getUserData()
+    }
+
+    suspend fun updateUserInterests(
+        interestsListDTO: InterestsListDTO
+    ): ActionResult<UserDataDTO, NetworkError> {
+        return userApi.updateUserInterests(interestsListDTO)
+    }
+
+    suspend fun getNewsByCategory(
+        categoryName: String
+    ): ActionResult<NewsResponseListDTO, NetworkError> {
+        return newsApi.getNewsByCategory(categoryName)
     }
 }

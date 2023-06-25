@@ -7,15 +7,15 @@ import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenEve
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthScreenUiState
 import com.penguins.educationmultiplatform.android.authScreen.data.AuthUpdatedBus
 import com.penguins.educationmultiplatform.android.authScreen.data.UserTokens
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
-import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthRequest
-import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.VKProfile
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.auth.AuthRequest
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.auth.AuthResponse
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.VKProfile
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.auth.LoginWithVKUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.auth.LoginWithEmailUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.auth.LoginWithEmailUseCase
 import com.penguins.educationmultiplatform.android.domain.validation.ValuesValidator
 import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.mainScreenRoute
@@ -74,8 +74,8 @@ class AuthViewModel(
             val request = AuthRequest(_state.value.login, _state.value.password)
             val response = loginWithEmailUseCase.invoke(request)
             when(response) {
-                is ActionResult.Success -> saveTokens(response.result)
-                is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+                is AppActionResult.Success -> saveTokens(response.result)
+                is AppActionResult.Fail -> _errorState.tryEmit(response.failure)
             }
         }
     }
@@ -84,14 +84,14 @@ class AuthViewModel(
         viewModelScope.launch {
             val response = loginWithVKUseCase.invoke(token, email, profile)
             when(response) {
-                is ActionResult.Success -> saveTokens(response.result)
-                is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+                is AppActionResult.Success -> saveTokens(response.result)
+                is AppActionResult.Fail -> _errorState.tryEmit(response.failure)
             }
         }
     }
 
     private fun saveTokens(auth: AuthResponse) {
-        localStorage.setTokens(UserTokens(accessToken = auth.accessToken))
+        localStorage.setTokens(UserTokens(accessToken = auth.accessToken, refreshToken = auth.refreshToken))
         when(authMode) {
             AuthDisplayMode.independent -> navigation.navigateTo(AppScreens.MainAppScreen)
             AuthDisplayMode.asChild -> navigation.popBackStack(route = mainScreenRoute)

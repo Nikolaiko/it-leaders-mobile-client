@@ -3,7 +3,7 @@ package com.penguins.educationmultiplatform.android.profileScreen.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavOptions
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.mappers.toProfileState
 import com.penguins.educationmultiplatform.android.profileScreen.data.model.ProfileScreenState
@@ -63,10 +63,10 @@ class ProfileViewModel(
 
     private suspend fun getUser() {
         when (val user = getUserUseCase.invoke()) {
-            is ActionResult.Success -> _state.tryEmit(
+            is AppActionResult.Success -> _state.tryEmit(
                user.result.toProfileState()
             )
-            is ActionResult.Fail -> Unit
+            is AppActionResult.Fail -> Unit
         }
     }
 

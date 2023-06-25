@@ -3,8 +3,8 @@ package com.penguins.educationmultiplatform.android.testsScreen.initial.viewMode
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavOptions
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.LocalUserData
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.LocalUserData
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.SaveUserDataUseCase
@@ -53,8 +53,8 @@ class InitialTestsScreenViewModel(
 
     private suspend fun checkUserInterests() {
         when(val userDataAction = getUserDataUseCase.invoke()) {
-            is ActionResult.Success -> processLocalUserData(userDataAction.result)
-            is ActionResult.Fail -> {
+            is AppActionResult.Success -> processLocalUserData(userDataAction.result)
+            is AppActionResult.Fail -> {
                 currentState = currentState.copy(testsCheckStatus = TestsStatus.FailedWithError)
                 _state.emit(currentState)
             }

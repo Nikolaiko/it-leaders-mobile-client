@@ -1,11 +1,11 @@
 package com.penguins.educationmultiplatform.android.domain.useCases.auth
 
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
-import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
-import com.penguins.educationmultiplatform.android.data.model.dto.auth.RegisterRequest
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.VKProfile
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.auth.AuthResponse
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.auth.RegisterRequest
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.VKProfile
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
-import com.penguins.educationmultiplatform.android.domain.remoteRepository.EducationRepository
+import com.penguins.educationmultiplatform.android.domain.network.EducationRepository
 
 class LoginWithVKUseCase(
     private val network: EducationRepository
@@ -14,7 +14,7 @@ class LoginWithVKUseCase(
         token: String,
         email: String,
         profile: VKProfile
-    ): ActionResult<AuthResponse, AppError> {
+    ): AppActionResult<AuthResponse, AppError> {
         return network.registerUserVK(
             RegisterRequest(
                 email = email,

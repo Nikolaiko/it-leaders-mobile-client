@@ -1,6 +1,6 @@
 package com.penguins.educationmultiplatform.android.data.model
 
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.InterestCategory
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.InterestCategory
 import com.penguins.educationmultiplatform.android.testsScreen.data.EducationTest
 import com.penguins.educationmultiplatform.android.testsScreen.data.TextAnswerVariant
 import com.penguins.educationmultiplatform.android.testsScreen.tests.data.TestDifficulty
