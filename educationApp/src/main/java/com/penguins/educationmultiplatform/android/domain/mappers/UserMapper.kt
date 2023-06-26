@@ -52,5 +52,5 @@ fun InterestCategory.toCategory() = when (this) {
     InterestCategory.art -> Category.ART
     InterestCategory.choreography -> Category.DANCE
     InterestCategory.music -> Category.MUSIC
-    InterestCategory.theater -> Category.THEATRE
+    InterestCategory.theatre -> Category.THEATRE
 }

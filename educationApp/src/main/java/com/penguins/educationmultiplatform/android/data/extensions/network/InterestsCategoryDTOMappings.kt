@@ -8,14 +8,14 @@ import com.penguins.educationmultiplatform.android.data.model.dataClasses.profil
 fun InterestsCategoryDTO.toInterestCategory() = when(this) {
     InterestsCategoryDTO.music -> InterestCategory.music
     InterestsCategoryDTO.art -> InterestCategory.art
-    InterestsCategoryDTO.theater -> InterestCategory.theater
+    InterestsCategoryDTO.theater -> InterestCategory.theatre
     InterestsCategoryDTO.choreography -> InterestCategory.choreography
 }
 
 fun InterestCategory.toDTO() = when(this) {
     InterestCategory.music -> InterestsCategoryDTO.music
     InterestCategory.art -> InterestsCategoryDTO.art
-    InterestCategory.theater -> InterestsCategoryDTO.theater
+    InterestCategory.theatre -> InterestsCategoryDTO.theater
     InterestCategory.choreography -> InterestsCategoryDTO.choreography
 }
 

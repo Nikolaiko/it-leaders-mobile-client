@@ -43,7 +43,7 @@ class TestCategoriesViewModel(
                     currentState = currentState.copy(
                         musicSelected = interests.contains(InterestCategory.music),
                         artSelected = interests.contains(InterestCategory.art),
-                        theatereSelected = interests.contains(InterestCategory.theater),
+                        theatereSelected = interests.contains(InterestCategory.theatre),
                         danceSelected = interests.contains(InterestCategory.choreography),
                         canContinue = interests.isNotEmpty()
                     )
@@ -103,7 +103,7 @@ class TestCategoriesViewModel(
             userInterests.add(InterestCategory.music)
         }
         if (currentState.theatereSelected) {
-            userInterests.add(InterestCategory.theater)
+            userInterests.add(InterestCategory.theatre)
         }
         if (currentState.danceSelected) {
             userInterests.add(InterestCategory.choreography)
