@@ -32,44 +32,8 @@ import kotlinx.serialization.json.Json
 
 internal class UserApi(
     private val baseAddress: String,
-    private val tokenStorage: TokenStorage
+    private val client: HttpClient
 ): BaseApi() {
-    private val client = HttpClient {
-        expectSuccess = true
-        install(ContentNegotiation) {
-            json(
-                Json {
-                    prettyPrint = true
-                    ignoreUnknownKeys = true
-                }
-            )
-        }
-        install(HttpTimeout)
-        install(Auth) {
-            bearer {
-                loadTokens {
-                    val tokens = tokenStorage.getLastTokens()
-                    BearerTokens(
-                        accessToken = tokens.first,
-                        refreshToken = tokens.second
-                    )
-                }
-                refreshTokens {
-                    val tokensResponse = client.post {
-                        url("$baseAddress/$refreshTokenPath")
-                        contentType(ContentType.Application.Json)
-                        setBody(RefreshRequestDTO(oldTokens?.refreshToken ?: ""))
-                    }.body<AuthResponseDTO>()
-                    tokenStorage.updateTokens(tokensResponse.accessToken, tokensResponse.refreshToken)
-                    val tokens = tokenStorage.getLastTokens()
-                    BearerTokens(
-                        accessToken = tokens.first,
-                        refreshToken = tokens.second
-                    )
-                }
-            }
-        }
-    }
 
     suspend fun getUserData(): ActionResult<UserDataDTO, NetworkError> {
         return try {

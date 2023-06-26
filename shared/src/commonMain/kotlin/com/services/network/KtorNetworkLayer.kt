@@ -11,15 +11,17 @@ import com.model.network.NetworkError
 import com.services.network.api.AuthApi
 import com.services.network.api.NewsApi
 import com.services.network.api.UserApi
+import com.services.network.clients.basicAuthClient
+import com.services.network.clients.buildBearerAuthClient
 import com.services.storage.TokenStorage
 
 class KtorNetworkLayer(
-    private val baseAddress: String,
+    baseAddress: String,
     private val tokenStorage: TokenStorage
 ) {
-    private val authApi = AuthApi(baseAddress)
-    private val userApi = UserApi(baseAddress, tokenStorage)
-    private val newsApi = NewsApi(baseAddress)
+    private val authApi = AuthApi(baseAddress, basicAuthClient)
+    private val userApi = UserApi(baseAddress, buildBearerAuthClient(baseAddress, tokenStorage))
+    private val newsApi = NewsApi(baseAddress, basicAuthClient)
 
     suspend fun authUser(
         authRequestDTO: AuthRequestDTO

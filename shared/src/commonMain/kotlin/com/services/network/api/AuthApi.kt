@@ -38,34 +38,9 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 internal class AuthApi(
-    private val baseAddress: String
+    private val baseAddress: String,
+    private val client: HttpClient
 ): BaseApi() {
-    private val client = HttpClient {
-        expectSuccess = true
-        install(ContentNegotiation) {
-            json(
-                Json {
-                    prettyPrint = true
-                    ignoreUnknownKeys = true
-                }
-            )
-        }
-        install(Logging) {
-            logger = Logger.SIMPLE
-            level = LogLevel.ALL
-        }
-        install(HttpTimeout)
-        install(Auth) {
-            basic {
-                credentials {
-                    BasicAuthCredentials(
-                        username = basicLogin,
-                        password = basicPassword
-                    )
-                }
-            }
-        }
-    }
 
     suspend fun loginUser(
         loginData: AuthRequestDTO

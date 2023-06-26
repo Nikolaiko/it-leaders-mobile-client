@@ -51,8 +51,8 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.7.1")
 
     //Koin
-    implementation("io.insert-koin:koin-android:3.3.2")
-    implementation("io.insert-koin:koin-androidx-navigation:3.3.2")
+    implementation("io.insert-koin:koin-android:3.4.0")
+    implementation("io.insert-koin:koin-androidx-navigation:3.4.0")
     implementation("io.insert-koin:koin-androidx-compose:3.4.1")
 
     // Coil

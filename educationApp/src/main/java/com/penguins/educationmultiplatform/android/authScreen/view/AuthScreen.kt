@@ -22,7 +22,7 @@ import com.penguins.educationmultiplatform.android.data.model.consts.errorEffect
 import com.penguins.educationmultiplatform.android.data.model.consts.vkFields
 import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.VKProfile
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
-import com.penguins.educationmultiplatform.android.data.network.api.VKUsersCommand
+import com.penguins.educationmultiplatform.android.data.network.vk.VKUsersCommand
 import com.penguins.educationmultiplatform.android.ui.gradientBackground
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAuthenticationResult
