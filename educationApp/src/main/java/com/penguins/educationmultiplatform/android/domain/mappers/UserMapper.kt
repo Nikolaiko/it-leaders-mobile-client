@@ -2,8 +2,8 @@ package com.penguins.educationmultiplatform.android.domain.mappers
 
 import com.penguins.educationmultiplatform.android.R
 import com.penguins.educationmultiplatform.android.data.model.consts.birthDateFormat
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.InterestCategory
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.LocalUserData
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.InterestCategory
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.LocalUserData
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.profileScreen.data.model.ProfileScreenState
 import java.time.LocalDate
@@ -52,5 +52,5 @@ fun InterestCategory.toCategory() = when (this) {
     InterestCategory.art -> Category.ART
     InterestCategory.choreography -> Category.DANCE
     InterestCategory.music -> Category.MUSIC
-    InterestCategory.theater -> Category.THEATRE
+    InterestCategory.theatre -> Category.THEATRE
 }

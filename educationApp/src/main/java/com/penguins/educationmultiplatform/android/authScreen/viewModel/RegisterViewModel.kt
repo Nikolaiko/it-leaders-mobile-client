@@ -7,14 +7,14 @@ import com.penguins.educationmultiplatform.android.authScreen.data.AuthUpdatedBu
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenUiState
 import com.penguins.educationmultiplatform.android.authScreen.data.UserTokens
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
 import com.penguins.educationmultiplatform.android.data.model.consts.birthDateFormat
-import com.penguins.educationmultiplatform.android.data.model.dto.auth.AuthResponse
-import com.penguins.educationmultiplatform.android.data.model.dto.auth.RegisterRequest
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.auth.AuthResponse
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.auth.RegisterRequest
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
 import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
-import com.penguins.educationmultiplatform.android.domain.usecases.auth.RegisterUserUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.auth.RegisterUserUseCase
 import com.penguins.educationmultiplatform.android.domain.validation.ValuesValidator
 import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.mainScreenRoute
@@ -86,8 +86,8 @@ class RegisterViewModel(
         viewModelScope.launch {
             val registeredResult = registerUserUseCase.invoke(registerData)
             when(registeredResult) {
-                is ActionResult.Success -> saveTokens(registeredResult.result as AuthResponse)
-                is ActionResult.Fail -> {
+                is AppActionResult.Success -> saveTokens(registeredResult.result as AuthResponse)
+                is AppActionResult.Fail -> {
                     _errorState.tryEmit(registeredResult.failure)
                 }
             }
@@ -95,7 +95,7 @@ class RegisterViewModel(
     }
 
     private fun saveTokens(auth: AuthResponse) {
-        localStorage.setTokens(UserTokens(accessToken = auth.accessToken))
+        localStorage.setTokens(UserTokens(accessToken = auth.accessToken, refreshToken = auth.refreshToken))
         when(authMode) {
             AuthDisplayMode.independent -> navigation.navigateTo(AppScreens.MainAppScreen)
             AuthDisplayMode.asChild -> navigation.popBackStack(route = mainScreenRoute)

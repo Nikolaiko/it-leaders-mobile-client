@@ -5,10 +5,10 @@ import com.penguins.educationmultiplatform.android.authScreen.viewModel.AuthView
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
 import com.penguins.educationmultiplatform.android.data.validation.AppValuesValidator
 import com.penguins.educationmultiplatform.android.domain.useCases.auth.CheckAuthStateUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.auth.LoginWithEmailUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.auth.LoginWithEmailUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.auth.LoginWithVKUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.auth.LogoutUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.auth.RegisterUserUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.auth.RegisterUserUseCase
 import com.penguins.educationmultiplatform.android.domain.validation.ValuesValidator
 import com.penguins.educationmultiplatform.android.splashScreen.viewModel.SplashScreenViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

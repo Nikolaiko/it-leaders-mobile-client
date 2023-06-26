@@ -1,7 +1,7 @@
 package com.penguins.educationmultiplatform.android.domain.localUserDataRepository
 
 import com.penguins.educationmultiplatform.android.authScreen.data.UserTokens
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.LocalUserData
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.LocalUserData
 
 interface LocalUserDataRepository {
     fun setSkippedAuthorization(value: Boolean)

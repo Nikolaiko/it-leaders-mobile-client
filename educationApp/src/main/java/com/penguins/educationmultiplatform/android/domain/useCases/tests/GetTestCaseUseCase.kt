@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.domain.usecases.tests
+package com.penguins.educationmultiplatform.android.domain.useCases.tests
 
 import com.penguins.educationmultiplatform.android.data.model.textQuestion1
 import com.penguins.educationmultiplatform.android.data.model.textQuestion2
@@ -8,9 +8,7 @@ import com.penguins.educationmultiplatform.android.data.model.textQuestion5
 import com.penguins.educationmultiplatform.android.data.model.textQuestion6
 import com.penguins.educationmultiplatform.android.data.model.textQuestion7
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
-import com.penguins.educationmultiplatform.android.testsScreen.data.EducationTest
 import com.penguins.educationmultiplatform.android.testsScreen.data.TestCase
-import com.penguins.educationmultiplatform.android.testsScreen.data.TextAnswerVariant
 
 class GetTestCaseUseCase {
     fun invoke(category: Category): TestCase {

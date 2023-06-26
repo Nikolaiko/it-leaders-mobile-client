@@ -1,10 +1,9 @@
 package com.penguins.educationmultiplatform.android.testsScreen.tests.viewModel
 
 import androidx.lifecycle.ViewModel
-import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.tests.GetUserScoreUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.tests.UpdateUserScoreUseCase
-import com.penguins.educationmultiplatform.android.domain.usecases.tests.GetTestCaseUseCase
+import com.penguins.educationmultiplatform.android.domain.useCases.tests.GetTestCaseUseCase
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.testsScreen.data.EducationTest
 import com.penguins.educationmultiplatform.android.testsScreen.data.TestCaseState

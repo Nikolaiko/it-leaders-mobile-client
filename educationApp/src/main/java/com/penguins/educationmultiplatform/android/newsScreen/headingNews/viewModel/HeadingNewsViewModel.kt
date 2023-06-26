@@ -2,7 +2,7 @@ package com.penguins.educationmultiplatform.android.newsScreen.headingNews.viewM
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByParamsUseCase
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
@@ -60,8 +60,8 @@ class HeadingNewsViewModel(
 
     private suspend fun setNewsList(categories: List<Category>?, heading: String?) {
         when (val response = getNewsByFilters(categories = categories, heading = heading)) {
-            is ActionResult.Success -> saveNews(response.result)
-            is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+            is AppActionResult.Success -> saveNews(response.result)
+            is AppActionResult.Fail -> _errorState.tryEmit(response.failure)
         }
     }
 

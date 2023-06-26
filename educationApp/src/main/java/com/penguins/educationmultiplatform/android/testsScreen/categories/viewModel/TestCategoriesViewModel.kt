@@ -3,18 +3,15 @@ package com.penguins.educationmultiplatform.android.testsScreen.categories.viewM
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavOptions
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.InterestCategory
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.LocalUserData
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.InterestCategory
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.LocalUserData
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
-import com.penguins.educationmultiplatform.android.domain.navigation.AppNavigation
 import com.penguins.educationmultiplatform.android.domain.useCases.GetUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.SaveUserDataUseCase
 import com.penguins.educationmultiplatform.android.domain.useCases.UpdateUserInterestsUseCase
 import com.penguins.educationmultiplatform.android.navigation.navigation.TestsNavigation
-import com.penguins.educationmultiplatform.android.navigation.routeObject.AppScreens
 import com.penguins.educationmultiplatform.android.navigation.routeObject.TestsScreens
-import com.penguins.educationmultiplatform.android.newsScreen.common.data.Category
 import com.penguins.educationmultiplatform.android.testsScreen.data.CategoriesScreenState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,19 +37,19 @@ class TestCategoriesViewModel(
     fun initUserData() {
         viewModelScope.launch {
             when(val response = getUserDataUseCase.invoke()) {
-                is ActionResult.Success -> {
+                is AppActionResult.Success -> {
                     userData = response.result
                     val interests = userData?.interests ?: emptyList()
                     currentState = currentState.copy(
                         musicSelected = interests.contains(InterestCategory.music),
                         artSelected = interests.contains(InterestCategory.art),
-                        theatereSelected = interests.contains(InterestCategory.theater),
+                        theatereSelected = interests.contains(InterestCategory.theatre),
                         danceSelected = interests.contains(InterestCategory.choreography),
                         canContinue = interests.isNotEmpty()
                     )
                     _state.emit(currentState)
                 }
-                is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+                is AppActionResult.Fail -> _errorState.tryEmit(response.failure)
             }
         }
     }
@@ -106,7 +103,7 @@ class TestCategoriesViewModel(
             userInterests.add(InterestCategory.music)
         }
         if (currentState.theatereSelected) {
-            userInterests.add(InterestCategory.theater)
+            userInterests.add(InterestCategory.theatre)
         }
         if (currentState.danceSelected) {
             userInterests.add(InterestCategory.choreography)
@@ -125,8 +122,8 @@ class TestCategoriesViewModel(
             saveUserDataUseCase.invoke(newUserData)
             val response = updateUserInterestsUseCase.invoke(interestsList)
             when(response) {
-                is ActionResult.Success -> {  }
-                is ActionResult.Fail -> {
+                is AppActionResult.Success -> {  }
+                is AppActionResult.Fail -> {
                     _errorState.tryEmit(response.failure)
                 }
             }
