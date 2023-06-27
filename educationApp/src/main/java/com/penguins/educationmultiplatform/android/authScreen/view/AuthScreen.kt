@@ -29,6 +29,7 @@ import com.vk.api.sdk.auth.VKAuthenticationResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
+import com.penguins.educationmultiplatform.android.R
 
 @Composable
 fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
@@ -65,7 +66,6 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
         onResult = { result: VKAuthenticationResult ->
             when (result) {
                 is VKAuthenticationResult.Success -> {
-                    //viewModel.onEvent(AuthScreenEvents.JoinWithVK(result.token.accessToken))
                     vkProfileLauncher.launch(vkFields)
                 }
                 is VKAuthenticationResult.Failed -> {
@@ -79,7 +79,7 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
     LaunchedEffect(key1 = errorEffect) {
         viewModel.errorState.collect {
             if (it !is AppError.NoError) {
-                Toast.makeText(context, "Извините! Что-то пошло не так.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -115,7 +115,7 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp),
             text = "Войти",
-            enabled = viewModel.validateFields()
+            enabled = viewModel.validateFields() && !state.value.loading
         ) {
             viewModel.onEvent(AuthScreenEvents.AuthWithEmail)
         }
@@ -124,7 +124,8 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp),
-            text = "Войти через VK"
+            text = "Войти через VK",
+            enabled = !state.value.loading
         ) {
             vkAuthLauncher.launch(vkFields)
         }
@@ -133,7 +134,8 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp),
-            text = "Зарегистрироваться"
+            text = "Зарегистрироваться",
+            enabled = !state.value.loading
         ) {
             viewModel.onEvent(AuthScreenEvents.RegisterButton)
         }
@@ -142,9 +144,21 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp),
-            text = "Войти позже"
+            text = "Войти позже",
+            enabled = !state.value.loading
         ) {
             viewModel.onEvent(AuthScreenEvents.AuthLater)
         }
+    }
+}
+
+fun getErrorMessageFromType(error: AppError): Int {
+    return when(error) {
+        is AppError.NoError -> R.string.no_error_message
+        is AppError.UnknownResponse -> R.string.unknown_error_message
+        is AppError.UserNotFound -> R.string.no_error_message
+        is AppError. -> R.string.no_error_message
+        is AppError.NoError -> R.string.no_error_message
+        else -> R.string.unknown_error_message
     }
 }
