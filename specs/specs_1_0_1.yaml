@@ -1,0 +1,622 @@
+---
+openapi: 3.0.0
+info:
+  title: taskapi
+  description: Secret API
+  version: 1.0.1
+servers:
+- url: /
+tags:
+- name: auth
+  description: Authorization APIs
+- name: news
+  description: News APIs
+- name: user
+  description: UserData APIs
+- name: tests
+  description: Tests APIs
+paths:
+  /api/news:
+    get:
+      tags:
+      - news
+      summary: get news list by category
+      description: get news list by category
+      parameters:
+      - name: category
+        in: query
+        description: News category client interested in
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/NewsCategory'
+      responses:
+        "200":
+          description: news returned to client
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsShortDataList'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - basicAuth: []
+  /api/news/{id}:
+    get:
+      tags:
+      - news
+      summary: get news by id
+      description: get news by id
+      parameters:
+      - name: id
+        in: path
+        description: News id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: news content returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsFullData'
+        "404":
+          description: News not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - basicAuth: []
+  /api/auth/register:
+    post:
+      tags:
+      - auth
+      summary: register new user
+      description: register new user via email
+      requestBody:
+        description: Email entered by the user in auth form
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserMailRegisterData'
+      responses:
+        "200":
+          description: user registered and tokens sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTokens'
+        "422":
+          description: Wrong request format (email or malformed json)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "409":
+          description: User Already Exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - basicAuth: []
+  /api/auth/login/email:
+    post:
+      tags:
+      - auth
+      summary: login user
+      description: login user via email
+      requestBody:
+        description: Email entered by the user in auth form
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserMailRegisterData'
+      responses:
+        "200":
+          description: user registered and tokens sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTokens'
+        "422":
+          description: Wrong request format (email or malformed json)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "404":
+          description: User Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - basicAuth: []
+  /api/auth/login/vk:
+    post:
+      tags:
+      - auth
+      summary: login user
+      description: login user via vk
+      requestBody:
+        description: Email entered by the user in auth form
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserVkRegisterData'
+      responses:
+        "200":
+          description: user registered and tokens sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTokens'
+        "422":
+          description: Wrong request format (email or malformed json)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - basicAuth: []
+  /api/auth/refresh:
+    post:
+      tags:
+      - auth
+      summary: register new user
+      description: register new user via email
+      requestBody:
+        description: User resfresh token
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRefreshToken'
+      responses:
+        "200":
+          description: New user tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTokens'
+        "401":
+          description: Refresh token expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - basicAuth: []
+  /api/user/profile:
+    get:
+      tags:
+      - user
+      summary: get user data
+      description: Get user data needs auth
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: bearer tokenValue
+      responses:
+        "200":
+          description: user data sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+        "422":
+          description: Wrong request format (wrong token)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "404":
+          description: User Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - bearerAuth: []
+  /api/user/interests:
+    post:
+      tags:
+      - user
+      summary: set user interests
+      description: Change user interests
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: bearer tokenValue
+      requestBody:
+        description: New array of user interests
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInterests'
+      responses:
+        "200":
+          description: user data changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+        "422":
+          description: Wrong request format (wrong token)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "404":
+          description: User Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - bearerAuth: []
+  /api/user/tests:
+    get:
+      tags:
+      - user
+      summary: set user interests
+      description: Change user interests
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: bearer tokenValue
+      responses:
+        "200":
+          description: Provided data tests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTestsData'
+        "422":
+          description: Wrong request format (wrong token)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - bearerAuth: []
+  /api/tests/results:
+    post:
+      tags:
+      - tests
+      summary: post test results
+      description: Post test result
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: bearer tokenValue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestResults'
+      responses:
+        "200":
+          description: Test Data Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTestsData'
+        "422":
+          description: Wrong request format (wrong token)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "404":
+          description: User or test not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonErrorResponse'
+      security:
+      - bearerAuth: []
+components:
+  schemas:
+    NewsFullData:
+      required:
+      - content
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 8
+        content:
+          type: string
+          example: <html></html>
+    NewsShortDataList:
+      required:
+      - news
+      type: object
+      properties:
+        news:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewsShortData'
+    NewsShortData:
+      required:
+      - category
+      - heading
+      - id
+      - info
+      - title
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 8
+        title:
+          type: string
+          example: Title
+        info:
+          type: string
+          example: News short info
+        heading:
+          $ref: '#/components/schemas/NewsHeading'
+        category:
+          $ref: '#/components/schemas/NewsCategory'
+        imageUrl:
+          type: string
+          format: url
+          example: http://someurl.com
+    UserTokens:
+      required:
+      - accessToken
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: ea135929105c4f29a0f5117d2960926f
+        refreshToken:
+          type: string
+          example: ea135929105c4f29a0f5117d2960926f
+    UserRefreshToken:
+      required:
+      - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          example: ea135929105c4f29a0f5117d2960926f
+    TestResults:
+      required:
+      - passed
+      - testId
+      type: object
+      properties:
+        testId:
+          type: integer
+          example: 0
+        passed:
+          type: boolean
+          example: false
+    UserInterests:
+      required:
+      - interests
+      type: object
+      properties:
+        interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewsCategory'
+    UserTestsData:
+      required:
+      - futureTests
+      - id
+      - passedTests
+      - score
+      - userId
+      type: object
+      properties:
+        futureTests:
+          type: array
+          items:
+            type: integer
+        passedTests:
+          type: array
+          items:
+            type: integer
+        id:
+          type: integer
+        userId:
+          type: integer
+        score:
+          type: integer
+    UserMailRegisterData:
+      required:
+      - birthdate
+      - email
+      - name
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: example@mail.com
+        password:
+          type: string
+          example: "12345"
+        name:
+          type: string
+          example: Nikolai
+        birthdate:
+          type: string
+          example: 2015-01-22
+    UserData:
+      required:
+      - email
+      - id
+      - interests
+      - name
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: example@mail.com
+        name:
+          type: string
+          example: Nikolai
+        id:
+          type: integer
+          example: 8
+        interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewsCategory'
+        birthdate:
+          type: string
+          example: 2015-01-22
+        avatarurl:
+          type: string
+    UserVkRegisterData:
+      required:
+      - email
+      - name
+      - password
+      - vkToken
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: example@mail.com
+        password:
+          type: string
+          example: "12345"
+        name:
+          type: string
+          example: Nikolai
+        vkToken:
+          type: string
+          example: Nikolai
+        birthdate:
+          type: string
+          example: 2015-01-22
+    CommonErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error message
+    NewsCategory:
+      type: string
+      enum:
+      - music
+      - art
+      - theater
+      - choreography
+    NewsHeading:
+      type: string
+      enum:
+      - interestingFacts
+      - fiveQuestions
+      - quiz
+  responses:
+    UnauthorizedError:
+      description: Authentication information is missing or invalid
+      headers:
+        WWW_Authenticate:
+          style: simple
+          explode: false
+          schema:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    basicAuth:
+      type: http
+      scheme: basic

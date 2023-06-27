@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.penguins.educationmultiplatform.android.MyApplicationTheme
 import com.penguins.educationmultiplatform.android.R
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.InterestCategory
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.InterestCategory
 import com.penguins.educationmultiplatform.android.testsScreen.tests.data.TestDifficulty
 import com.penguins.educationmultiplatform.android.ui.neutral0
 import com.penguins.educationmultiplatform.android.ui.neutral0Size16Weight700Style

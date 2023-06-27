@@ -1,6 +1,6 @@
 package com.penguins.educationmultiplatform.android.domain.mappers
 
-import com.penguins.educationmultiplatform.android.data.model.dto.news.NewsListResponse
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.news.NewsListResponse
 
 fun NewsListResponse.toFilter(
     category: List<String>? = null,

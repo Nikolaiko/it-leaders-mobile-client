@@ -1,6 +1,6 @@
 package com.penguins.educationmultiplatform.android.authScreen.data
 
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.VKProfile
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.VKProfile
 
 sealed class AuthScreenEvents {
     class SetLogin(val text: String): AuthScreenEvents()

@@ -3,16 +3,15 @@ package com.penguins.educationmultiplatform.android.data.localUserDataRepository
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.penguins.educationmultiplatform.android.authScreen.data.UserTokens
-import com.penguins.educationmultiplatform.android.data.model.dto.profile.LocalUserData
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.LocalUserData
 import com.penguins.educationmultiplatform.android.domain.localUserDataRepository.LocalUserDataRepository
-import kotlinx.serialization.decodeFromString
+import com.services.storage.TokenStorage
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class SharedPreferencesRepository(
     context: Context
-): LocalUserDataRepository {
-
+): LocalUserDataRepository, TokenStorage {
     private val repository = PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun setSkippedAuthorization(value: Boolean) {
@@ -70,6 +69,19 @@ class SharedPreferencesRepository(
             .edit()
             .clear()
             .apply()
+    }
+
+    override fun updateTokens(accessToken: String, refreshToken: String) {
+        val userTokens = UserTokens(accessToken, refreshToken)
+        setTokens(userTokens)
+    }
+
+    override fun getLastTokens(): Pair<String, String> {
+        val userTokens = getTokens()
+        return Pair(
+            first = userTokens?.accessToken ?: "",
+            second = userTokens?.refreshToken ?: ""
+        )
     }
 
     companion object {

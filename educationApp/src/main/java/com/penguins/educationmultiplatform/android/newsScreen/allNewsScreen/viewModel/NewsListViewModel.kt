@@ -2,7 +2,7 @@ package com.penguins.educationmultiplatform.android.newsScreen.allNewsScreen.vie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsListUseCase
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
@@ -56,8 +56,8 @@ class NewsListViewModel(
 
     private suspend fun setNewsList() {
         when (val response = getNewsUseCase()) {
-            is ActionResult.Success -> saveNews(response.result)
-            is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+            is AppActionResult.Success -> saveNews(response.result)
+            is AppActionResult.Fail -> _errorState.tryEmit(response.failure)
         }
     }
 

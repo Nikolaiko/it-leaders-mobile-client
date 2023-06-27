@@ -1,6 +1,6 @@
 package com.penguins.educationmultiplatform.android.domain.mappers
 
-import com.penguins.educationmultiplatform.android.data.model.dto.news.NewsResponse
+import com.penguins.educationmultiplatform.android.data.model.dataClasses.news.NewsResponse
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.CategoryNewsList
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.Heading
 import com.penguins.educationmultiplatform.android.newsScreen.common.data.News

@@ -2,7 +2,7 @@ package com.penguins.educationmultiplatform.android.newsScreen.categoryNewsScree
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByCategoryUseCase
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
@@ -60,7 +60,7 @@ class CategoryViewModel(
 
     private suspend fun setNewsList(category: String) {
         when (val response = getNewsByCategoryUseCase(category)) {
-            is ActionResult.Success -> {
+            is AppActionResult.Success -> {
                 _state.value = _state.value.copy(
                     category = response.result.first().category,
                     lastNews = response.result.last(),
@@ -70,8 +70,7 @@ class CategoryViewModel(
                         .groupBy { it.heading!! }
                 )
             }
-            is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+            is AppActionResult.Fail -> _errorState.tryEmit(response.failure)
         }
     }
-
 }

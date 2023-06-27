@@ -2,7 +2,7 @@ package com.penguins.educationmultiplatform.android.newsScreen.searchNewsScreen.
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.penguins.educationmultiplatform.android.data.model.ActionResult
+import com.penguins.educationmultiplatform.android.data.model.AppActionResult
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.domain.useCases.news.GetNewsByParamsUseCase
 import com.penguins.educationmultiplatform.android.navigation.navigation.NewsNavigation
@@ -95,12 +95,12 @@ class SearchNewsViewModel(
         )
 
         when (response) {
-            is ActionResult.Success -> _state.tryEmit(
+            is AppActionResult.Success -> _state.tryEmit(
                 _state.value.copy(
                     findingNews = response.result
                 )
             )
-            is ActionResult.Fail -> _errorState.tryEmit(response.failure)
+            is AppActionResult.Fail -> _errorState.tryEmit(response.failure)
         }
     }
 
