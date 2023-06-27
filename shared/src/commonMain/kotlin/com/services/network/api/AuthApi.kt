@@ -58,6 +58,7 @@ internal class AuthApi(
         } catch (e: ClientRequestException) {
             when(e.response.status) {
                 HttpStatusCode.NotFound -> ActionResult.Fail(NetworkError.UserNotFound)
+                HttpStatusCode.UnprocessableEntity -> ActionResult.Fail(NetworkError.UnprocessableEntry)
                 else -> ActionResult.Fail(NetworkError.UnknownResponse)
             }
         } catch (e: ServerResponseException) {
@@ -83,6 +84,7 @@ internal class AuthApi(
         } catch (e: ClientRequestException) {
             when(e.response.status) {
                 HttpStatusCode.Conflict -> ActionResult.Fail(NetworkError.UserAlreadyExist)
+                HttpStatusCode.UnprocessableEntity -> ActionResult.Fail(NetworkError.UnprocessableEntry)
                 else -> ActionResult.Fail(NetworkError.UnknownResponse)
             }
         } catch (e: ServerResponseException) {
@@ -108,6 +110,7 @@ internal class AuthApi(
         } catch (e: ClientRequestException) {
             when(e.response.status) {
                 HttpStatusCode.Conflict -> ActionResult.Fail(NetworkError.UserAlreadyExist)
+                HttpStatusCode.UnprocessableEntity -> ActionResult.Fail(NetworkError.UnprocessableEntry)
                 else -> ActionResult.Fail(NetworkError.UnknownResponse)
             }
         } catch (e: ServerResponseException) {

@@ -7,4 +7,7 @@
     <string name="wrong_data_format_message">Неправильный формат данных</string>
     <string name="user_not_found_message">Пользователь с такими данными не найден</string>
 
+    <!-- Register screen -->
+    <string name="user_alredy_exist_message">Пользователь с такими данными уже существует</string>
+
 </resources>

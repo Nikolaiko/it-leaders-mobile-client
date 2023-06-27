@@ -39,6 +39,7 @@ class EducationKtorRepository(
         registerData: RegisterRequest
     ): AppActionResult<AuthResponse, AppError> {
         val response = ktorLayer.registerUserViaEmail(registerData.toDTO())
+        println(response)
         return when(response) {
             is ActionResult.Success -> AppActionResult.Success(response.result.toAuthResponse())
             is ActionResult.Fail -> AppActionResult.Fail(response.failure.toAppError())

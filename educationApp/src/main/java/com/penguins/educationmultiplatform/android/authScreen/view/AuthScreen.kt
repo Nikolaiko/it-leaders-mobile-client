@@ -30,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import com.penguins.educationmultiplatform.android.R
+import com.penguins.educationmultiplatform.android.data.helpers.getAuthErrorMessageFromType
 
 @Composable
 fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
@@ -79,7 +80,11 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
     LaunchedEffect(key1 = errorEffect) {
         viewModel.errorState.collect {
             if (it !is AppError.NoError) {
-                Toast.makeText(context, "", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    context.getString(getAuthErrorMessageFromType(it)),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -149,16 +154,5 @@ fun AuthScreen(viewModel:AuthViewModel = koinViewModel()) {
         ) {
             viewModel.onEvent(AuthScreenEvents.AuthLater)
         }
-    }
-}
-
-fun getErrorMessageFromType(error: AppError): Int {
-    return when(error) {
-        is AppError.NoError -> R.string.no_error_message
-        is AppError.UnknownResponse -> R.string.unknown_error_message
-        is AppError.UserNotFound -> R.string.no_error_message
-        is AppError. -> R.string.no_error_message
-        is AppError.NoError -> R.string.no_error_message
-        else -> R.string.unknown_error_message
     }
 }
