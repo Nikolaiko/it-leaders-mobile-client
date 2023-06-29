@@ -84,7 +84,12 @@ class RegisterViewModel(
         )
 
         viewModelScope.launch {
+            _state.tryEmit(_state.value.copy(loading = true))
+
             val registeredResult = registerUserUseCase.invoke(registerData)
+
+            _state.tryEmit(_state.value.copy(loading = false))
+
             when(registeredResult) {
                 is AppActionResult.Success -> saveTokens(registeredResult.result as AuthResponse)
                 is AppActionResult.Fail -> {

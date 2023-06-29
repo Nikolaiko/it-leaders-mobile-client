@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_error_message">Операция завершена успешно</string>
+    <string name="unknown_error_message">Извините! Что-то пошло не так</string>
+
+    <!-- Auth screen -->
+    <string name="wrong_data_format_message">Неправильный формат данных</string>
+    <string name="user_not_found_message">Пользователь с такими данными не найден</string>
+
+    <!-- Register screen -->
+    <string name="user_alredy_exist_message">Пользователь с такими данными уже существует</string>
+
+</resources>

@@ -8,5 +8,5 @@ sealed class NetworkError {
     object InternalServerError: NetworkError()
     object UnknownResponse: NetworkError()
     object VKLoginFailed: NetworkError()
-    object WrongToken: NetworkError()
+    object UnprocessableEntry: NetworkError()
 }
