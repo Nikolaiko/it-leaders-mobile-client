@@ -1,4 +1,4 @@
-name: Android CI
+name: Debug Build Android CI
   
 on:
   workflow_dispatch:
@@ -22,5 +22,17 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      
     - name: Build with Gradle
       run: ./gradlew build
+      
+    - name: Upload to App Center
+      uses: wzieba/AppCenter-Github-Action@v1.3.3
+      with:
+        appName: nikbakland-h8nz/Education-App
+        token: ${{secrets.APP_CENTER_TOKEN}}
+        group: Collaborators
+        file: educationApp/build/outputs/apk/debug/educationApp-debug.apk
+        notifyTesters: true
+        debug: true
+        
