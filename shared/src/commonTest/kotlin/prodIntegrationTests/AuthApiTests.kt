@@ -29,7 +29,7 @@ class AuthApiTests {
             }
         }
         assertIs<ActionResult.Success<AuthResponseDTO>>(
-            result,
+            response,
             "Auth request failed : $failedReason"
         )
     }
