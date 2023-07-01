@@ -5,6 +5,7 @@ import com.model.dto.auth.AuthRequestDTO
 import com.model.dto.auth.AuthResponseDTO
 import com.model.network.NetworkError
 import com.services.network.api.AuthApi
+import com.services.network.clients.basicAuthClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
@@ -14,7 +15,7 @@ import kotlin.test.assertNotNull
 @ExperimentalCoroutinesApi
 class AuthApiTests {
 
-    private val authApi = AuthApi(prodBaseAddress)
+    private val authApi = AuthApi(prodBaseAddress, basicAuthClient)
 
     @Test
     fun emailAuthTesting() = runTest {

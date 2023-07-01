@@ -8,5 +8,5 @@ sealed class AppError {
     object InternalServerError: AppError()
     object UnknownResponse: AppError()
     object VKLoginFailed: AppError()
-    object WrongToken: AppError()
+    object UnprocessableEntry: AppError()
 }

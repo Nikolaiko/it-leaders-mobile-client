@@ -71,8 +71,13 @@ class AuthViewModel(
 
     private fun authWithEmail() {
         viewModelScope.launch {
+            _state.tryEmit(_state.value.copy(loading = true))
+
             val request = AuthRequest(_state.value.login, _state.value.password)
             val response = loginWithEmailUseCase.invoke(request)
+
+            _state.tryEmit(_state.value.copy(loading = false))
+
             when(response) {
                 is AppActionResult.Success -> saveTokens(response.result)
                 is AppActionResult.Fail -> _errorState.tryEmit(response.failure)
@@ -82,7 +87,12 @@ class AuthViewModel(
 
     private fun authWithVK(token: String, email: String, profile: VKProfile) {
         viewModelScope.launch {
+            _state.tryEmit(_state.value.copy(loading = true))
+
             val response = loginWithVKUseCase.invoke(token, email, profile)
+
+            _state.tryEmit(_state.value.copy(loading = false))
+
             when(response) {
                 is AppActionResult.Success -> saveTokens(response.result)
                 is AppActionResult.Fail -> _errorState.tryEmit(response.failure)

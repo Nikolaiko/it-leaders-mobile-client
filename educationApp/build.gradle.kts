@@ -51,24 +51,14 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.7.1")
 
     //Koin
-    implementation("io.insert-koin:koin-android:3.3.2")
-    implementation("io.insert-koin:koin-androidx-navigation:3.3.2")
+    implementation("io.insert-koin:koin-android:3.4.0")
+    implementation("io.insert-koin:koin-androidx-navigation:3.4.0")
     implementation("io.insert-koin:koin-androidx-compose:3.4.1")
 
     // Coil
     implementation ("io.coil-kt:coil:2.2.2")
     implementation("io.coil-kt:coil-compose:2.2.2")
     implementation("com.vanniktech:android-image-cropper:4.5.0")
-
-    //Ktor
-//    val ktor_version = "2.3.1"
-//    implementation("io.ktor:ktor-client-core:$ktor_version")
-//    implementation("io.ktor:ktor-client-android:$ktor_version")
-//    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
-//    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-//    implementation("io.ktor:ktor-client-auth:$ktor_version")
-//    implementation("io.ktor:ktor-client-logging:$ktor_version")
-//    implementation("ch.qos.logback:logback-classic:1.4.8")
 
     //VK
     implementation ("com.vk:android-sdk-core:4.0.1")

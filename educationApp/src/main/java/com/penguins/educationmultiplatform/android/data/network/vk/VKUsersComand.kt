@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.data.network.api
+package com.penguins.educationmultiplatform.android.data.network.vk
 
 import com.penguins.educationmultiplatform.android.data.model.dataClasses.profile.VKProfile
 import com.penguins.educationmultiplatform.android.data.model.dataClasses.vk.VKPhotoResponse

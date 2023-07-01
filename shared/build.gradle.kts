@@ -33,13 +33,15 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-client-auth:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
             }
         }

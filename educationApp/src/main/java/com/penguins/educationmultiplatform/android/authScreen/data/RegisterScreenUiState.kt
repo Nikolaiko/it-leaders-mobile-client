@@ -7,5 +7,6 @@ data class RegisterScreenUiState(
     val name: String = "",
     val password: String = "",
     val email: String = "",
-    val age: String = ""
+    val age: String = "",
+    val loading: Boolean = false
 )

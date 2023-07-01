@@ -1,4 +1,4 @@
-package com.penguins.educationmultiplatform.android.data.network
+package com.penguins.educationmultiplatform.android.data.network.repositories
 
 import com.model.ActionResult
 import com.penguins.educationmultiplatform.android.data.extensions.network.toAppError
@@ -21,14 +21,9 @@ import com.penguins.educationmultiplatform.android.domain.network.NewsRepository
 import com.services.network.KtorNetworkLayer
 import com.services.storage.TokenStorage
 
-class KtorRepository(
-    baseAddress: String,
-    tokenStorage: TokenStorage
-): EducationRepository, NewsRepository {
-    private val ktorLayer = KtorNetworkLayer(
-        baseAddress = baseAddress,
-        tokenStorage = tokenStorage
-    )
+class EducationKtorRepository(
+    private val ktorLayer: KtorNetworkLayer
+): EducationRepository {
 
     override suspend fun authUser(
         loginData: AuthRequest
@@ -44,6 +39,7 @@ class KtorRepository(
         registerData: RegisterRequest
     ): AppActionResult<AuthResponse, AppError> {
         val response = ktorLayer.registerUserViaEmail(registerData.toDTO())
+        println(response)
         return when(response) {
             is ActionResult.Success -> AppActionResult.Success(response.result.toAuthResponse())
             is ActionResult.Fail -> AppActionResult.Fail(response.failure.toAppError())
@@ -73,16 +69,6 @@ class KtorRepository(
         val response = ktorLayer.updateUserInterests(interests.toInterestsCategoriesListDTO())
         return when(response) {
             is ActionResult.Success -> AppActionResult.Success(response.result.toLocalUserData())
-            is ActionResult.Fail -> AppActionResult.Fail(response.failure.toAppError())
-        }
-    }
-
-    override suspend fun getNewsByCategory(
-        category: String
-    ): AppActionResult<NewsListResponse, AppError> {
-        val response = ktorLayer.getNewsByCategory(category)
-        return when(response) {
-            is ActionResult.Success -> AppActionResult.Success(response.result.toNewsListResponse())
             is ActionResult.Fail -> AppActionResult.Fail(response.failure.toAppError())
         }
     }

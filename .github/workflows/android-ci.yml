@@ -1,0 +1,38 @@
+name: Debug Build Android CI
+  
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'test-**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Build with Gradle
+      run: ./gradlew build
+      
+    - name: Upload to App Center
+      uses: wzieba/AppCenter-Github-Action@v1.3.3
+      with:
+        appName: nikbakland-h8nz/Education-App
+        token: ${{secrets.APP_CENTER_TOKEN}}
+        group: Collaborators
+        file: educationApp/build/outputs/apk/debug/educationApp-debug.apk
+        notifyTesters: true
+        debug: true
+        

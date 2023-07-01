@@ -43,6 +43,7 @@ import com.penguins.educationmultiplatform.android.authScreen.components.FormFie
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenEvents
 import com.penguins.educationmultiplatform.android.authScreen.data.RegisterScreenUiState
 import com.penguins.educationmultiplatform.android.authScreen.viewModel.RegisterViewModel
+import com.penguins.educationmultiplatform.android.data.helpers.getRegisterErrorMessageFromType
 import com.penguins.educationmultiplatform.android.data.model.consts.errorEffect
 import com.penguins.educationmultiplatform.android.data.model.error.AppError
 import com.penguins.educationmultiplatform.android.ui.educationGreenColor
@@ -75,7 +76,11 @@ fun RegisterScreen(
     LaunchedEffect(key1 = errorEffect) {
         viewModel.errorState.collect {
             if (it !is AppError.NoError) {
-                Toast.makeText(context, "Извините! Что-то пошло не так.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    context.getString(getRegisterErrorMessageFromType(it)),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
