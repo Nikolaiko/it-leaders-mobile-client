@@ -11,7 +11,6 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
 @ExperimentalCoroutinesApi
 class AuthApiTests {
@@ -19,7 +18,7 @@ class AuthApiTests {
     private val authApi = AuthApi(prodBaseAddress, basicAuthClient)
 
     @Test
-    fun authTesting() = runTest {
+    fun emailAuthTesting() = runTest {
         val response = authApi.loginUser(AuthRequestDTO(prodTestUserEmail, prodTestUserPassword))
         var failedReason: NetworkError? = null
         val result: AuthResponseDTO? = when(response) {
@@ -29,9 +28,12 @@ class AuthApiTests {
                 null
             }
         }
-        assertNotNull(
-            result,
+        assertIs<ActionResult.Success<AuthResponseDTO>>(
+            response,
             "Auth request failed : $failedReason"
         )
     }
+
+    //TODO vkAuthTesting
+    //TODO logoutTest
 }

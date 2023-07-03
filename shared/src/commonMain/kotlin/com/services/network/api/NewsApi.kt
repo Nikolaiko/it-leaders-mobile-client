@@ -2,6 +2,7 @@ package com.services.network.api
 
 import com.model.ActionResult
 import com.model.consts.getNewsPath
+import com.model.dto.news.NewsFullDataResponseDTO
 import com.model.dto.news.NewsResponseListDTO
 import com.model.network.NetworkError
 import io.ktor.client.HttpClient
@@ -29,6 +30,28 @@ internal class NewsApi(
                 parameter("category", categoryName)
             }.body<NewsResponseListDTO>()
             ActionResult.Success<NewsResponseListDTO>(response)
+        } catch (e: RedirectResponseException) {
+            ActionResult.Fail(NetworkError.UnknownResponse)
+        } catch (e: ClientRequestException) {
+            when(e.response.status) {
+                HttpStatusCode.NotFound -> ActionResult.Fail(NetworkError.UserNotFound)
+                HttpStatusCode.UnprocessableEntity -> ActionResult.Fail(NetworkError.UnprocessableEntry)
+                else -> ActionResult.Fail(NetworkError.UnknownResponse)
+            }
+        } catch (e: ServerResponseException) {
+            processInternalError(e.response)
+        } catch (e: Exception) {
+            ActionResult.Fail(NetworkError.UnknownResponse)
+        }
+    }
+
+    suspend fun getNewsById(newsId: Long): ActionResult<NewsFullDataResponseDTO, NetworkError> {
+        return try {
+            val response = client.get {
+                url("$baseAddress/$getNewsPath/$newsId")
+                contentType(ContentType.Application.Json)
+            }.body<NewsFullDataResponseDTO>()
+            ActionResult.Success<NewsFullDataResponseDTO>(response)
         } catch (e: RedirectResponseException) {
             ActionResult.Fail(NetworkError.UnknownResponse)
         } catch (e: ClientRequestException) {

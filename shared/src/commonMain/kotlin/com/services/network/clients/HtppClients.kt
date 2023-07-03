@@ -44,6 +44,7 @@ val basicAuthClient = HttpClient {
     install(HttpTimeout)
     install(Auth) {
         basic {
+            sendWithoutRequest { true }
             credentials {
                 BasicAuthCredentials(
                     username = basicLogin,
